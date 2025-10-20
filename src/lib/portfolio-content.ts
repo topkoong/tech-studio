@@ -34,11 +34,11 @@ const portfolioDirectory = path.join(process.cwd(), 'src/content/portfolio');
 export function getAllPortfolioSlugs(): string[] {
   try {
     const slugs: string[] = [];
-    
+
     // Check both en and th directories
     const enDir = path.join(portfolioDirectory, 'en');
     const thDir = path.join(portfolioDirectory, 'th');
-    
+
     // Read English projects
     if (fs.existsSync(enDir)) {
       const enFiles = fs.readdirSync(enDir);
@@ -46,7 +46,7 @@ export function getAllPortfolioSlugs(): string[] {
         .filter((name) => name.endsWith('.md'))
         .forEach((name) => slugs.push(`en/${name.replace(/\.md$/, '')}`));
     }
-    
+
     // Read Thai projects
     if (fs.existsSync(thDir)) {
       const thFiles = fs.readdirSync(thDir);
@@ -54,7 +54,7 @@ export function getAllPortfolioSlugs(): string[] {
         .filter((name) => name.endsWith('.md'))
         .forEach((name) => slugs.push(`th/${name.replace(/\.md$/, '')}`));
     }
-    
+
     return slugs;
   } catch (error) {
     console.error('Error reading portfolio directory:', error);

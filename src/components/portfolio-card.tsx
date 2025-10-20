@@ -29,7 +29,11 @@ export default function PortfolioCard({
       <div className='aspect-video bg-muted flex items-center justify-center overflow-hidden'>
         {project.image ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={project.image} alt={project.title} className='w-full h-full object-cover' />
+          <img
+            src={project.image}
+            alt={project.title}
+            className='w-full h-full object-cover'
+          />
         ) : (
           <span className='text-muted-foreground'>Project Image</span>
         )}

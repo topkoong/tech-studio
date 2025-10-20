@@ -1,8 +1,8 @@
 'use client';
 
+import PortfolioCard from './portfolio-card';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
-import PortfolioCard from './portfolio-card';
 
 interface PortfolioGridProps {
   projects: Array<{
@@ -29,7 +29,10 @@ interface PortfolioGridProps {
   featured?: boolean;
 }
 
-export function PortfolioGrid({ projects, featured = false }: PortfolioGridProps) {
+export function PortfolioGrid({
+  projects,
+  featured = false,
+}: PortfolioGridProps) {
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
 
@@ -39,13 +42,17 @@ export function PortfolioGrid({ projects, featured = false }: PortfolioGridProps
       .reduce((map, p) => {
         if (!map.has(p.metadata.id)) map.set(p.metadata.id, p);
         return map;
-      }, new Map<string, typeof projects[number]>())
+      }, new Map<string, (typeof projects)[number]>())
       .values()
   );
 
   return (
     <motion.div
-      className={featured ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'}
+      className={
+        featured
+          ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16'
+          : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+      }
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: featured ? 0.4 : 0.7 }}
@@ -55,7 +62,10 @@ export function PortfolioGrid({ projects, featured = false }: PortfolioGridProps
           key={project.metadata.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: (featured ? 0.5 : 0.8) + index * (featured ? 0.1 : 0.05) }}
+          transition={{
+            duration: 0.6,
+            delay: (featured ? 0.5 : 0.8) + index * (featured ? 0.1 : 0.05),
+          }}
         >
           <PortfolioCard project={project.metadata} featured={featured} />
         </motion.div>
