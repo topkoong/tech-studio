@@ -6,7 +6,10 @@
     <title>TechStudio - Redirecting...</title>
     <script>
       // Redirect to English locale by default
-      window.location.replace('/tech-studio/en/');
+      // Dynamic redirect based on environment
+      const isGitHubPages = window.location.hostname === 'topkoong.github.io';
+      const basePath = isGitHubPages ? '/tech-studio' : '';
+      window.location.replace(`${basePath}/en/`);
     </script>
   </head>
   <body>
