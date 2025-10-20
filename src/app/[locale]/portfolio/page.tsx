@@ -17,7 +17,14 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function PortfolioPage() {
+interface PortfolioPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export default async function PortfolioPage({ params }: PortfolioPageProps) {
+  const { locale } = await params;
   const all = getAllPortfolioProjects();
   // Filter to current locale via pathname segment from route params is not accessible here.
   // We'll infer from URL at render time in the grid consumers; alternatively, keep all and de-dupe by id.
@@ -70,7 +77,7 @@ export default async function PortfolioPage() {
             </p>
           </div>
 
-          <PortfolioGrid projects={featuredProjects} featured />
+          <PortfolioGrid projects={featuredProjects} featured locale={locale} />
         </div>
       </section>
 
@@ -86,7 +93,7 @@ export default async function PortfolioPage() {
             </p>
           </div>
 
-          <PortfolioGrid projects={projects} />
+          <PortfolioGrid projects={projects} locale={locale} />
         </div>
       </section>
 

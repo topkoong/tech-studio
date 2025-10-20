@@ -34,7 +34,14 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function AboutPage() {
+interface AboutPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export default async function AboutPage({ params }: AboutPageProps) {
+  const { locale } = await params;
   const t = await getTranslations('about');
   const tTech = await getTranslations('techDescriptions');
 

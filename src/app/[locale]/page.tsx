@@ -38,7 +38,20 @@ import { Separator } from '@/components/ui/separator';
 import { TypingEffect } from '@/components/text-animations';
 import { getTranslations } from 'next-intl/server';
 
-export default async function HomePage() {
+const locales = ['en', 'th'] as const;
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+interface HomePageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
   const t = await getTranslations('home');
 
   return (

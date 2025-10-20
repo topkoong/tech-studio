@@ -28,18 +28,20 @@ interface PortfolioGridProps {
     };
   }>;
   featured?: boolean;
+  locale?: string;
 }
 
 export function PortfolioGrid({
   projects,
   featured = false,
+  locale,
 }: PortfolioGridProps) {
   const params = useParams();
-  const locale = (params?.locale as string) || 'en';
+  const currentLocale = locale || (params?.locale as string) || 'en';
 
   const deduped = Array.from(
     projects
-      .filter((p) => p.metadata.locale === locale)
+      .filter((p) => p.metadata.locale === currentLocale)
       .reduce((map, p) => {
         if (!map.has(p.metadata.id)) map.set(p.metadata.id, p);
         return map;

@@ -5,6 +5,7 @@ import {
   getRelatedPortfolioProjects,
 } from '@/lib/portfolio-content';
 
+import { AnimatedPortfolioContent } from '@/components/animated-portfolio-content';
 import { Button } from '@/components/ui/button';
 import { FadeUp } from '@/components/text-animations';
 import { FloatingParticles } from '@/components/floating-particles';
@@ -14,7 +15,6 @@ import Navigation from '@/components/navigation';
 import PortfolioCard from '@/components/portfolio-card';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { AnimatedPortfolioContent } from '@/components/animated-portfolio-content';
 
 interface PortfolioProjectPageProps {
   params: Promise<{
@@ -57,7 +57,7 @@ export default async function PortfolioProjectPage({
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
-      <AnimatedPortfolioContent 
+      <AnimatedPortfolioContent
         project={project}
         relatedProjects={relatedProjects}
         translations={translations}

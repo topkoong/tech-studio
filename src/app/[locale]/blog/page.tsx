@@ -17,7 +17,14 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function BlogPage() {
+interface BlogPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export default async function BlogPage({ params }: BlogPageProps) {
+  const { locale } = await params;
   const posts = getAllBlogPosts().map((p) => ({
     ...p,
     metadata: { ...p.metadata, featured: Boolean(p.metadata.featured) },
@@ -46,7 +53,7 @@ export default async function BlogPage() {
       {/* Blog Posts Grid */}
       <section className='py-20 relative z-10'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <BlogGrid posts={posts} />
+          <BlogGrid posts={posts} locale={locale} />
         </div>
       </section>
 

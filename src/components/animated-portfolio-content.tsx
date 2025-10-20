@@ -1,13 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { FadeUp } from '@/components/text-animations';
 import { FloatingParticles } from '@/components/floating-particles';
 import Link from 'next/link';
 import PortfolioCard from '@/components/portfolio-card';
 import { PortfolioProject } from '@/lib/portfolio-content';
+import { motion } from 'framer-motion';
 
 interface AnimatedPortfolioContentProps {
   project: PortfolioProject;
@@ -25,15 +26,15 @@ interface AnimatedPortfolioContentProps {
   };
 }
 
-export function AnimatedPortfolioContent({ 
-  project, 
-  relatedProjects, 
-  translations 
+export function AnimatedPortfolioContent({
+  project,
+  relatedProjects,
+  translations,
 }: AnimatedPortfolioContentProps) {
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <FloatingParticles count={80} />
-      
+
       <article className='py-20 px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='max-w-4xl mx-auto'>
           <motion.div
@@ -62,7 +63,7 @@ export function AnimatedPortfolioContent({
             <p className='text-xl text-gray-600 dark:text-gray-300 mb-8'>
               {project.metadata.description}
             </p>
-            
+
             <div className='flex flex-wrap gap-4 mb-8'>
               {project.metadata.liveUrl && (
                 <motion.a

@@ -19,14 +19,15 @@ interface BlogGridProps {
     };
     content: string;
   }>;
+  locale?: string;
 }
 
-export function BlogGrid({ posts }: BlogGridProps) {
+export function BlogGrid({ posts, locale }: BlogGridProps) {
   const params = useParams();
-  const locale = (params?.locale as string) || 'en';
+  const currentLocale = locale || (params?.locale as string) || 'en';
 
   const filtered = posts.filter((p) =>
-    p.metadata.slug.startsWith(`${locale}/`)
+    p.metadata.slug.startsWith(`${currentLocale}/`)
   );
 
   if (filtered.length === 0) {

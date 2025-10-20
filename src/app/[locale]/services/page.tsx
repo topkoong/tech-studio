@@ -30,7 +30,14 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function ServicesPage() {
+interface ServicesPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export default async function ServicesPage({ params }: ServicesPageProps) {
+  const { locale } = await params;
   const t = await getTranslations('services');
 
   return (
