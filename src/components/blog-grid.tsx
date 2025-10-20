@@ -2,6 +2,7 @@
 
 import BlogCard from './blog-card';
 import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
 
 interface BlogGridProps {
   posts: Array<{
@@ -21,7 +22,14 @@ interface BlogGridProps {
 }
 
 export function BlogGrid({ posts }: BlogGridProps) {
-  if (posts.length === 0) {
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+
+  const filtered = posts.filter((p) =>
+    p.metadata.slug.startsWith(`${locale}/`)
+  );
+
+  if (filtered.length === 0) {
     return (
       <motion.div
         className='text-center py-12'
@@ -46,7 +54,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.3 }}
     >
-      {posts.map((post, index) => (
+      {filtered.map((post, index) => (
         <motion.div
           key={post.metadata.slug}
           initial={{ opacity: 0, y: 20 }}

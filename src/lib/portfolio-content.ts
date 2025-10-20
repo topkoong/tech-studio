@@ -20,6 +20,8 @@ export interface PortfolioMetadata {
   githubUrl?: string;
   featured: boolean;
   date: string;
+  locale: string;
+  slug: string;
 }
 
 export interface PortfolioProject {
@@ -103,6 +105,8 @@ export function getPortfolioProject(slug: string): PortfolioProject | null {
         githubUrl: data.githubUrl,
         featured: data.featured || false,
         date: data.date || new Date().toISOString(),
+        locale: slug.includes('/') ? slug.split('/')[0] : 'en',
+        slug,
       },
       content,
     };

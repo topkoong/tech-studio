@@ -21,5 +21,3 @@ date: '2024-08-03'
 # IoT Monitoring Hub
 
 Operational visibility at scale with real‑time telemetry.
-
-

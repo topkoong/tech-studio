@@ -12,11 +12,10 @@ import {
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { ContactMascot } from '@/components/mascots';
 import { FAQAccordion } from '@/components/faq-accordion';
 import { FloatingMascots } from '@/components/floating-mascots';
-import { FloatingObstacles } from '@/components/floating-obstacles';
 import { FloatingParticles } from '@/components/floating-particles';
+import { FloatingParticlesBanner } from '@/components/floating-particles-banner';
 import Footer from '@/components/footer';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -50,17 +49,12 @@ export default async function ContactPage() {
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
-
-      {/* Floating particles */}
+      <LemonGlow />
       <FloatingParticles
-        count={40}
-        className='text-emerald-500/20 dark:text-lime-400/30'
+        count={120}
+        className='text-emerald-500/30 dark:text-lime-400/60'
         size='md'
       />
-
-      <LemonGlow />
-      <FloatingObstacles count={12} seed={404} />
-      <ContactMascot />
 
       {/* Hero Section */}
       <AnimatedSection className='py-20 px-4 sm:px-6 lg:px-8 relative z-10'>
@@ -252,11 +246,11 @@ export default async function ContactPage() {
           <div className='text-center mb-16'>
             <TypingEffect
               text={t('faq.title')}
-              className='text-3xl font-bold text-gray-900 dark:text-white mb-4'
+              className='block text-3xl font-bold text-gray-900 dark:text-white mb-2'
             />
             <FadeUp
               text={t('faq.subtitle')}
-              className='text-lg text-gray-600 dark:text-gray-300'
+              className='block text-lg text-gray-600 dark:text-gray-300 mt-2'
             />
           </div>
 

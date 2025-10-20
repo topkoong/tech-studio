@@ -14,6 +14,33 @@ export const ServicesMascot = () => (
   </motion.div>
 );
 
+export const ServicesGearsMascot = () => (
+  <motion.div
+    className='absolute right-8 top-10 w-24 h-24 md:w-28 md:h-28'
+    animate={{ rotate: [0, 10, -10, 0] }}
+    transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+  >
+    <div className='relative w-full h-full'>
+      <div className='absolute inset-0 rounded-full bg-gradient-to-br from-green-500 to-lime-500 opacity-90 blur-sm' />
+      <div className='absolute inset-1 rounded-full bg-gradient-to-br from-green-400 to-lime-400 grid place-items-center shadow-lg shadow-lime-500/30'>
+        <div className='relative'>
+          <motion.div
+            className='w-5 h-5 rounded-full bg-black/70 absolute -top-2 -left-2'
+            animate={{ rotate: 360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+          />
+          <motion.div
+            className='w-6 h-6 rounded-full bg-black/70 absolute top-0 right-0'
+            animate={{ rotate: -360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          />
+          <span className='relative z-10 text-black font-extrabold'>GEAR</span>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
 export const PortfolioMascot = () => (
   <motion.div
     className='absolute right-8 top-8 w-16 h-16 md:w-20 md:h-20'

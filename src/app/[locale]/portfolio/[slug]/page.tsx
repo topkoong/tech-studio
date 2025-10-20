@@ -45,12 +45,10 @@ export default async function PortfolioProjectPage({
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
-
-      {/* Floating particles */}
       <FloatingParticles
-        count={30}
-        className='text-emerald-500/15 dark:text-lime-400/25'
-        size='sm'
+        count={120}
+        className='text-emerald-500/30 dark:text-lime-400/60'
+        size='md'
       />
 
       {/* Project Header */}

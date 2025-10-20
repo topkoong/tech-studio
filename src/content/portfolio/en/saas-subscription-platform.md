@@ -21,5 +21,3 @@ date: '2024-02-22'
 # SaaS Subscription Platform
 
 Robust billing, delightful customer portal, and admin insights.
-
-

@@ -1,8 +1,8 @@
 import BlogCard from '@/components/blog-card';
 import { BlogGrid } from '@/components/blog-grid';
 import { BlogHero } from '@/components/blog-hero';
-import { BlogMascot } from '@/components/mascots';
 import { BlogNewsletter } from '@/components/blog-newsletter';
+import { FloatingMascots } from '@/components/floating-mascots';
 import { FloatingObstacles } from '@/components/floating-obstacles';
 import { FloatingParticles } from '@/components/floating-particles';
 import Footer from '@/components/footer';
@@ -22,16 +22,17 @@ export default async function BlogPage() {
     <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
 
-      {/* Floating particles */}
       <FloatingParticles
-        count={40}
-        className='text-emerald-500/20 dark:text-lime-400/30'
+        count={120}
+        className='text-emerald-500/30 dark:text-lime-400/60'
         size='md'
       />
 
       <LemonGlow />
-      <FloatingObstacles count={10} seed={303} />
-      <BlogMascot />
+      <FloatingMascots
+        count={1}
+        className='text-emerald-400/30 dark:text-lime-400/50'
+      />
 
       {/* Hero Section */}
       <BlogHero title={t('title')} subtitle={t('subtitle')} />

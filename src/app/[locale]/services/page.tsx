@@ -17,10 +17,11 @@ import { Button } from '@/components/ui/button';
 import { FloatingMascots } from '@/components/floating-mascots';
 import { FloatingObstacles } from '@/components/floating-obstacles';
 import { FloatingParticles } from '@/components/floating-particles';
+import { FloatingParticlesBanner } from '@/components/floating-particles-banner';
 import Footer from '@/components/footer';
 import { LemonGlow } from '@/components/lemon-glow';
 import Navigation from '@/components/navigation';
-import { ServicesMascot } from '@/components/mascots';
+// Use the same floating mascots style as the home banner
 import { getTranslations } from 'next-intl/server';
 
 export default async function ServicesPage() {
@@ -29,17 +30,16 @@ export default async function ServicesPage() {
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
-
-      {/* Floating particles */}
       <FloatingParticles
-        count={40}
-        className='text-emerald-500/20 dark:text-lime-400/30'
+        count={120}
+        className='text-emerald-500/30 dark:text-lime-400/60'
         size='md'
       />
-
       <LemonGlow />
-      <FloatingObstacles count={14} seed={101} />
-      <ServicesMascot />
+      <FloatingMascots
+        count={1}
+        className='text-emerald-400/30 dark:text-lime-400/50'
+      />
 
       {/* Hero Section */}
       <AnimatedSection className='py-20 px-4 sm:px-6 lg:px-8 relative z-10'>
@@ -361,11 +361,10 @@ export default async function ServicesPage() {
         <div className='max-w-7xl mx-auto'>
           <div className='text-center mb-16'>
             <AnimatedDiv className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
-              Our Development Process
+              {t('process.title')}
             </AnimatedDiv>
             <AnimatedDiv className='text-lg text-gray-700 dark:text-gray-300'>
-              We follow a structured approach to ensure successful project
-              delivery
+              {t('process.subtitle')}
             </AnimatedDiv>
           </div>
 
@@ -378,10 +377,10 @@ export default async function ServicesPage() {
                   </span>
                 </div>
                 <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                  Discovery
+                  {t('process.steps.one.title')}
                 </h3>
                 <p className='text-gray-600 dark:text-gray-300'>
-                  Understanding your business requirements and technical needs
+                  {t('process.steps.one.description')}
                 </p>
               </div>
             </AnimatedCard>
@@ -394,10 +393,10 @@ export default async function ServicesPage() {
                   </span>
                 </div>
                 <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                  Planning
+                  {t('process.steps.two.title')}
                 </h3>
                 <p className='text-gray-600 dark:text-gray-300'>
-                  Creating detailed project plans and technical specifications
+                  {t('process.steps.two.description')}
                 </p>
               </div>
             </AnimatedCard>
@@ -410,10 +409,10 @@ export default async function ServicesPage() {
                   </span>
                 </div>
                 <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                  Development
+                  {t('process.steps.three.title')}
                 </h3>
                 <p className='text-gray-600 dark:text-gray-300'>
-                  Building your custom solution with regular progress updates
+                  {t('process.steps.three.description')}
                 </p>
               </div>
             </AnimatedCard>
@@ -426,10 +425,10 @@ export default async function ServicesPage() {
                   </span>
                 </div>
                 <h3 className='text-xl font-semibold text-gray-900 dark:text-white mb-2'>
-                  Launch
+                  {t('process.steps.four.title')}
                 </h3>
                 <p className='text-gray-600 dark:text-gray-300'>
-                  Deploying your solution and providing ongoing support
+                  {t('process.steps.four.description')}
                 </p>
               </div>
             </AnimatedCard>

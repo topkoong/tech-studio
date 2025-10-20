@@ -59,7 +59,7 @@ export default async function HomePage() {
       >
         {/* Floating particles - moved outside z-index container */}
         <FloatingParticles
-          count={50}
+          count={100}
           className='text-emerald-500/30 dark:text-lime-400/60'
           size='md'
         />
@@ -684,7 +684,7 @@ export default async function HomePage() {
         </div>
 
         {/* Lots of Floating Particles */}
-        <FloatingParticles count={80} className='text-white/20' size='lg' />
+        <FloatingParticles count={120} className='text-white/20' size='lg' />
 
         {/* Floating Mascots */}
         <FloatingMascots count={1} className='text-white/30' />

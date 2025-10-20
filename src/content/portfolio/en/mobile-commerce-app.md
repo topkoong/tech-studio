@@ -8,7 +8,14 @@ technologies: ['React Native', 'TypeScript', 'Next.js', 'Node.js', 'PostgreSQL']
 category: 'Mobile Development'
 client: 'Retail Brand'
 duration: '5 months'
-features: ['Secure checkout', 'Push notifications', 'Order tracking', 'Wishlist', 'Dark mode']
+features:
+  [
+    'Secure checkout',
+    'Push notifications',
+    'Order tracking',
+    'Wishlist',
+    'Dark mode',
+  ]
 challenges: ['Offline support', 'Payment compliance']
 solutions: ['Local cache sync', 'PCI‑compliant flows']
 results: ['+35% conversion rate', '-25% cart abandonment']
@@ -21,5 +28,3 @@ date: '2024-05-12'
 # Mobile Commerce App
 
 An elegant, high‑performance mobile shopping experience with secure payments and real‑time order tracking.
-
-

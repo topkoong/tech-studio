@@ -148,48 +148,7 @@
       "secondaryButton": "Schedule Consultation"
     }
   },
-  "services": {
-    "title": "Custom Software Development Services",
-    "subtitle": "We provide comprehensive software development solutions tailored to your business needs",
-    "offerings": {
-      "uiuxDesign": {
-        "title": "UI/UX Design",
-        "description": "Beautiful, user-friendly interfaces that engage and convert visitors into customers."
-      },
-      "webDevelopment": {
-        "title": "Web Development",
-        "description": "Custom websites and web applications built with modern technologies and best practices."
-      },
-      "fullStackDevelopment": {
-        "title": "Full-Stack Development",
-        "description": "Complete end-to-end solutions from frontend to backend with seamless integration."
-      },
-      "lineBot": {
-        "title": "LINE Bot Development",
-        "description": "Intelligent chatbots and automation solutions for LINE platform integration."
-      },
-      "businessAutomation": {
-        "title": "Business Automation",
-        "description": "Streamline your processes with intelligent automation and workflow optimization."
-      },
-      "apiDevelopment": {
-        "title": "API Development",
-        "description": "Robust and scalable APIs that power your applications and integrate services."
-      }
-    },
-    "webDevelopment": {
-      "title": "Web Application Development",
-      "description": "Custom web applications built with modern technologies and best practices for optimal performance and scalability."
-    },
-    "automation": {
-      "title": "Business Process Automation",
-      "description": "Streamline your operations with custom automation solutions that reduce manual work and improve efficiency."
-    },
-    "api": {
-      "title": "API Development & Integration",
-      "description": "Robust APIs and system integrations that connect your business applications and enable seamless data flow."
-    }
-  },
+
   "about": {
     "title": "About TechStudio",
     "subtitle": "We are a passionate team dedicated to UX Design and believe that exceptional design can transform businesses",
@@ -307,6 +266,54 @@
     "title": "Our Services",
     "subtitle": "Comprehensive custom software development services tailored to your business needs",
     "description": "We offer end-to-end software development solutions from concept to deployment",
+    "process": {
+      "title": "Our Development Process",
+      "subtitle": "We follow a structured approach to ensure successful project delivery",
+      "steps": {
+        "one": {
+          "title": "Discovery",
+          "description": "Understanding your business requirements and technical needs"
+        },
+        "two": {
+          "title": "Planning",
+          "description": "Creating detailed project plans and technical specifications"
+        },
+        "three": {
+          "title": "Development",
+          "description": "Building your custom solution with regular progress updates"
+        },
+        "four": {
+          "title": "Launch",
+          "description": "Deploying your solution and providing ongoing support"
+        }
+      }
+    },
+    "offerings": {
+      "uiuxDesign": {
+        "title": "UI/UX Design",
+        "description": "Beautiful, user-friendly interfaces that engage and convert visitors into customers."
+      },
+      "webDevelopment": {
+        "title": "Web Development",
+        "description": "Custom websites and web applications built with modern technologies and best practices."
+      },
+      "fullStackDevelopment": {
+        "title": "Full-Stack Development",
+        "description": "Complete end-to-end solutions from frontend to backend with seamless integration."
+      },
+      "lineBot": {
+        "title": "LINE Bot Development",
+        "description": "Intelligent chatbots and automation solutions for LINE platform integration."
+      },
+      "businessAutomation": {
+        "title": "Business Automation",
+        "description": "Streamline your processes with intelligent automation and workflow optimization."
+      },
+      "apiDevelopment": {
+        "title": "API Development",
+        "description": "Robust and scalable APIs that power your applications and integrate services."
+      }
+    },
     "cta": {
       "title": "Ready to Transform Your Business?",
       "description": "Let's discuss your project requirements and create a custom solution that drives results",
@@ -356,5 +363,33 @@
       "address": "Address",
       "hours": "Business Hours"
     }
+  },
+  "techDescriptions": {
+    "nextjs": "Full-stack React framework with SSR, routing, and optimization",
+    "react": "Component-based UI library for interactive web applications",
+    "typescript": "Type-safe JavaScript for scalable and maintainable code",
+    "tailwindcss": "Utility-first CSS framework for rapid UI development",
+    "astro": "Modern static site generator with island architecture",
+    "vercel": "Cloud platform for frontend deployment and edge functions",
+    "aws": "Comprehensive cloud computing and infrastructure services",
+    "auth0": "Identity and access management platform for secure authentication",
+    "claude": "AI assistant for development workflows and code generation",
+    "figma": "Collaborative design and prototyping tool for UI/UX",
+    "git": "Distributed version control for collaborative development",
+    "html5": "Modern web markup standard with semantic elements",
+    "java": "Enterprise-grade programming language for backend services",
+    "kubernetes": "Container orchestration platform for scalable deployments",
+    "kong": "API gateway and service mesh for microservices architecture",
+    "nodejs": "JavaScript runtime for server-side development",
+    "go": "Fast, efficient programming language for backend services",
+    "springboot": "Enterprise Java framework for microservices and web apps",
+    "python": "Versatile language for backend, data science, and automation",
+    "postgresql": "Advanced open-source relational database system",
+    "redis": "In-memory data store for caching and real-time applications",
+    "kafka": "Distributed streaming platform for real-time data processing",
+    "docker": "Containerization platform for consistent deployments",
+    "line": "LINE platform integration for chatbots and automation",
+    "n8n": "Workflow automation platform for business process automation",
+    "make": "No-code automation platform for connecting apps and services"
   }
 }

@@ -21,5 +21,3 @@ date: '2024-06-18'
 # Analytics Dashboard
 
 Real‑time business intelligence with beautiful, accessible charts.
-
-

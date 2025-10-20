@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
 import PortfolioCard from './portfolio-card';
 
 interface PortfolioGridProps {
@@ -29,6 +30,19 @@ interface PortfolioGridProps {
 }
 
 export function PortfolioGrid({ projects, featured = false }: PortfolioGridProps) {
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+
+  const deduped = Array.from(
+    projects
+      .filter((p) => p.metadata.locale === locale)
+      .reduce((map, p) => {
+        if (!map.has(p.metadata.id)) map.set(p.metadata.id, p);
+        return map;
+      }, new Map<string, typeof projects[number]>())
+      .values()
+  );
+
   return (
     <motion.div
       className={featured ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'}
@@ -36,7 +50,7 @@ export function PortfolioGrid({ projects, featured = false }: PortfolioGridProps
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: featured ? 0.4 : 0.7 }}
     >
-      {projects.map((project, index) => (
+      {deduped.map((project, index) => (
         <motion.div
           key={project.metadata.id}
           initial={{ opacity: 0, y: 20 }}

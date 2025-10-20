@@ -30,6 +30,7 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function AboutPage() {
   const t = await getTranslations('about');
+  const tTech = await getTranslations('techDescriptions');
 
   const team = [
     {
@@ -56,7 +57,7 @@ export default async function AboutPage() {
 
   const tools = [
     {
-      stackName: 'nextjs2',
+      stackName: 'nextjs',
       name: 'Next.js',
       description:
         'Full-stack React framework with SSR, routing, and optimization',
@@ -145,7 +146,7 @@ export default async function AboutPage() {
       description: 'Fast, efficient programming language for backend services',
     },
     {
-      stackName: 'spring',
+      stackName: 'springboot',
       name: 'Spring Boot',
       description: 'Enterprise Java framework for microservices and web apps',
     },
@@ -207,6 +208,9 @@ export default async function AboutPage() {
         <img src='/line.png' alt='LINE' className='w-5 h-5 object-contain' />
       );
     }
+    if (name === 'springboot') {
+      return <StackIcon name='spring' className='w-5 h-5' />;
+    }
     if (name === 'kong') {
       return (
         <svg
@@ -265,11 +269,10 @@ export default async function AboutPage() {
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
-
-      {/* Floating particles */}
+      {/* Floating particles - moved outside z-index container */}
       <FloatingParticles
-        count={40}
-        className='text-emerald-500/20 dark:text-lime-400/30'
+        count={100}
+        className='text-emerald-500/30 dark:text-lime-400/60'
         size='md'
       />
       <AboutMascot />
@@ -386,7 +389,9 @@ export default async function AboutPage() {
                     </h3>
                   </div>
                   <p className='text-sm text-gray-600 dark:text-gray-300 font-medium leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300'>
-                    {tool.description}
+                    {tTech(tool.stackName as any, {
+                      fallback: tool.description,
+                    })}
                   </p>
                 </Card>
               </AnimatedCard>
