@@ -24,6 +24,7 @@ interface PortfolioGridProps {
       githubUrl?: string;
       featured: boolean;
       date: string;
+      locale: string;
     };
   }>;
   featured?: boolean;

@@ -12,15 +12,6 @@ export function Mascot({ size = 'medium', animated = true }: MascotProps) {
     large: 'w-32 h-32',
   };
 
-  const floatAnimation = {
-    y: [0, -10, 0],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  };
-
   const MascotSVG = () => (
     <svg
       viewBox='0 0 200 200'
@@ -29,7 +20,20 @@ export function Mascot({ size = 'medium', animated = true }: MascotProps) {
       className='w-full h-full'
     >
       {/* Body - Robot UX Designer */}
-      <motion.g animate={animated ? floatAnimation : {}}>
+      <motion.g
+        animate={
+          animated
+            ? {
+                y: [0, -10, 0],
+                transition: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: [0.4, 0, 0.6, 1],
+                },
+              }
+            : undefined
+        }
+      >
         {/* Head */}
         <ellipse cx='100' cy='80' rx='45' ry='40' fill='url(#gradient1)' />
 
