@@ -1,0 +1,234 @@
+'use client';
+
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Globe, Menu, Moon, Sun } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
+import { Button } from '@/components/ui/button';
+import { LettersPullUp } from './text-animations';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
+
+export default function Navigation() {
+  const { theme, setTheme } = useTheme();
+  const t = useTranslations('navigation');
+  const pathname = usePathname();
+  const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Get current locale from pathname
+  const currentLocale = pathname.split('/')[1] || 'en';
+
+  useEffect(() => {
+    setMounted(true);
+    console.log('Current theme:', theme); // Debug log
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    console.log('Theme changed to:', newTheme); // Debug log
+  };
+
+  const switchLanguage = (locale: string) => {
+    // Get the current path without the locale prefix
+    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/';
+    const newPath = `/${locale}${pathWithoutLocale}`;
+    console.log(
+      'Switching language to:',
+      locale,
+      'Current path:',
+      pathname,
+      'New path:',
+      newPath
+    ); // Debug log
+    router.push(newPath);
+    router.refresh(); // Force refresh to ensure new locale is loaded
+  };
+
+  const navigationItems = [
+    { key: 'home', href: `/${currentLocale}` },
+    { key: 'about', href: `/${currentLocale}/about` },
+    { key: 'services', href: `/${currentLocale}/services` },
+    { key: 'portfolio', href: `/${currentLocale}/portfolio` },
+    { key: 'blog', href: `/${currentLocale}/blog` },
+    { key: 'contact', href: `/${currentLocale}/contact` },
+  ];
+
+  return (
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className='bg-white/95 dark:bg-black/95 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-800/50 sticky top-0 z-50'
+    >
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className='flex justify-between items-center h-16'>
+          {/* Logo */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className='flex items-center'
+          >
+            <Link
+              href={`/${currentLocale}`}
+              className='flex-shrink-0 flex items-center gap-2'
+            >
+              <div className='w-6 h-6 bg-lime-500 rounded-full flex items-center justify-center'>
+                <span className='text-white text-xs font-bold'>T</span>
+              </div>
+              <h1 className='text-sm font-bold text-lime-500'>
+                <motion.span
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  style={{
+                    background:
+                      'linear-gradient(45deg, #84cc16, #22c55e, #16a34a, #84cc16)',
+                    backgroundSize: '300% 300%',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                  className='text-sm font-bold'
+                >
+                  TechStudio
+                </motion.span>
+              </h1>
+            </Link>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <div className='hidden md:flex items-center space-x-8'>
+            {navigationItems.map((item) => (
+              <motion.div
+                key={item.key}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href={item.href}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    pathname === item.href
+                      ? 'text-lime-500 dark:text-lime-400 bg-lime-100/20 dark:bg-lime-900/20'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
+                  }`}
+                >
+                  {t(item.key)}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Controls */}
+          <div className='flex items-center space-x-4'>
+            {/* Theme Toggle */}
+            {mounted && (
+              <Button
+                variant='ghost'
+                size='icon'
+                onClick={toggleTheme}
+                aria-label='Toggle theme'
+                className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
+              >
+                {theme === 'dark' ? (
+                  <Sun className='h-4 w-4' />
+                ) : (
+                  <Moon className='h-4 w-4' />
+                )}
+              </Button>
+            )}
+
+            {/* Language Switcher */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
+                >
+                  <Globe className='h-4 w-4' />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align='end'
+                className='bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700'
+              >
+                <DropdownMenuItem
+                  onClick={() => switchLanguage('en')}
+                  className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                >
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => switchLanguage('th')}
+                  className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                >
+                  ไทย
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Contact Us Button */}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href={`/${currentLocale}/contact`}>
+                <Button className='bg-lime-500 hover:bg-lime-600 text-black font-medium px-6 py-2 rounded-lg'>
+                  Contact Us
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* Mobile Menu Button */}
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant='ghost'
+                  size='icon'
+                  className='md:hidden text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
+                >
+                  <Menu className='h-4 w-4' />
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side='right'
+                className='w-[300px] sm:w-[400px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700'
+              >
+                <div className='flex flex-col space-y-4 mt-6'>
+                  {navigationItems.map((item) => (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                        pathname === item.href
+                          ? 'text-lime-500 dark:text-lime-400 bg-lime-100/20 dark:bg-lime-900/20'
+                          : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
+                      }`}
+                    >
+                      {t(item.key)}
+                    </Link>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </div>
+    </motion.nav>
+  );
+}

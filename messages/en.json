@@ -1,0 +1,172 @@
+{
+  "seo": {
+    "home": {
+      "title": "TechStudio - Custom Software Development Solutions",
+      "description": "Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology.",
+      "keywords": "custom software development, web applications, automation, API development, business solutions, TechStudio"
+    },
+    "about": {
+      "title": "About TechStudio - Custom Software Development Team",
+      "description": "Learn about TechStudio's mission to deliver custom software solutions that solve real business problems. Our team specializes in web applications, automation, and API development.",
+      "keywords": "about TechStudio, software development team, custom solutions, business technology"
+    },
+    "services": {
+      "title": "Custom Software Development Services - TechStudio",
+      "description": "Explore our custom software development services including web applications, automation systems, API development, and tailored business solutions.",
+      "keywords": "software development services, web applications, automation, API development, custom solutions"
+    },
+    "portfolio": {
+      "title": "Portfolio - Custom Software Development Projects",
+      "description": "View our portfolio of successful custom software development projects. See how we've helped businesses solve their challenges with tailored technology solutions.",
+      "keywords": "software development portfolio, custom projects, business solutions, case studies"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "badge": "Custom Software Development Solutions",
+      "title": "Transform Your Business with",
+      "titleHighlight": "Expert Web Development",
+      "description": "Build custom software solutions that solve real business problems. We create tailored web applications, automation systems, and APIs that help businesses grow with technology.",
+      "cta": "Get Started",
+      "ctaSecondary": "View Portfolio",
+      "stats": {
+        "projects": "500+",
+        "projectsLabel": "Projects",
+        "clients": "10K+",
+        "clientsLabel": "Clients",
+        "satisfaction": "98%",
+        "satisfactionLabel": "Satisfied"
+      }
+    },
+    "services": {
+      "title": "Custom Software Solutions",
+      "subtitle": "We build software that fits your business needs perfectly",
+      "webDevelopment": {
+        "title": "Web Applications",
+        "description": "Modern, responsive web applications built with the latest technologies for optimal performance and user experience."
+      },
+      "automation": {
+        "title": "Automation Systems",
+        "description": "Streamline your business processes with custom automation solutions that save time and reduce errors."
+      },
+      "api": {
+        "title": "API Development",
+        "description": "Robust APIs that connect your systems and enable seamless data flow between different platforms."
+      }
+    },
+    "about": {
+      "title": "Why Choose TechStudio?",
+      "subtitle": "We understand that every business is unique, and so are their software needs.",
+      "content": "We don't believe in one-size-fits-all solutions. Every project starts with understanding your specific requirements, challenges, and goals. Our team works closely with you to design and develop software that perfectly fits your business processes."
+    },
+    "cta": {
+      "title": "Ready to Build Your Custom Software?",
+      "description": "Let's discuss your project and see how we can help your business grow.",
+      "button": "Get Started",
+      "buttonSecondary": "Schedule Consultation"
+    },
+    "testimonials": {
+      "title": "What Our Clients Say",
+      "subtitle": "Trust from our clients drives us forward",
+      "testimonial1": {
+        "quote": "The queue booking system they created made our operations much easier. Patients can now book appointments themselves via mobile, greatly reducing our staff workload.",
+        "name": "Dr. Somchai Jaidee",
+        "company": "MD Clinic"
+      },
+      "testimonial2": {
+        "quote": "The POS system is designed to be very user-friendly. Our staff learned it quickly, and customers love our ordering system.",
+        "name": "Ms. Orathai Rakkarnka",
+        "company": "Brew & Co."
+      },
+      "testimonial3": {
+        "quote": "The dashboard we received helps us make decisions faster. We can see important data clearly - it's very valuable.",
+        "name": "Mr. Wichai Thurakitdee",
+        "company": "Tech Startup"
+      }
+    }
+  },
+  "services": {
+    "title": "Custom Software Development Services",
+    "subtitle": "We provide comprehensive software development solutions tailored to your business needs",
+    "webDevelopment": {
+      "title": "Web Application Development",
+      "description": "Custom web applications built with modern technologies and best practices for optimal performance and scalability."
+    },
+    "automation": {
+      "title": "Business Process Automation",
+      "description": "Streamline your operations with custom automation solutions that reduce manual work and improve efficiency."
+    },
+    "api": {
+      "title": "API Development & Integration",
+      "description": "Robust APIs and system integrations that connect your business applications and enable seamless data flow."
+    }
+  },
+  "about": {
+    "title": "About TechStudio",
+    "subtitle": "We are a passionate team dedicated to UX Design and believe that exceptional design can transform businesses",
+    "vision": {
+      "title": "Vision",
+      "content": "Create digital experiences that are intuitive for everyone and enable sustainable business growth"
+    },
+    "mission": {
+      "title": "Mission",
+      "content": "Design with heart, listen to real users, and deliver quality work that exceeds expectations"
+    },
+    "values": {
+      "title": "Values",
+      "content": "User-Centric • Data-Driven • Innovation • Collaboration"
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Meet the talented individuals who bring creativity and expertise to every project"
+    },
+    "tools": {
+      "title": "Tools We Use",
+      "description": "We leverage cutting-edge technologies and design tools to create exceptional digital experiences"
+    }
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "Custom Software Solutions That Drive Results"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Let's discuss your custom software development project",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! We'll get back to you soon."
+    }
+  },
+  "footer": {
+    "description": "Custom software development solutions for businesses",
+    "company": "TechStudio",
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Get the latest updates on custom software development trends and our projects.",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "links": {
+      "about": "About",
+      "services": "Services",
+      "portfolio": "Portfolio",
+      "blog": "Blog",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  }
+}

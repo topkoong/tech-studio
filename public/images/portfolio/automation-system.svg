@@ -1,0 +1,60 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f0fdf4"/>
+  <rect x="50" y="50" width="700" height="500" rx="20" fill="#10b981" opacity="0.1"/>
+  <rect x="100" y="100" width="600" height="400" rx="15" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+  
+  <!-- Automation Flow -->
+  <rect x="150" y="150" width="100" height="60" rx="8" fill="#10b981"/>
+  <text x="200" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Input</text>
+  
+  <path d="M250 180 L300 180" stroke="#10b981" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <rect x="300" y="150" width="100" height="60" rx="8" fill="#10b981"/>
+  <text x="350" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Process</text>
+  
+  <path d="M400 180 L450 180" stroke="#10b981" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <rect x="450" y="150" width="100" height="60" rx="8" fill="#10b981"/>
+  <text x="500" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Output</text>
+  
+  <!-- Database -->
+  <ellipse cx="200" cy="300" rx="40" ry="15" fill="#10b981"/>
+  <rect x="160" y="300" width="80" height="60" fill="#10b981"/>
+  <ellipse cx="200" cy="360" rx="40" ry="15" fill="#10b981"/>
+  <text x="200" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Database</text>
+  
+  <!-- API -->
+  <rect x="350" y="280" width="100" height="80" rx="8" fill="#10b981"/>
+  <text x="400" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">API</text>
+  <text x="400" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">Integration</text>
+  
+  <!-- Cloud -->
+  <ellipse cx="550" cy="300" rx="50" ry="20" fill="#10b981"/>
+  <ellipse cx="530" cy="310" rx="30" ry="15" fill="#10b981"/>
+  <ellipse cx="570" cy="310" rx="30" ry="15" fill="#10b981"/>
+  <text x="550" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#ffffff">Cloud</text>
+  
+  <!-- Workflow Lines -->
+  <path d="M200 300 L350 320" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5"/>
+  <path d="M450 320 L550 320" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <!-- Automation Icons -->
+  <circle cx="150" cy="450" r="30" fill="#10b981"/>
+  <text x="150" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">⚡</text>
+  
+  <circle cx="300" cy="450" r="30" fill="#10b981"/>
+  <text x="300" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">🔄</text>
+  
+  <circle cx="450" cy="450" r="30" fill="#10b981"/>
+  <text x="450" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff">📊</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+    </marker>
+  </defs>
+  
+  <!-- Text -->
+  <text x="400" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#10b981">Business Process Automation</text>
+</svg>
