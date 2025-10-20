@@ -1,0 +1,1919 @@
+1:"$Sreact.fragment"
+2:I[6190,[],""]
+3:I[4660,[],""]
+6:I[6327,[],"OutletBoundary"]
+8:I[6566,[],"AsyncMetadataOutlet"]
+a:I[6327,[],"ViewportBoundary"]
+c:I[6327,[],"MetadataBoundary"]
+d:"$Sreact.suspense"
+f:I[8470,[],""]
+:HL["/_next/static/css/813c64fd346b482e.css","style"]
+0:{"P":null,"b":"iLQSGby4dyzYBXt1sodCw","p":"","c":["","en","blog","getting-started-n8n-workflow-automation",""],"i":false,"f":[[["",{"children":[["locale","en","d"],{"children":["blog",{"children":[["slug","getting-started-n8n-workflow-automation","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/813c64fd346b482e.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["locale","en","d"],["$","$1","c",{"children":[null,"$L4"]}],{"children":["blog",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","getting-started-n8n-workflow-automation","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$L7",["$","$L8",null,{"promise":"$@9"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$La",null,{"children":"$Lb"}],null],["$","$Lc",null,{"children":["$","div",null,{"hidden":true,"children":["$","$d",null,{"fallback":null,"children":"$Le"}]}]}]]}],false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+10:I[5672,["452","static/chunks/452-e1843827d956986f.js","993","static/chunks/993-a0d792159c37eb4f.js","359","static/chunks/359-db31f4f8637a1d97.js","169","static/chunks/169-8808b033f7a4a331.js","414","static/chunks/app/%5Blocale%5D/blog/%5Bslug%5D/page-401c4d77b42ee398.js"],"default"]
+11:I[2645,["452","static/chunks/452-e1843827d956986f.js","993","static/chunks/993-a0d792159c37eb4f.js","359","static/chunks/359-db31f4f8637a1d97.js","169","static/chunks/169-8808b033f7a4a331.js","414","static/chunks/app/%5Blocale%5D/blog/%5Bslug%5D/page-401c4d77b42ee398.js"],"FloatingParticles"]
+12:I[5471,["452","static/chunks/452-e1843827d956986f.js","993","static/chunks/993-a0d792159c37eb4f.js","359","static/chunks/359-db31f4f8637a1d97.js","169","static/chunks/169-8808b033f7a4a331.js","414","static/chunks/app/%5Blocale%5D/blog/%5Bslug%5D/page-401c4d77b42ee398.js"],"AnimatedBlogContent"]
+16:I[1239,["450","static/chunks/app/%5Blocale%5D/layout-d61e3dfd189058f2.js"],"Providers"]
+13:T2292,
+# Getting Started with n8n Workflow Automation
+
+n8n is a powerful, open-source workflow automation tool that allows you to connect different services and automate repetitive tasks. This guide will help you get started with n8n and create your first automated workflows.
+
+## What is n8n?
+
+n8n is a workflow automation platform that enables you to:
+
+- Connect different services and APIs
+- Automate repetitive tasks
+- Create complex workflows with conditional logic
+- Process and transform data between systems
+- Schedule and trigger workflows
+
+## Key Features
+
+- **Visual Workflow Editor**: Drag-and-drop interface for creating workflows
+- **200+ Integrations**: Connect to popular services like Slack, Google Sheets, GitHub, and more
+- **Self-Hosted**: Run on your own infrastructure
+- **Open Source**: Free to use and modify
+- **Webhook Support**: Trigger workflows via HTTP requests
+- **Cron Scheduling**: Schedule workflows to run at specific times
+
+## Installation
+
+### Docker Installation (Recommended)
+
+```bash
+# Create a directory for n8n
+mkdir n8n
+cd n8n
+
+# Create docker-compose.yml
+cat > docker-compose.yml << EOF
+version: '3.8'
+services:
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=password
+    volumes:
+      - n8n_data:/home/node/.n8n
+volumes:
+  n8n_data:
+EOF
+
+# Start n8n
+docker-compose up -d
+```
+
+### NPM Installation
+
+```bash
+npm install n8n -g
+n8n start
+```
+
+## Getting Started
+
+### 1. Access the Interface
+
+Open your browser and navigate to `http://localhost:5678`
+
+### 2. Create Your First Workflow
+
+Click "New Workflow" to start creating your first automation.
+
+### 3. Add Nodes
+
+Drag nodes from the left panel to the canvas to build your workflow.
+
+## Basic Workflow Examples
+
+### 1. Simple Webhook to Slack
+
+This workflow sends a message to Slack when a webhook is triggered:
+
+```json
+{
+  "nodes": [
+    {
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "parameters": {
+        "path": "slack-notification",
+        "httpMethod": "POST"
+      }
+    },
+    {
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "parameters": {
+        "operation": "postMessage",
+        "channel": "#general",
+        "text": "New notification received!"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
+```
+
+### 2. Email to Google Sheets
+
+Save incoming emails to a Google Sheet:
+
+```json
+{
+  "nodes": [
+    {
+      "name": "Gmail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "spreadsheetId": "your-spreadsheet-id",
+        "sheetName": "Emails",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Subject": "={{ $json.subject }}",
+            "From": "={{ $json.from }}",
+            "Date": "={{ $json.date }}",
+            "Body": "={{ $json.body }}"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+### 3. GitHub to Discord
+
+Send Discord notifications when new issues are created:
+
+```json
+{
+  "nodes": [
+    {
+      "name": "GitHub Trigger",
+      "type": "n8n-nodes-base.githubTrigger",
+      "parameters": {
+        "event": "issues",
+        "action": "opened"
+      }
+    },
+    {
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "parameters": {
+        "operation": "postMessage",
+        "channelId": "your-channel-id",
+        "text": "New issue created: {{ $json.issue.title }}"
+      }
+    }
+  ]
+}
+```
+
+## Advanced Workflow Patterns
+
+### 1. Conditional Logic
+
+Use IF nodes to create conditional workflows:
+
+```json
+{
+  "nodes": [
+    {
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook"
+    },
+    {
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.type }}",
+              "operation": "equal",
+              "value2": "urgent"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Slack Urgent",
+      "type": "n8n-nodes-base.slack",
+      "parameters": {
+        "channel": "#urgent",
+        "text": "🚨 URGENT: {{ $json.message }}"
+      }
+    },
+    {
+      "name": "Slack Normal",
+      "type": "n8n-nodes-base.slack",
+      "parameters": {
+        "channel": "#general",
+        "text": "{{ $json.message }}"
+      }
+    }
+  ]
+}
+```
+
+### 2. Data Transformation
+
+Use Function nodes to transform data:
+
+```javascript
+// Function node code
+const items = $input.all();
+
+return items.map((item) => {
+  const data = item.json;
+
+  return {
+    json: {
+      id: data.id,
+      name: data.firstName + ' ' + data.lastName,
+      email: data.email.toLowerCase(),
+      createdAt: new Date(data.createdAt).toISOString(),
+      status: data.active ? 'active' : 'inactive',
+    },
+  };
+});
+```
+
+### 3. Error Handling
+
+Use Error Trigger nodes to handle errors:
+
+```json
+{
+  "nodes": [
+    {
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "parameters": {
+        "url": "https://api.example.com/data"
+      }
+    },
+    {
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger"
+    },
+    {
+      "name": "Slack Error",
+      "type": "n8n-nodes-base.slack",
+      "parameters": {
+        "channel": "#alerts",
+        "text": "❌ API Error: {{ $json.error.message }}"
+      }
+    }
+  ]
+}
+```
+
+## Scheduling Workflows
+
+### Cron Expressions
+
+Use cron expressions to schedule workflows:
+
+```javascript
+// Every day at 9 AM
+'0 9 * * *';
+
+// Every Monday at 10 AM
+'0 10 * * 1';
+
+// Every 5 minutes
+'*/5 * * * *';
+
+// Every hour
+'0 * * * *';
+```
+
+### Schedule Node Example
+
+```json
+{
+  "name": "Schedule Trigger",
+  "type": "n8n-nodes-base.scheduleTrigger",
+  "parameters": {
+    "rule": {
+      "interval": [
+        {
+          "field": "cronExpression",
+          "expression": "0 9 * * *"
+        }
+      ]
+    }
+  }
+}
+```
+
+## Best Practices
+
+### 1. Workflow Organization
+
+- Use descriptive names for workflows
+- Add comments to explain complex logic
+- Group related workflows in folders
+- Use consistent naming conventions
+
+### 2. Error Handling
+
+- Always include error handling nodes
+- Use retry mechanisms for external API calls
+- Log errors for debugging
+- Set up monitoring and alerts
+
+### 3. Performance Optimization
+
+- Use batch operations when possible
+- Implement rate limiting for API calls
+- Cache frequently accessed data
+- Monitor workflow execution times
+
+### 4. Security
+
+- Use environment variables for sensitive data
+- Implement proper authentication
+- Validate input data
+- Use HTTPS for webhooks
+
+## Common Use Cases
+
+### 1. Data Synchronization
+
+- Sync customer data between CRM and email marketing
+- Update inventory across multiple platforms
+- Synchronize user profiles across systems
+
+### 2. Notification Systems
+
+- Send alerts for system events
+- Notify teams of important updates
+- Create escalation workflows
+
+### 3. Data Processing
+
+- Process incoming form submissions
+- Transform data between different formats
+- Aggregate data from multiple sources
+
+### 4. Content Management
+
+- Automatically publish content to multiple platforms
+- Generate reports from various data sources
+- Manage social media posts
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Webhook Not Triggering**
+
+   - Check webhook URL and method
+   - Verify authentication settings
+   - Test with tools like Postman
+
+2. **API Rate Limits**
+
+   - Implement delays between requests
+   - Use batch operations
+   - Monitor API usage
+
+3. **Data Format Issues**
+   - Use Function nodes to transform data
+   - Validate data structure
+   - Handle missing fields gracefully
+
+### Debugging Tips
+
+- Use the execution log to trace workflow execution
+- Test individual nodes before connecting them
+- Use the "Execute Workflow" button to test manually
+- Check node documentation for parameter requirements
+
+## Conclusion
+
+n8n is a powerful tool for automating business processes and connecting different services. Start with simple workflows and gradually build more complex automations as you become familiar with the platform.
+
+Remember to:
+
+- Plan your workflows before building them
+- Test thoroughly before deploying
+- Monitor workflow performance
+- Keep workflows simple and maintainable
+
+---
+
+_Need help setting up workflow automation? TechStudio specializes in business process automation and integration solutions._
+5:["$","div",null,{"className":"min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 relative overflow-hidden","children":[["$","$L10",null,{}],["$","$L11",null,{"count":30,"className":"text-emerald-500/15 dark:text-lime-400/25","size":"sm"}],["$","article",null,{"className":"py-20 px-4 sm:px-6 lg:px-8 relative z-10","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":["$","$L12",null,{"locale":"en","post":{"metadata":{"title":"Getting Started with n8n Workflow Automation","date":"2024-02-10","excerpt":"Learn how to automate business processes with n8n, a powerful workflow automation tool that connects different services and applications.","slug":"en/getting-started-n8n-workflow-automation","category":"Automation","tags":["n8n","Automation","Workflow","Integration"],"author":"TechStudio Team","readTime":"7 min read","featured":false,"image":"$undefined"},"content":"$13"},"translations":{"backToBlog":"← Back to Blog","tags":"Tags"}}]}]}],"$L14","$L15"]}]
+4:["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L16",null,{"children":"$L17"}]}]}]
+18:I[2252,["452","static/chunks/452-e1843827d956986f.js","993","static/chunks/993-a0d792159c37eb4f.js","359","static/chunks/359-db31f4f8637a1d97.js","169","static/chunks/169-8808b033f7a4a331.js","414","static/chunks/app/%5Blocale%5D/blog/%5Bslug%5D/page-401c4d77b42ee398.js"],"RelatedPosts"]
+1c:I[4096,["452","static/chunks/452-e1843827d956986f.js","993","static/chunks/993-a0d792159c37eb4f.js","359","static/chunks/359-db31f4f8637a1d97.js","169","static/chunks/169-8808b033f7a4a331.js","414","static/chunks/app/%5Blocale%5D/blog/%5Bslug%5D/page-401c4d77b42ee398.js"],"default"]
+19:T2cf3,
+# Modern Web Development with Next.js and React
+
+Next.js 14 and React 18 have revolutionized web development with new features that improve performance, developer experience, and user experience. In this comprehensive guide, we'll explore the latest capabilities and best practices.
+
+## What's New in Next.js 14?
+
+### 1. App Router (Stable)
+
+The App Router is now stable and provides:
+
+- **File-based routing** with layouts and nested routes
+- **Server Components** for better performance
+- **Streaming** for faster page loads
+- **Parallel routes** for complex layouts
+
+### 2. Server Actions
+
+```typescript
+// app/actions.ts
+'use server';
+
+export async function createUser(formData: FormData) {
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+
+  // Server-side logic
+  const user = await db.user.create({
+    data: { name, email },
+  });
+
+  return user;
+}
+```
+
+### 3. Partial Prerendering
+
+```typescript
+// app/page.tsx
+export default function HomePage() {
+  return (
+    <div>
+      <h1>Welcome to our site</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserProfile />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+## React 18 Features
+
+### 1. Concurrent Features
+
+```typescript
+import { startTransition } from 'react';
+
+function App() {
+  const [isPending, startTransition] = useTransition();
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    startTransition(() => {
+      setCount((c) => c + 1);
+    });
+  }
+
+  return (
+    <div>
+      <button onClick={handleClick}>Count: {count}</button>
+      {isPending && <div>Loading...</div>}
+    </div>
+  );
+}
+```
+
+### 2. Suspense Improvements
+
+```typescript
+import { Suspense } from 'react';
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DataComponent />
+    </Suspense>
+  );
+}
+
+async function DataComponent() {
+  const data = await fetchData();
+  return <div>{data}</div>;
+}
+```
+
+### 3. Automatic Batching
+
+```typescript
+function App() {
+  const [count, setCount] = useState(0);
+  const [flag, setFlag] = useState(false);
+
+  function handleClick() {
+    // These updates are automatically batched
+    setCount((c) => c + 1);
+    setFlag((f) => !f);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Count: {count}, Flag: {flag.toString()}
+    </button>
+  );
+}
+```
+
+## Building a Modern Web Application
+
+### 1. Project Setup
+
+```bash
+# Create new Next.js project
+npx create-next-app@latest my-app --typescript --tailwind --eslint
+
+# Install additional dependencies
+npm install @next/font lucide-react clsx tailwind-merge
+```
+
+### 2. App Router Structure
+
+```
+app/
+├── layout.tsx          # Root layout
+├── page.tsx            # Home page
+├── globals.css         # Global styles
+├── about/
+│   └── page.tsx        # About page
+├── blog/
+│   ├── page.tsx        # Blog listing
+│   └── [slug]/
+│       └── page.tsx    # Individual blog post
+└── api/
+    └── users/
+        └── route.ts    # API route
+```
+
+### 3. Layout Component
+
+```typescript
+// app/layout.tsx
+import { Inter } from 'next/font/google';
+import './globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata = {
+  title: 'My App',
+  description: 'A modern web application',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang='en'>
+      <body className={inter.className}>
+        <nav>
+          <a href='/'>Home</a>
+          <a href='/about'>About</a>
+        </nav>
+        <main>{children}</main>
+      </body>
+    </html>
+  );
+}
+```
+
+## Server Components vs Client Components
+
+### 1. Server Component (Default)
+
+```typescript
+// app/blog/page.tsx
+import { db } from '@/lib/db';
+
+export default async function BlogPage() {
+  // This runs on the server
+  const posts = await db.post.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return (
+    <div>
+      <h1>Blog Posts</h1>
+      {posts.map((post) => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+```
+
+### 2. Client Component
+
+```typescript
+'use client';
+
+import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+## Data Fetching Patterns
+
+### 1. Server-Side Data Fetching
+
+```typescript
+// app/users/page.tsx
+async function getUsers() {
+  const res = await fetch('https://api.example.com/users', {
+    cache: 'force-cache', // Cache indefinitely
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch users');
+  }
+
+  return res.json();
+}
+
+export default async function UsersPage() {
+  const users = await getUsers();
+
+  return (
+    <div>
+      <h1>Users</h1>
+      {users.map((user) => (
+        <div key={user.id}>
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+### 2. Client-Side Data Fetching
+
+```typescript
+'use client';
+
+import { useEffect, useState } from 'react';
+
+export default function UserProfile({ userId }: { userId: string }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const res = await fetch(`/api/users/${userId}`);
+        const userData = await res.json();
+        setUser(userData);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUser();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <div>User not found</div>;
+
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+    </div>
+  );
+}
+```
+
+## Performance Optimization
+
+### 1. Image Optimization
+
+```typescript
+import Image from 'next/image';
+
+export default function ProductCard({ product }: { product: Product }) {
+  return (
+    <div className='card'>
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={300}
+        height={200}
+        priority={product.featured}
+        placeholder='blur'
+        blurDataURL='data:image/jpeg;base64,...'
+      />
+      <h2>{product.name}</h2>
+      <p>{product.description}</p>
+    </div>
+  );
+}
+```
+
+### 2. Font Optimization
+
+```typescript
+// app/layout.tsx
+import { Inter, Roboto_Mono } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang='en' className={`${inter.variable} ${robotoMono.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### 3. Bundle Analysis
+
+```bash
+# Analyze bundle size
+npm install --save-dev @next/bundle-analyzer
+
+# Add to next.config.js
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withBundleAnalyzer({
+  // your config
+});
+```
+
+## API Routes
+
+### 1. REST API Routes
+
+```typescript
+// app/api/users/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET() {
+  const users = await db.user.findMany();
+  return NextResponse.json(users);
+}
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const user = await db.user.create({ data: body });
+  return NextResponse.json(user, { status: 201 });
+}
+```
+
+### 2. Dynamic API Routes
+
+```typescript
+// app/api/users/[id]/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const user = await db.user.findUnique({
+    where: { id: params.id },
+  });
+
+  if (!user) {
+    return NextResponse.json({ error: 'User not found' }, { status: 404 });
+  }
+
+  return NextResponse.json(user);
+}
+```
+
+## Testing Strategies
+
+### 1. Unit Testing with Jest
+
+```typescript
+// __tests__/components/Button.test.tsx
+import { render, screen } from '@testing-library/react';
+import { Button } from '@/components/Button';
+
+describe('Button', () => {
+  it('renders button with text', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByText('Click me')).toBeInTheDocument();
+  });
+
+  it('handles click events', () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+
+    screen.getByText('Click me').click();
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+### 2. Integration Testing
+
+```typescript
+// __tests__/api/users.test.ts
+import { createMocks } from 'node-mocks-http';
+import handler from '@/pages/api/users';
+
+describe('/api/users', () => {
+  it('returns users list', async () => {
+    const { req, res } = createMocks({
+      method: 'GET',
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(JSON.parse(res._getData())).toHaveProperty('users');
+  });
+});
+```
+
+## Deployment and Production
+
+### 1. Vercel Deployment
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy to Vercel
+vercel
+
+# Set environment variables
+vercel env add DATABASE_URL
+```
+
+### 2. Docker Deployment
+
+```dockerfile
+FROM node:18-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --only=production
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Production image
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+EXPOSE 3000
+ENV PORT 3000
+
+CMD ["node", "server.js"]
+```
+
+## Best Practices
+
+### 1. **Performance**
+
+- Use Server Components when possible
+- Implement proper caching strategies
+- Optimize images and fonts
+- Use dynamic imports for code splitting
+
+### 2. **SEO**
+
+- Implement proper metadata
+- Use structured data
+- Optimize for Core Web Vitals
+- Implement proper sitemaps
+
+### 3. **Security**
+
+- Validate all inputs
+- Use HTTPS in production
+- Implement proper authentication
+- Sanitize user-generated content
+
+### 4. **Maintainability**
+
+- Write clean, readable code
+- Use TypeScript for type safety
+- Implement proper error handling
+- Write comprehensive tests
+
+## Conclusion
+
+Next.js 14 and React 18 provide powerful tools for building modern web applications. By leveraging Server Components, App Router, and the latest React features, you can create applications that are both performant and maintainable.
+
+Key takeaways:
+
+- **Use App Router** for better performance and developer experience
+- **Leverage Server Components** for reduced client-side JavaScript
+- **Implement proper caching** strategies for optimal performance
+- **Follow best practices** for security and maintainability
+
+---
+
+_Ready to build your next web application with Next.js and React? Contact our team for expert development services._
+1a:T26bd,
+# Redis Caching Strategies Guide
+
+Redis is a powerful in-memory data store that can dramatically improve your application's performance through intelligent caching. This guide covers essential caching strategies and best practices.
+
+## What is Redis?
+
+Redis (Remote Dictionary Server) is an open-source, in-memory data structure store that can be used as:
+
+- Database
+- Cache
+- Message broker
+- Session store
+
+## Why Use Redis for Caching?
+
+### Benefits
+
+- **Speed**: In-memory storage provides microsecond response times
+- **Persistence**: Optional disk persistence for data durability
+- **Data Structures**: Rich data types (strings, lists, sets, hashes)
+- **Scalability**: Horizontal scaling with clustering
+- **Atomic Operations**: Thread-safe operations
+
+## Basic Redis Operations
+
+### Connection Setup
+
+```javascript
+const redis = require('redis');
+const client = redis.createClient({
+  host: 'localhost',
+  port: 6379,
+  password: 'your-password',
+});
+
+client.on('error', (err) => {
+  console.error('Redis Client Error', err);
+});
+
+await client.connect();
+```
+
+### Basic Commands
+
+```javascript
+// Set and get
+await client.set('key', 'value');
+const value = await client.get('key');
+
+// Set with expiration
+await client.setEx('key', 3600, 'value'); // Expires in 1 hour
+
+// Delete
+await client.del('key');
+
+// Check existence
+const exists = await client.exists('key');
+```
+
+## Caching Strategies
+
+### 1. Cache-Aside (Lazy Loading)
+
+Most common pattern where the application manages cache:
+
+```javascript
+async function getUser(userId) {
+  // Try to get from cache first
+  const cachedUser = await client.get(`user:${userId}`);
+
+  if (cachedUser) {
+    return JSON.parse(cachedUser);
+  }
+
+  // If not in cache, get from database
+  const user = await database.getUser(userId);
+
+  // Store in cache for future requests
+  await client.setEx(`user:${userId}`, 3600, JSON.stringify(user));
+
+  return user;
+}
+```
+
+### 2. Write-Through
+
+Write to both cache and database simultaneously:
+
+```javascript
+async function updateUser(userId, userData) {
+  // Update database
+  const updatedUser = await database.updateUser(userId, userData);
+
+  // Update cache
+  await client.setEx(`user:${userId}`, 3600, JSON.stringify(updatedUser));
+
+  return updatedUser;
+}
+```
+
+### 3. Write-Behind (Write-Back)
+
+Write to cache immediately, database asynchronously:
+
+```javascript
+async function updateUser(userId, userData) {
+  // Update cache immediately
+  await client.setEx(`user:${userId}`, 3600, JSON.stringify(userData));
+
+  // Queue database update for later
+  await queueDatabaseUpdate(userId, userData);
+
+  return userData;
+}
+```
+
+### 4. Refresh-Ahead
+
+Proactively refresh cache before expiration:
+
+```javascript
+async function refreshUserCache(userId) {
+  const user = await database.getUser(userId);
+  await client.setEx(`user:${userId}`, 3600, JSON.stringify(user));
+  return user;
+}
+
+// Background job to refresh cache
+setInterval(async () => {
+  const keys = await client.keys('user:*');
+  for (const key of keys) {
+    const ttl = await client.ttl(key);
+    if (ttl < 300) {
+      // Refresh if less than 5 minutes left
+      const userId = key.split(':')[1];
+      await refreshUserCache(userId);
+    }
+  }
+}, 60000); // Check every minute
+```
+
+## Advanced Caching Patterns
+
+### 1. Cache Invalidation
+
+```javascript
+// Invalidate related cache entries
+async function invalidateUserCache(userId) {
+  const patterns = [
+    `user:${userId}`,
+    `user:${userId}:posts`,
+    `user:${userId}:followers`,
+  ];
+
+  for (const pattern of patterns) {
+    await client.del(pattern);
+  }
+}
+```
+
+### 2. Cache Warming
+
+```javascript
+// Pre-populate cache with frequently accessed data
+async function warmCache() {
+  const popularUsers = await database.getPopularUsers();
+
+  for (const user of popularUsers) {
+    await client.setEx(`user:${user.id}`, 3600, JSON.stringify(user));
+  }
+}
+```
+
+### 3. Cache-Aside with Fallback
+
+```javascript
+async function getUserWithFallback(userId) {
+  try {
+    // Try cache first
+    const cachedUser = await client.get(`user:${userId}`);
+    if (cachedUser) {
+      return JSON.parse(cachedUser);
+    }
+
+    // Fallback to database
+    const user = await database.getUser(userId);
+    if (user) {
+      await client.setEx(`user:${userId}`, 3600, JSON.stringify(user));
+    }
+
+    return user;
+  } catch (error) {
+    console.error('Cache error, falling back to database:', error);
+    return await database.getUser(userId);
+  }
+}
+```
+
+## Data Structure Strategies
+
+### 1. String Caching
+
+Simple key-value storage:
+
+```javascript
+// Store serialized objects
+await client.setEx('user:123', 3600, JSON.stringify(user));
+
+// Store simple values
+await client.setEx('session:abc123', 1800, 'user:123');
+```
+
+### 2. Hash Caching
+
+Store object fields as hash:
+
+```javascript
+// Store user as hash
+await client.hSet('user:123', {
+  name: 'John Doe',
+  email: 'john@example.com',
+  age: '30',
+});
+
+// Get specific fields
+const name = await client.hGet('user:123', 'name');
+
+// Get all fields
+const user = await client.hGetAll('user:123');
+```
+
+### 3. List Caching
+
+Store ordered collections:
+
+```javascript
+// Store user posts as list
+await client.lPush('user:123:posts', 'post:456');
+await client.lPush('user:123:posts', 'post:789');
+
+// Get recent posts
+const recentPosts = await client.lRange('user:123:posts', 0, 9);
+```
+
+### 4. Set Caching
+
+Store unique collections:
+
+```javascript
+// Store user followers as set
+await client.sAdd('user:123:followers', 'user:456');
+await client.sAdd('user:123:followers', 'user:789');
+
+// Check if user is follower
+const isFollower = await client.sIsMember('user:123:followers', 'user:456');
+```
+
+## Performance Optimization
+
+### 1. Pipeline Operations
+
+Batch multiple operations:
+
+```javascript
+const pipeline = client.multi();
+pipeline.set('key1', 'value1');
+pipeline.set('key2', 'value2');
+pipeline.set('key3', 'value3');
+await pipeline.exec();
+```
+
+### 2. Connection Pooling
+
+```javascript
+const redis = require('redis');
+const client = redis.createClient({
+  host: 'localhost',
+  port: 6379,
+  maxRetriesPerRequest: 3,
+  retryDelayOnFailover: 100,
+  enableReadyCheck: false,
+  maxRetriesPerRequest: null,
+});
+```
+
+### 3. Compression
+
+```javascript
+const zlib = require('zlib');
+
+async function setCompressed(key, value, ttl = 3600) {
+  const compressed = await zlib.gzip(JSON.stringify(value));
+  await client.setEx(key, ttl, compressed);
+}
+
+async function getCompressed(key) {
+  const compressed = await client.get(key);
+  if (!compressed) return null;
+
+  const decompressed = await zlib.gunzip(compressed);
+  return JSON.parse(decompressed.toString());
+}
+```
+
+## Monitoring and Debugging
+
+### 1. Cache Hit Rate
+
+```javascript
+class CacheMetrics {
+  constructor() {
+    this.hits = 0;
+    this.misses = 0;
+  }
+
+  recordHit() {
+    this.hits++;
+  }
+
+  recordMiss() {
+    this.misses++;
+  }
+
+  getHitRate() {
+    const total = this.hits + this.misses;
+    return total > 0 ? this.hits / total : 0;
+  }
+}
+
+const metrics = new CacheMetrics();
+
+async function getUser(userId) {
+  const cachedUser = await client.get(`user:${userId}`);
+
+  if (cachedUser) {
+    metrics.recordHit();
+    return JSON.parse(cachedUser);
+  }
+
+  metrics.recordMiss();
+  const user = await database.getUser(userId);
+  await client.setEx(`user:${userId}`, 3600, JSON.stringify(user));
+  return user;
+}
+```
+
+### 2. Memory Usage
+
+```javascript
+async function getMemoryInfo() {
+  const info = await client.info('memory');
+  console.log('Redis Memory Usage:', info);
+}
+```
+
+## Best Practices
+
+### 1. Key Naming
+
+Use consistent, descriptive key names:
+
+```javascript
+// Good
+'user:123:profile';
+'session:abc123';
+'post:456:comments';
+
+// Bad
+'u123';
+'sess';
+'p456c';
+```
+
+### 2. Expiration Strategy
+
+Set appropriate TTL values:
+
+```javascript
+// Short-lived data
+await client.setEx('session:abc123', 1800, sessionData); // 30 minutes
+
+// Medium-lived data
+await client.setEx('user:123', 3600, userData); // 1 hour
+
+// Long-lived data
+await client.setEx('config:app', 86400, configData); // 24 hours
+```
+
+### 3. Error Handling
+
+```javascript
+async function safeGet(key) {
+  try {
+    return await client.get(key);
+  } catch (error) {
+    console.error('Redis get error:', error);
+    return null;
+  }
+}
+```
+
+### 4. Cache Size Management
+
+```javascript
+// Set max memory policy
+await client.configSet('maxmemory-policy', 'allkeys-lru');
+
+// Monitor memory usage
+const memoryUsage = await client.memoryUsage();
+console.log('Memory usage:', memoryUsage);
+```
+
+## Common Pitfalls
+
+### 1. Cache Stampede
+
+Multiple requests hitting database simultaneously:
+
+```javascript
+// Solution: Use locks
+async function getUserWithLock(userId) {
+  const lockKey = `lock:user:${userId}`;
+  const lockAcquired = await client.set(lockKey, '1', 'EX', 10, 'NX');
+
+  if (!lockAcquired) {
+    // Wait and retry
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    return getUserWithLock(userId);
+  }
+
+  try {
+    return await getUser(userId);
+  } finally {
+    await client.del(lockKey);
+  }
+}
+```
+
+### 2. Memory Leaks
+
+```javascript
+// Always set TTL for cached data
+await client.setEx('key', 3600, 'value'); // Good
+await client.set('key', 'value'); // Bad - no expiration
+```
+
+### 3. Inconsistent Data
+
+```javascript
+// Use transactions for consistency
+const multi = client.multi();
+multi.del('user:123');
+multi.del('user:123:posts');
+multi.del('user:123:followers');
+await multi.exec();
+```
+
+## Conclusion
+
+Redis caching can significantly improve your application's performance when implemented correctly. Focus on choosing the right caching strategy for your use case, monitoring performance metrics, and following best practices for key management and error handling.
+
+Remember: Caching is not a silver bullet—it's a tool that requires careful planning and ongoing optimization.
+
+---
+
+_Need help implementing Redis caching strategies? TechStudio specializes in high-performance backend development._
+1b:T240f,
+# N8N Workflow Automation: Complete Setup Guide
+
+N8N is a powerful workflow automation tool that allows you to connect different services and automate complex business processes. In this guide, we'll explore how to set up and use N8N effectively.
+
+## What is N8N?
+
+N8N is an open-source workflow automation tool that enables you to:
+
+- **Connect different services** and APIs
+- **Automate repetitive tasks**
+- **Create complex workflows** with conditional logic
+- **Integrate with popular platforms** like Slack, Google Sheets, and more
+
+## Installation Methods
+
+### 1. Docker Installation
+
+```bash
+# Pull the N8N Docker image
+docker pull n8nio/n8n
+
+# Run N8N container
+docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n
+```
+
+### 2. Docker Compose Setup
+
+```yaml
+version: '3.8'
+services:
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - '5678:5678'
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=password
+    volumes:
+      - n8n_data:/home/node/.n8n
+    restart: unless-stopped
+
+volumes:
+  n8n_data:
+```
+
+### 3. npm Installation
+
+```bash
+# Install N8N globally
+npm install n8n -g
+
+# Start N8N
+n8n start
+```
+
+## Basic Workflow Concepts
+
+### 1. Nodes
+
+Nodes are the building blocks of N8N workflows. Each node represents:
+
+- **Triggers**: Start workflows (webhook, schedule, manual)
+- **Actions**: Perform operations (HTTP request, database query)
+- **Logic**: Control flow (IF, Switch, Merge)
+
+### 2. Connections
+
+Connections link nodes together and define the data flow between them.
+
+### 3. Data Structure
+
+N8N uses JSON objects to pass data between nodes. Each item contains:
+
+```json
+{
+  "json": {
+    "field1": "value1",
+    "field2": "value2"
+  },
+  "binary": {},
+  "pairedItem": 1
+}
+```
+
+## Creating Your First Workflow
+
+### 1. Simple Webhook Workflow
+
+1. **Add Webhook Trigger**
+
+   - Drag "Webhook" node to canvas
+   - Configure HTTP method (POST)
+   - Copy webhook URL
+
+2. **Add HTTP Request Node**
+
+   - Connect to webhook trigger
+   - Configure URL and method
+   - Set headers and body
+
+3. **Add Response Node**
+   - Connect to HTTP request
+   - Set response data
+
+### 2. Schedule-Based Workflow
+
+```json
+{
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "value": "0 9 * * 1-5"
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.example.com/data",
+        "options": {}
+      },
+      "name": "Fetch Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
+```
+
+## Advanced Workflow Patterns
+
+### 1. Conditional Logic
+
+```json
+{
+  "parameters": {
+    "conditions": {
+      "string": [
+        {
+          "value1": "={{ $json.status }}",
+          "operation": "equal",
+          "value2": "active"
+        }
+      ]
+    }
+  },
+  "name": "Check Status",
+  "type": "n8n-nodes-base.if",
+  "typeVersion": 2
+}
+```
+
+### 2. Data Transformation
+
+```javascript
+// Code node example
+const items = $input.all();
+
+const transformedItems = items.map((item) => {
+  const data = item.json;
+
+  return {
+    json: {
+      id: data.id,
+      name: data.name.toUpperCase(),
+      email: data.email.toLowerCase(),
+      processedAt: new Date().toISOString(),
+    },
+  };
+});
+
+return transformedItems;
+```
+
+### 3. Error Handling
+
+```json
+{
+  "parameters": {
+    "continueOnFail": true,
+    "retryOnFail": true,
+    "maxTries": 3,
+    "waitBetweenTries": 1000
+  },
+  "name": "HTTP Request with Retry",
+  "type": "n8n-nodes-base.httpRequest"
+}
+```
+
+## Integration Examples
+
+### 1. Slack Integration
+
+```json
+{
+  "parameters": {
+    "authentication": "oAuth2",
+    "resource": "message",
+    "operation": "post",
+    "channel": "#general",
+    "text": "Hello from N8N!",
+    "additionalFields": {}
+  },
+  "name": "Send Slack Message",
+  "type": "n8n-nodes-base.slack"
+}
+```
+
+### 2. Google Sheets Integration
+
+```json
+{
+  "parameters": {
+    "authentication": "serviceAccount",
+    "resource": "spreadsheet",
+    "operation": "appendOrUpdate",
+    "documentId": "your-spreadsheet-id",
+    "sheetName": "Sheet1",
+    "columns": {
+      "mappingMode": "defineBelow",
+      "value": {
+        "Name": "={{ $json.name }}",
+        "Email": "={{ $json.email }}",
+        "Status": "={{ $json.status }}"
+      }
+    }
+  },
+  "name": "Update Google Sheet",
+  "type": "n8n-nodes-base.googleSheets"
+}
+```
+
+### 3. Database Operations
+
+```json
+{
+  "parameters": {
+    "operation": "insert",
+    "table": "users",
+    "columns": "name, email, created_at",
+    "values": "={{ $json.name }}, {{ $json.email }}, {{ $now }}"
+  },
+  "name": "Insert User",
+  "type": "n8n-nodes-base.postgres"
+}
+```
+
+## Custom Node Development
+
+### 1. Node Structure
+
+```typescript
+import {
+  IExecuteFunctions,
+  INodeExecutionData,
+  INodeType,
+  INodeTypeDescription,
+} from 'n8n-workflow';
+
+export class MyCustomNode implements INodeType {
+  description: INodeTypeDescription = {
+    displayName: 'My Custom Node',
+    name: 'myCustomNode',
+    icon: 'file:myCustomNode.svg',
+    group: ['transform'],
+    version: 1,
+    description: 'Custom node description',
+    defaults: {
+      name: 'My Custom Node',
+    },
+    inputs: ['main'],
+    outputs: ['main'],
+    properties: [
+      {
+        displayName: 'Input Field',
+        name: 'inputField',
+        type: 'string',
+        default: '',
+        description: 'Input field description',
+      },
+    ],
+  };
+
+  async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+    const items = this.getInputData();
+    const returnData: INodeExecutionData[] = [];
+
+    for (let i = 0; i < items.length; i++) {
+      const inputField = this.getNodeParameter('inputField', i) as string;
+
+      returnData.push({
+        json: {
+          processed: true,
+          input: inputField,
+          timestamp: new Date().toISOString(),
+        },
+      });
+    }
+
+    return [returnData];
+  }
+}
+```
+
+### 2. Node Registration
+
+```typescript
+import { MyCustomNode } from './MyCustomNode';
+
+export const nodes = [MyCustomNode];
+```
+
+## Production Deployment
+
+### 1. Environment Configuration
+
+```bash
+# Production environment variables
+N8N_BASIC_AUTH_ACTIVE=true
+N8N_BASIC_AUTH_USER=admin
+N8N_BASIC_AUTH_PASSWORD=secure_password
+N8N_ENCRYPTION_KEY=your_encryption_key
+N8N_DATABASE_TYPE=postgresdb
+N8N_DATABASE_POSTGRESDB_HOST=localhost
+N8N_DATABASE_POSTGRESDB_PORT=5432
+N8N_DATABASE_POSTGRESDB_DATABASE=n8n
+N8N_DATABASE_POSTGRESDB_USER=n8n
+N8N_DATABASE_POSTGRESDB_PASSWORD=password
+```
+
+### 2. Docker Production Setup
+
+```yaml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: n8n
+      POSTGRES_USER: n8n
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - '5678:5678'
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=secure_password
+      - N8N_ENCRYPTION_KEY=your_encryption_key
+      - N8N_DATABASE_TYPE=postgresdb
+      - N8N_DATABASE_POSTGRESDB_HOST=postgres
+      - N8N_DATABASE_POSTGRESDB_PORT=5432
+      - N8N_DATABASE_POSTGRESDB_DATABASE=n8n
+      - N8N_DATABASE_POSTGRESDB_USER=n8n
+      - N8N_DATABASE_POSTGRESDB_PASSWORD=password
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  n8n_data:
+```
+
+## Monitoring and Maintenance
+
+### 1. Workflow Monitoring
+
+- **Execution History**: Track workflow runs and results
+- **Error Logs**: Monitor failed executions
+- **Performance Metrics**: Track execution times
+
+### 2. Best Practices
+
+- **Test workflows** thoroughly before production
+- **Use descriptive names** for nodes and workflows
+- **Implement error handling** for robust workflows
+- **Monitor resource usage** and optimize accordingly
+
+## Security Considerations
+
+### 1. Authentication
+
+- Enable basic authentication for N8N interface
+- Use strong passwords and encryption keys
+- Implement proper access controls
+
+### 2. Data Protection
+
+- Encrypt sensitive data in workflows
+- Use secure connections for external APIs
+- Regularly update N8N and dependencies
+
+## Conclusion
+
+N8N provides a powerful platform for workflow automation and service integration. By following these best practices and implementing proper security measures, you can create robust automation solutions that streamline your business processes.
+
+Key benefits:
+
+- **Visual workflow design** makes automation accessible
+- **Extensive integrations** with popular services
+- **Flexible deployment options** for different environments
+- **Active community** and regular updates
+
+---
+
+_Ready to automate your business processes with N8N? Contact our team for expert setup and workflow development services._
+14:["$","$L18",null,{"posts":[{"metadata":{"title":"Modern Web Development with Next.js and React","date":"2024-02-05","excerpt":"Explore the latest features in Next.js 14 and React 18 for building high-performance web applications.","slug":"en/nextjs-react-modern-development","category":"Development","tags":["Next.js","React","Web Development","Performance","Modern Development"],"author":"TechStudio Team","readTime":"11 min read","featured":false,"image":"$undefined"},"content":"$19"},{"metadata":{"title":"Redis Caching Strategies Guide","date":"2024-02-01","excerpt":"Learn how to implement effective caching strategies with Redis to improve application performance and reduce database load.","slug":"en/redis-caching-strategies-guide","category":"Backend","tags":["Redis","Caching","Performance","Database"],"author":"TechStudio Team","readTime":"9 min read","featured":false,"image":"$undefined"},"content":"$1a"},{"metadata":{"title":"N8N Workflow Automation: Complete Setup Guide","date":"2024-01-30","excerpt":"Master N8N workflow automation to streamline your business processes and integrate multiple services seamlessly.","slug":"en/n8n-workflow-automation-guide","category":"Automation","tags":["N8N","Workflow Automation","Integration","Business Process","Automation"],"author":"TechStudio Team","readTime":"9 min read","featured":false,"image":"$undefined"},"content":"$1b"}],"title":"Related Articles"}]
+15:["$","$L1c",null,{}]
+1d:I[6417,["450","static/chunks/app/%5Blocale%5D/layout-d61e3dfd189058f2.js"],"default"]
+17:["$","$L1d",null,{"locale":"en","now":"$D2025-10-20T15:32:21.922Z","timeZone":"Asia/Bangkok","messages":{"seo":{"home":{"title":"TechStudio - Custom Software Development Solutions","description":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology.","keywords":"custom software development, web applications, automation, API development, business solutions, TechStudio"},"about":{"title":"About TechStudio - Custom Software Development Team","description":"Learn about TechStudio's mission to deliver custom software solutions that solve real business problems. Our team specializes in web applications, automation, and API development.","keywords":"about TechStudio, software development team, custom solutions, business technology"},"services":{"title":"Custom Software Development Services - TechStudio","description":"Explore our custom software development services including web applications, automation systems, API development, and tailored business solutions.","keywords":"software development services, web applications, automation, API development, custom solutions"},"portfolio":{"title":"Portfolio - Custom Software Development Projects","description":"View our portfolio of successful custom software development projects. See how we've helped businesses solve their challenges with tailored technology solutions.","keywords":"software development portfolio, custom projects, business solutions, case studies"},"blog":{"title":"Blog - Custom Software Development Insights","description":"Read our latest insights on custom software development, web applications, automation, and technology trends.","keywords":"software development blog, technology insights, web development, automation"},"contact":{"title":"Contact TechStudio - Get Your Custom Software Quote","description":"Ready to start your custom software project? Contact TechStudio for a consultation and quote on your web application, automation, or API development needs.","keywords":"contact TechStudio, software development quote, custom software consultation"}},"navigation":{"home":"Home","about":"About","services":"Services","portfolio":"Portfolio","blog":"Blog","contact":"Contact"},"home":{"hero":{"badge":"Custom Software Development Solutions","title":"Transform Your Business with","titleHighlight":"Expert Web Development","description":"Build custom software solutions that solve real business problems. We create tailored web applications, automation systems, and APIs that help businesses grow with technology.","cta":"Get Started","ctaSecondary":"View Portfolio","stats":{"projects":"500+","projectsLabel":"Projects","clients":"10K+","clientsLabel":"Clients","satisfaction":"98%","satisfactionLabel":"Satisfied"}},"services":{"title":"Custom Software Solutions","subtitle":"We build software that fits your business needs perfectly","webDesign":{"title":"Web Design","description":"Clean, modern, and accessible web design that elevates your brand and improves usability across devices."},"uiuxDesign":{"title":"UI/UX Design","description":"Beautiful, user-friendly interfaces that engage customers and drive conversions."},"webDevelopment":{"title":"Web Applications","description":"Modern, responsive web applications built with the latest technologies for optimal performance and user experience."},"fullStackDevelopment":{"title":"Full-Stack Development","description":"End‑to‑end solutions from frontend to backend with seamless integrations."},"automation":{"title":"Automation Systems","description":"Streamline your business processes with custom automation solutions that save time and reduce errors."},"api":{"title":"API Development","description":"Robust APIs that connect your systems and enable seamless data flow between different platforms."}},"about":{"title":"Why Choose TechStudio?","subtitle":"We understand that every business is unique, and so are their software needs.","content":"We don't believe in one-size-fits-all solutions. Every project starts with understanding your specific requirements, challenges, and goals. Our team works closely with you to design and develop software that perfectly fits your business processes."},"cta":{"title":"Ready to Build Your Custom Software Solution?","subtitle":"Let's discuss your project and create a solution that drives your business forward.","primaryButton":"Start Your Project","secondaryButton":"Schedule Consultation"},"testimonials":{"title":"What Our Clients Say","subtitle":"Trust from our clients drives us forward","testimonial1":{"quote":"The queue booking system they created made our operations much easier. Patients can now book appointments themselves via mobile, greatly reducing our staff workload.","name":"Dr. Somchai Jaidee","company":"MD Clinic"},"testimonial2":{"quote":"The POS system is designed to be very user-friendly. Our staff learned it quickly, and customers love our ordering system.","name":"Ms. Orathai Rakkarnka","company":"Brew & Co."},"testimonial3":{"quote":"The dashboard we received helps us make decisions faster. We can see important data clearly - it's very valuable.","name":"Mr. Wichai Thurakitdee","company":"Tech Startup"}},"techStack":{"title":"Technologies We Use","subtitle":"Cutting-edge tools and frameworks for modern development"},"whyChoose":{"title":"Your Trusted Software Development Partner","subtitle":"We combine technical expertise with business understanding to deliver solutions that drive real results.","badge":"Why Choose TechStudio","features":{"expertTeam":{"title":"Expert Team","description":"Experienced developers and designers with expertise in modern technologies and best practices."},"scalableSolutions":{"title":"Scalable Solutions","description":"Built to grow with your business, ensuring your software can handle increased demand and complexity."},"qualityFocus":{"title":"Quality Focus","description":"Rigorous testing and quality assurance processes ensure reliable, bug-free software delivery."},"globalReach":{"title":"Global Reach","description":"Serving clients worldwide with flexible engagement models and 24/7 support capabilities."}}}},"about":{"title":"About TechStudio","subtitle":"We are passionate about creating custom software solutions that solve real business problems and drive growth","vision":{"title":"Our Vision","content":"To be the leading provider of custom software solutions that transform businesses and create lasting value through innovative technology."},"mission":{"title":"Our Mission","content":"To deliver high-quality, scalable software solutions that meet our clients' unique needs and help them achieve their business goals."},"values":{"title":"Our Values","content":"We believe in transparency, collaboration, and continuous improvement to deliver exceptional results for our clients."},"team":{"title":"Our Team","description":"Meet the talented individuals behind our custom software development success"},"tools":{"title":"Tools & Technologies","description":"We use cutting-edge technologies and proven methodologies to deliver exceptional results"}},"portfolio":{"title":"Our Portfolio","subtitle":"Explore our successful projects and see how we've helped businesses solve their challenges with custom software solutions","featuredProjects":"Featured Projects","featuredDescription":"Highlighting some of our most successful custom software development projects","allProjects":"All Projects","allDescription":"Complete portfolio of our custom software development work","backToPortfolio":"Back to Portfolio","technologies":"Technologies Used","features":"Key Features","challenges":"Challenges","solutions":"Solutions","results":"Results","relatedProjects":"Related Projects","liveDemo":"Live Demo","viewCode":"View Code","cta":{"title":"Ready to Start Your Project?","description":"Let's discuss your requirements and create a custom solution for your business","button":"Get Started Today"}},"contact":{"title":"Contact Us","subtitle":"Ready to start your custom software development project? We'd love to hear from you.","contactInfo":{"title":"Get in Touch","description":"Ready to start your custom software development project? We'd love to hear from you. Send us a message and we'll respond within 24 hours.","email":"Email","phone":"Phone","office":"Office"},"form":{"title":"Send us a Message","name":"Full Name","namePlaceholder":"Your full name","email":"Email Address","emailPlaceholder":"your@email.com","company":"Company","companyPlaceholder":"Your company name","message":"Message","messagePlaceholder":"Tell us about your project requirements...","submit":"Send Message","success":"Thank you! Your message has been sent successfully.","error":"Sorry, there was an error sending your message. Please try again."},"faq":{"title":"Frequently Asked Questions","subtitle":"Common questions about our custom software development services","question1":"How long does a typical project take?","answer1":"Project timelines vary depending on complexity and requirements. Simple web applications typically take 2-4 months, while complex enterprise solutions can take 6-12 months. We provide detailed project timelines during our initial consultation.","question2":"What technologies do you work with?","answer2":"We work with modern technologies including React, Next.js, Node.js, Python, TypeScript, and various databases. We choose the best technology stack based on your specific requirements and business needs.","question3":"Do you provide ongoing support?","answer3":"Yes, we offer comprehensive support and maintenance services including bug fixes, updates, feature enhancements, and technical support. We have flexible support packages to meet your needs.","question4":"How do you ensure project quality?","answer4":"We follow industry best practices including code reviews, automated testing, continuous integration, and regular client feedback sessions. Our quality assurance process ensures reliable and maintainable software."},"info":{"title":"Contact Information","email":"Email","phone":"Phone","address":"Address","hours":"Business Hours"}},"footer":{"description":"Custom software development solutions for businesses","company":"TechStudio","newsletter":{"title":"Stay Updated","description":"Get the latest updates on custom software development trends and our projects.","placeholder":"Enter your email","button":"Subscribe"},"links":{"about":"About","services":"Services","portfolio":"Portfolio","blog":"Blog","contact":"Contact","privacy":"Privacy Policy","terms":"Terms of Service"}},"blog":{"title":"Blog & Insights","subtitle":"Share knowledge, experience, and techniques about custom software development","noPosts":"No posts found","noPostsDescription":"Check back soon for new content!","newsletter":{"title":"Get New Articles Every Week","description":"Subscribe to our Newsletter to receive software development tips, case studies, and new knowledge delivered to your email","placeholder":"Your email","subscribe":"Subscribe","privacy":"We value your privacy and will not send spam"},"backToBlog":"← Back to Blog","tags":"Tags","relatedArticles":"Related Articles"},"services":{"title":"Our Services","subtitle":"Comprehensive custom software development services tailored to your business needs","description":"We offer end-to-end software development solutions from concept to deployment","process":{"title":"Our Development Process","subtitle":"We follow a structured approach to ensure successful project delivery","steps":{"one":{"title":"Discovery","description":"Understanding your business requirements and technical needs"},"two":{"title":"Planning","description":"Creating detailed project plans and technical specifications"},"three":{"title":"Development","description":"Building your custom solution with regular progress updates"},"four":{"title":"Launch","description":"Deploying your solution and providing ongoing support"}}},"offerings":{"uiuxDesign":{"title":"UI/UX Design","description":"Beautiful, user-friendly interfaces that engage and convert visitors into customers."},"webDevelopment":{"title":"Web Development","description":"Custom websites and web applications built with modern technologies and best practices."},"fullStackDevelopment":{"title":"Full-Stack Development","description":"Complete end-to-end solutions from frontend to backend with seamless integration."},"lineBot":{"title":"LINE Bot Development","description":"Intelligent chatbots and automation solutions for LINE platform integration."},"businessAutomation":{"title":"Business Automation","description":"Streamline your processes with intelligent automation and workflow optimization."},"apiDevelopment":{"title":"API Development","description":"Robust and scalable APIs that power your applications and integrate services."}},"cta":{"title":"Ready to Transform Your Business?","description":"Let's discuss your project requirements and create a custom solution that drives results","button":"Start Your Project"}},"techDescriptions":{"nextjs":"Full-stack React framework with SSR, routing, and optimization","react":"Component-based UI library for interactive web applications","typescript":"Type-safe JavaScript for scalable and maintainable code","tailwindcss":"Utility-first CSS framework for rapid UI development","astro":"Modern static site generator with island architecture","vercel":"Cloud platform for frontend deployment and edge functions","aws":"Comprehensive cloud computing and infrastructure services","auth0":"Identity and access management platform for secure authentication","claude":"AI assistant for development workflows and code generation","figma":"Collaborative design and prototyping tool for UI/UX","git":"Distributed version control for collaborative development","html5":"Modern web markup standard with semantic elements","java":"Enterprise-grade programming language for backend services","kubernetes":"Container orchestration platform for scalable deployments","kong":"API gateway and service mesh for microservices architecture","nodejs":"JavaScript runtime for server-side development","go":"Fast, efficient programming language for backend services","springboot":"Enterprise Java framework for microservices and web apps","python":"Versatile language for backend, data science, and automation","postgresql":"Advanced open-source relational database system","redis":"In-memory data store for caching and real-time applications","kafka":"Distributed streaming platform for real-time data processing","docker":"Containerization platform for consistent deployments","line":"LINE platform integration for chatbots and automation","n8n":"Workflow automation platform for business process automation","make":"No-code automation platform for connecting apps and services"}},"children":"$L1e"}]
+1e:["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+9:{"metadata":[["$","title","0",{"children":"TechStudio - Custom Software Development Solutions"}],["$","meta","1",{"name":"description","content":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology."}],["$","meta","2",{"name":"author","content":"TechStudio"}],["$","meta","3",{"name":"keywords","content":"custom software development, web applications, automation, API development, business solutions, TechStudio"}],["$","meta","4",{"name":"robots","content":"index, follow"}],["$","meta","5",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","6",{"property":"og:title","content":"TechStudio - Custom Software Development Solutions"}],["$","meta","7",{"property":"og:description","content":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology."}],["$","meta","8",{"property":"og:url","content":"https://tech-studio.com/"}],["$","meta","9",{"property":"og:site_name","content":"TechStudio"}],["$","meta","10",{"property":"og:locale","content":"en_US"}],["$","meta","11",{"property":"og:image","content":"https://tech-studio.com/og-image.jpg"}],["$","meta","12",{"property":"og:image:width","content":"1200"}],["$","meta","13",{"property":"og:image:height","content":"630"}],["$","meta","14",{"property":"og:image:alt","content":"TechStudio - Custom Software Development"}],["$","meta","15",{"property":"og:type","content":"website"}],["$","meta","16",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","17",{"name":"twitter:title","content":"TechStudio - Custom Software Development Solutions"}],["$","meta","18",{"name":"twitter:description","content":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology."}],["$","meta","19",{"name":"twitter:image","content":"https://tech-studio.com/og-image.jpg"}]],"error":null,"digest":"$undefined"}
+e:"$9:metadata"

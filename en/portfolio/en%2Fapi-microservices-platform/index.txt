@@ -1,0 +1,555 @@
+1:"$Sreact.fragment"
+2:I[6190,[],""]
+3:I[4660,[],""]
+6:I[6327,[],"OutletBoundary"]
+8:I[6566,[],"AsyncMetadataOutlet"]
+a:I[6327,[],"ViewportBoundary"]
+c:I[6327,[],"MetadataBoundary"]
+d:"$Sreact.suspense"
+f:I[8470,[],""]
+:HL["/_next/static/css/813c64fd346b482e.css","style"]
+0:{"P":null,"b":"iLQSGby4dyzYBXt1sodCw","p":"","c":["","en","portfolio","en%2Fapi-microservices-platform",""],"i":false,"f":[[["",{"children":[["locale","en","d"],{"children":["portfolio",{"children":[["slug","en%2Fapi-microservices-platform","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/813c64fd346b482e.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["locale","en","d"],["$","$1","c",{"children":[null,"$L4"]}],{"children":["portfolio",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","en%2Fapi-microservices-platform","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$L7",["$","$L8",null,{"promise":"$@9"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$La",null,{"children":"$Lb"}],null],["$","$Lc",null,{"children":["$","div",null,{"hidden":true,"children":["$","$d",null,{"fallback":null,"children":"$Le"}]}]}]]}],false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+10:I[5672,["452","static/chunks/452-e1843827d956986f.js","169","static/chunks/169-8808b033f7a4a331.js","842","static/chunks/app/%5Blocale%5D/portfolio/%5Bslug%5D/page-f06814ad038c10f0.js"],"default"]
+11:I[5030,["452","static/chunks/452-e1843827d956986f.js","169","static/chunks/169-8808b033f7a4a331.js","842","static/chunks/app/%5Blocale%5D/portfolio/%5Bslug%5D/page-f06814ad038c10f0.js"],"AnimatedPortfolioContent"]
+14:I[1239,["450","static/chunks/app/%5Blocale%5D/layout-d61e3dfd189058f2.js"],"Providers"]
+12:T3913,
+# API & Microservices Platform
+
+A comprehensive microservices platform designed to handle enterprise-scale applications with high availability, performance, and scalability. Built using Spring Boot, Kafka, and modern containerization technologies.
+
+## Project Overview
+
+This microservices platform was developed for an enterprise client requiring a scalable, maintainable architecture to support their growing business needs. The platform handles millions of requests daily with 99.99% uptime and sub-second response times.
+
+## Architecture Overview
+
+### Microservices Design
+
+- **User Service**: Handles authentication, authorization, and user management
+- **Order Service**: Manages order processing and fulfillment
+- **Payment Service**: Processes payments and financial transactions
+- **Notification Service**: Sends emails, SMS, and push notifications
+- **Inventory Service**: Manages product inventory and availability
+
+### API Gateway
+
+```java
+@RestController
+@RequestMapping("/api/v1")
+public class ApiGatewayController {
+
+    @Autowired
+    private ServiceDiscoveryClient discoveryClient;
+
+    @Autowired
+    private CircuitBreakerService circuitBreaker;
+
+    @PostMapping("/orders")
+    public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequest request) {
+        try {
+            // Route to Order Service
+            String orderServiceUrl = discoveryClient.getServiceUrl("order-service");
+
+            return circuitBreaker.execute(() ->
+                restTemplate.postForEntity(orderServiceUrl + "/orders", request, OrderResponse.class)
+            );
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
+        }
+    }
+}
+```
+
+## Service Implementation
+
+### User Service
+
+```java
+@Service
+@Transactional
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
+
+    public User createUser(CreateUserRequest request) {
+        // Validate input
+        validateUserRequest(request);
+
+        // Create user entity
+        User user = User.builder()
+            .email(request.getEmail())
+            .name(request.getName())
+            .role(request.getRole())
+            .status(UserStatus.ACTIVE)
+            .createdAt(LocalDateTime.now())
+            .build();
+
+        // Save to database
+        User savedUser = userRepository.save(user);
+
+        // Publish event
+        UserCreatedEvent event = UserCreatedEvent.builder()
+            .userId(savedUser.getId())
+            .email(savedUser.getEmail())
+            .name(savedUser.getName())
+            .timestamp(LocalDateTime.now())
+            .build();
+
+        kafkaTemplate.send("user-created", event);
+
+        return savedUser;
+    }
+
+    private void validateUserRequest(CreateUserRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new UserAlreadyExistsException("User with email already exists");
+        }
+    }
+}
+```
+
+### Order Service with Event Sourcing
+
+```java
+@Service
+public class OrderService {
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private EventStore eventStore;
+
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
+
+    public Order createOrder(CreateOrderRequest request) {
+        // Create order aggregate
+        OrderAggregate order = OrderAggregate.builder()
+            .userId(request.getUserId())
+            .items(request.getItems())
+            .status(OrderStatus.PENDING)
+            .build();
+
+        // Apply business logic
+        order.validateOrder();
+        order.calculateTotal();
+
+        // Save events
+        List<DomainEvent> events = order.getUncommittedEvents();
+        eventStore.saveEvents(order.getId(), events);
+
+        // Publish events
+        events.forEach(event -> kafkaTemplate.send("order-events", event));
+
+        return order.toOrder();
+    }
+}
+```
+
+## Event-Driven Architecture
+
+### Kafka Configuration
+
+```yaml
+# application.yml
+spring:
+  kafka:
+    bootstrap-servers: kafka-cluster:9092
+    consumer:
+      group-id: ${spring.application.name}
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+```
+
+### Event Handlers
+
+```java
+@Component
+public class OrderEventHandler {
+
+    @Autowired
+    private InventoryService inventoryService;
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @KafkaListener(topics = "order-created")
+    public void handleOrderCreated(OrderCreatedEvent event) {
+        try {
+            // Reserve inventory
+            inventoryService.reserveItems(event.getOrderId(), event.getItems());
+
+            // Process payment
+            PaymentResult result = paymentService.processPayment(
+                event.getOrderId(),
+                event.getTotalAmount()
+            );
+
+            if (result.isSuccess()) {
+                // Confirm order
+                publishOrderConfirmed(event.getOrderId());
+            } else {
+                // Cancel order
+                publishOrderCancelled(event.getOrderId(), result.getReason());
+            }
+        } catch (Exception e) {
+            // Handle error
+            publishOrderFailed(event.getOrderId(), e.getMessage());
+        }
+    }
+}
+```
+
+## Caching Strategy
+
+### Redis Configuration
+
+```java
+@Configuration
+@EnableCaching
+public class CacheConfig {
+
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
+        template.setDefaultSerializer(new GenericJackson2JsonRedisSerializer());
+        return template;
+    }
+
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+            .entryTtl(Duration.ofMinutes(30))
+            .serializeKeysWith(RedisSerializationContext.SerializationPair
+                .fromSerializer(new StringRedisSerializer()))
+            .serializeValuesWith(RedisSerializationContext.SerializationPair
+                .fromSerializer(new GenericJackson2JsonRedisSerializer()));
+
+        return RedisCacheManager.builder(connectionFactory)
+            .cacheDefaults(config)
+            .build();
+    }
+}
+```
+
+### Service-Level Caching
+
+```java
+@Service
+public class ProductService {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Cacheable(value = "products", key = "#productId")
+    public Product getProduct(String productId) {
+        return productRepository.findById(productId)
+            .orElseThrow(() -> new ProductNotFoundException("Product not found"));
+    }
+
+    @CacheEvict(value = "products", key = "#product.id")
+    public Product updateProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Cacheable(value = "products", key = "'category:' + #category")
+    public List<Product> getProductsByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+}
+```
+
+## Monitoring and Observability
+
+### Health Checks
+
+```java
+@Component
+public class CustomHealthIndicator implements HealthIndicator {
+
+    @Autowired
+    private DatabaseHealthChecker databaseChecker;
+
+    @Autowired
+    private KafkaHealthChecker kafkaChecker;
+
+    @Override
+    public Health health() {
+        Health.Builder builder = new Health.Builder();
+
+        try {
+            // Check database connectivity
+            boolean dbHealthy = databaseChecker.isHealthy();
+            builder.withDetail("database", dbHealthy ? "UP" : "DOWN");
+
+            // Check Kafka connectivity
+            boolean kafkaHealthy = kafkaChecker.isHealthy();
+            builder.withDetail("kafka", kafkaHealthy ? "UP" : "DOWN");
+
+            if (dbHealthy && kafkaHealthy) {
+                return builder.up().build();
+            } else {
+                return builder.down().build();
+            }
+        } catch (Exception e) {
+            return builder.down().withException(e).build();
+        }
+    }
+}
+```
+
+### Metrics Collection
+
+```java
+@Component
+public class OrderMetrics {
+
+    private final MeterRegistry meterRegistry;
+    private final Counter orderCreatedCounter;
+    private final Timer orderProcessingTimer;
+
+    public OrderMetrics(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+        this.orderCreatedCounter = Counter.builder("orders.created")
+            .description("Number of orders created")
+            .register(meterRegistry);
+        this.orderProcessingTimer = Timer.builder("orders.processing.time")
+            .description("Order processing time")
+            .register(meterRegistry);
+    }
+
+    public void incrementOrderCreated() {
+        orderCreatedCounter.increment();
+    }
+
+    public void recordOrderProcessingTime(Duration duration) {
+        orderProcessingTimer.record(duration);
+    }
+}
+```
+
+## Containerization and Deployment
+
+### Docker Configuration
+
+```dockerfile
+FROM openjdk:11-jre-slim
+
+WORKDIR /app
+
+COPY target/user-service.jar app.jar
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8080/actuator/health || exit 1
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+### Kubernetes Deployment
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: user-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: 'kubernetes'
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: 'kafka-cluster:9092'
+          resources:
+            requests:
+              memory: '512Mi'
+              cpu: '250m'
+            limits:
+              memory: '1Gi'
+              cpu: '500m'
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+```
+
+## Performance Optimization
+
+### Database Optimization
+
+```sql
+-- Optimized indexes
+CREATE INDEX idx_orders_user_id ON orders(user_id);
+CREATE INDEX idx_orders_status ON orders(status);
+CREATE INDEX idx_orders_created_at ON orders(created_at);
+CREATE INDEX idx_order_items_order_id ON order_items(order_id);
+
+-- Partitioning for large tables
+CREATE TABLE orders_2024 PARTITION OF orders
+FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
+```
+
+### Connection Pooling
+
+```yaml
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+```
+
+## Security Implementation
+
+### Authentication & Authorization
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/api/v1/public/**").permitAll()
+                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt
+                    .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                )
+            );
+
+        return http.build();
+    }
+}
+```
+
+### API Rate Limiting
+
+```java
+@Component
+public class RateLimitingFilter implements Filter {
+
+    private final RedisTemplate<String, String> redisTemplate;
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String clientId = getClientId(httpRequest);
+
+        if (isRateLimited(clientId)) {
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            httpResponse.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
+            return;
+        }
+
+        chain.doFilter(request, response);
+    }
+
+    private boolean isRateLimited(String clientId) {
+        String key = "rate_limit:" + clientId;
+        String count = redisTemplate.opsForValue().get(key);
+
+        if (count == null) {
+            redisTemplate.opsForValue().set(key, "1", Duration.ofMinutes(1));
+            return false;
+        }
+
+        int currentCount = Integer.parseInt(count);
+        if (currentCount >= 100) { // 100 requests per minute
+            return true;
+        }
+
+        redisTemplate.opsForValue().increment(key);
+        return false;
+    }
+}
+```
+
+## Results & Impact
+
+### Performance Metrics
+
+- **80% improvement** in system performance
+- **99.99% service availability** achieved
+- **50% reduction** in response time
+- **Scalable architecture** supporting 10x traffic growth
+
+### Business Impact
+
+- **Improved system reliability** with fault tolerance
+- **Reduced operational costs** through automation
+- **Enhanced developer productivity** with microservices
+- **Better customer experience** with faster response times
+
+## Lessons Learned
+
+### Technical Insights
+
+- **Event-driven architecture** provides better scalability
+- **Proper monitoring** is essential for microservices
+- **Circuit breakers** prevent cascade failures
+- **Caching strategies** significantly improve performance
+
+### Operational Insights
+
+- **Container orchestration** simplifies deployment
+- **Service mesh** improves observability
+- **Automated testing** is crucial for microservices
+- **Documentation** becomes more important with distributed systems
+
+---
+
+_This microservices platform demonstrates our expertise in building scalable, enterprise-grade systems. Contact us to discuss your API and microservices development needs._
+5:["$","div",null,{"className":"min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden","children":[["$","$L10",null,{}],["$","$L11",null,{"project":{"metadata":{"id":"api-microservices-platform","title":"API & Microservices Platform","description":"Scalable microservices architecture with comprehensive API management","longDescription":"Designed and implemented a microservices platform with API gateway, service discovery, and comprehensive monitoring. The platform handles high traffic loads and provides seamless service communication.","image":"https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop","technologies":["Spring Boot","Kafka","Redis","PostgreSQL","Docker","Kubernetes"],"category":"API Development","client":"Enterprise Client","duration":"8 months","features":["Microservices architecture","API gateway implementation","Service discovery","Message queuing with Kafka","Caching with Redis","Database optimization","Monitoring and logging","Auto-scaling capabilities"],"challenges":["Service communication complexity","Data consistency across services","Performance optimization","Monitoring and debugging"],"solutions":["Implemented event-driven architecture","Used distributed transactions","Applied caching strategies","Implemented comprehensive monitoring"],"results":["80% improvement in system performance","99.99% service availability","50% reduction in response time","Scalable architecture achieved"],"liveUrl":"https://api-platform.com","githubUrl":"https://github.com/api-platform","featured":true,"date":"2024-03-10","locale":"en","slug":"en/api-microservices-platform"},"content":"$12"},"relatedProjects":[],"translations":{"backToPortfolio":"Back to Portfolio","technologies":"Technologies Used","features":"Key Features","challenges":"Challenges","solutions":"Solutions","results":"Results","relatedProjects":"Related Projects","liveDemo":"Live Demo","viewCode":"View Code"}}],"$L13"]}]
+4:["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L14",null,{"children":"$L15"}]}]}]
+16:I[4096,["452","static/chunks/452-e1843827d956986f.js","169","static/chunks/169-8808b033f7a4a331.js","842","static/chunks/app/%5Blocale%5D/portfolio/%5Bslug%5D/page-f06814ad038c10f0.js"],"default"]
+13:["$","$L16",null,{}]
+17:I[6417,["450","static/chunks/app/%5Blocale%5D/layout-d61e3dfd189058f2.js"],"default"]
+15:["$","$L17",null,{"locale":"en","now":"$D2025-10-20T15:32:21.981Z","timeZone":"Asia/Bangkok","messages":{"seo":{"home":{"title":"TechStudio - Custom Software Development Solutions","description":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology.","keywords":"custom software development, web applications, automation, API development, business solutions, TechStudio"},"about":{"title":"About TechStudio - Custom Software Development Team","description":"Learn about TechStudio's mission to deliver custom software solutions that solve real business problems. Our team specializes in web applications, automation, and API development.","keywords":"about TechStudio, software development team, custom solutions, business technology"},"services":{"title":"Custom Software Development Services - TechStudio","description":"Explore our custom software development services including web applications, automation systems, API development, and tailored business solutions.","keywords":"software development services, web applications, automation, API development, custom solutions"},"portfolio":{"title":"Portfolio - Custom Software Development Projects","description":"View our portfolio of successful custom software development projects. See how we've helped businesses solve their challenges with tailored technology solutions.","keywords":"software development portfolio, custom projects, business solutions, case studies"},"blog":{"title":"Blog - Custom Software Development Insights","description":"Read our latest insights on custom software development, web applications, automation, and technology trends.","keywords":"software development blog, technology insights, web development, automation"},"contact":{"title":"Contact TechStudio - Get Your Custom Software Quote","description":"Ready to start your custom software project? Contact TechStudio for a consultation and quote on your web application, automation, or API development needs.","keywords":"contact TechStudio, software development quote, custom software consultation"}},"navigation":{"home":"Home","about":"About","services":"Services","portfolio":"Portfolio","blog":"Blog","contact":"Contact"},"home":{"hero":{"badge":"Custom Software Development Solutions","title":"Transform Your Business with","titleHighlight":"Expert Web Development","description":"Build custom software solutions that solve real business problems. We create tailored web applications, automation systems, and APIs that help businesses grow with technology.","cta":"Get Started","ctaSecondary":"View Portfolio","stats":{"projects":"500+","projectsLabel":"Projects","clients":"10K+","clientsLabel":"Clients","satisfaction":"98%","satisfactionLabel":"Satisfied"}},"services":{"title":"Custom Software Solutions","subtitle":"We build software that fits your business needs perfectly","webDesign":{"title":"Web Design","description":"Clean, modern, and accessible web design that elevates your brand and improves usability across devices."},"uiuxDesign":{"title":"UI/UX Design","description":"Beautiful, user-friendly interfaces that engage customers and drive conversions."},"webDevelopment":{"title":"Web Applications","description":"Modern, responsive web applications built with the latest technologies for optimal performance and user experience."},"fullStackDevelopment":{"title":"Full-Stack Development","description":"End‑to‑end solutions from frontend to backend with seamless integrations."},"automation":{"title":"Automation Systems","description":"Streamline your business processes with custom automation solutions that save time and reduce errors."},"api":{"title":"API Development","description":"Robust APIs that connect your systems and enable seamless data flow between different platforms."}},"about":{"title":"Why Choose TechStudio?","subtitle":"We understand that every business is unique, and so are their software needs.","content":"We don't believe in one-size-fits-all solutions. Every project starts with understanding your specific requirements, challenges, and goals. Our team works closely with you to design and develop software that perfectly fits your business processes."},"cta":{"title":"Ready to Build Your Custom Software Solution?","subtitle":"Let's discuss your project and create a solution that drives your business forward.","primaryButton":"Start Your Project","secondaryButton":"Schedule Consultation"},"testimonials":{"title":"What Our Clients Say","subtitle":"Trust from our clients drives us forward","testimonial1":{"quote":"The queue booking system they created made our operations much easier. Patients can now book appointments themselves via mobile, greatly reducing our staff workload.","name":"Dr. Somchai Jaidee","company":"MD Clinic"},"testimonial2":{"quote":"The POS system is designed to be very user-friendly. Our staff learned it quickly, and customers love our ordering system.","name":"Ms. Orathai Rakkarnka","company":"Brew & Co."},"testimonial3":{"quote":"The dashboard we received helps us make decisions faster. We can see important data clearly - it's very valuable.","name":"Mr. Wichai Thurakitdee","company":"Tech Startup"}},"techStack":{"title":"Technologies We Use","subtitle":"Cutting-edge tools and frameworks for modern development"},"whyChoose":{"title":"Your Trusted Software Development Partner","subtitle":"We combine technical expertise with business understanding to deliver solutions that drive real results.","badge":"Why Choose TechStudio","features":{"expertTeam":{"title":"Expert Team","description":"Experienced developers and designers with expertise in modern technologies and best practices."},"scalableSolutions":{"title":"Scalable Solutions","description":"Built to grow with your business, ensuring your software can handle increased demand and complexity."},"qualityFocus":{"title":"Quality Focus","description":"Rigorous testing and quality assurance processes ensure reliable, bug-free software delivery."},"globalReach":{"title":"Global Reach","description":"Serving clients worldwide with flexible engagement models and 24/7 support capabilities."}}}},"about":{"title":"About TechStudio","subtitle":"We are passionate about creating custom software solutions that solve real business problems and drive growth","vision":{"title":"Our Vision","content":"To be the leading provider of custom software solutions that transform businesses and create lasting value through innovative technology."},"mission":{"title":"Our Mission","content":"To deliver high-quality, scalable software solutions that meet our clients' unique needs and help them achieve their business goals."},"values":{"title":"Our Values","content":"We believe in transparency, collaboration, and continuous improvement to deliver exceptional results for our clients."},"team":{"title":"Our Team","description":"Meet the talented individuals behind our custom software development success"},"tools":{"title":"Tools & Technologies","description":"We use cutting-edge technologies and proven methodologies to deliver exceptional results"}},"portfolio":{"title":"Our Portfolio","subtitle":"Explore our successful projects and see how we've helped businesses solve their challenges with custom software solutions","featuredProjects":"Featured Projects","featuredDescription":"Highlighting some of our most successful custom software development projects","allProjects":"All Projects","allDescription":"Complete portfolio of our custom software development work","backToPortfolio":"Back to Portfolio","technologies":"Technologies Used","features":"Key Features","challenges":"Challenges","solutions":"Solutions","results":"Results","relatedProjects":"Related Projects","liveDemo":"Live Demo","viewCode":"View Code","cta":{"title":"Ready to Start Your Project?","description":"Let's discuss your requirements and create a custom solution for your business","button":"Get Started Today"}},"contact":{"title":"Contact Us","subtitle":"Ready to start your custom software development project? We'd love to hear from you.","contactInfo":{"title":"Get in Touch","description":"Ready to start your custom software development project? We'd love to hear from you. Send us a message and we'll respond within 24 hours.","email":"Email","phone":"Phone","office":"Office"},"form":{"title":"Send us a Message","name":"Full Name","namePlaceholder":"Your full name","email":"Email Address","emailPlaceholder":"your@email.com","company":"Company","companyPlaceholder":"Your company name","message":"Message","messagePlaceholder":"Tell us about your project requirements...","submit":"Send Message","success":"Thank you! Your message has been sent successfully.","error":"Sorry, there was an error sending your message. Please try again."},"faq":{"title":"Frequently Asked Questions","subtitle":"Common questions about our custom software development services","question1":"How long does a typical project take?","answer1":"Project timelines vary depending on complexity and requirements. Simple web applications typically take 2-4 months, while complex enterprise solutions can take 6-12 months. We provide detailed project timelines during our initial consultation.","question2":"What technologies do you work with?","answer2":"We work with modern technologies including React, Next.js, Node.js, Python, TypeScript, and various databases. We choose the best technology stack based on your specific requirements and business needs.","question3":"Do you provide ongoing support?","answer3":"Yes, we offer comprehensive support and maintenance services including bug fixes, updates, feature enhancements, and technical support. We have flexible support packages to meet your needs.","question4":"How do you ensure project quality?","answer4":"We follow industry best practices including code reviews, automated testing, continuous integration, and regular client feedback sessions. Our quality assurance process ensures reliable and maintainable software."},"info":{"title":"Contact Information","email":"Email","phone":"Phone","address":"Address","hours":"Business Hours"}},"footer":{"description":"Custom software development solutions for businesses","company":"TechStudio","newsletter":{"title":"Stay Updated","description":"Get the latest updates on custom software development trends and our projects.","placeholder":"Enter your email","button":"Subscribe"},"links":{"about":"About","services":"Services","portfolio":"Portfolio","blog":"Blog","contact":"Contact","privacy":"Privacy Policy","terms":"Terms of Service"}},"blog":{"title":"Blog & Insights","subtitle":"Share knowledge, experience, and techniques about custom software development","noPosts":"No posts found","noPostsDescription":"Check back soon for new content!","newsletter":{"title":"Get New Articles Every Week","description":"Subscribe to our Newsletter to receive software development tips, case studies, and new knowledge delivered to your email","placeholder":"Your email","subscribe":"Subscribe","privacy":"We value your privacy and will not send spam"},"backToBlog":"← Back to Blog","tags":"Tags","relatedArticles":"Related Articles"},"services":{"title":"Our Services","subtitle":"Comprehensive custom software development services tailored to your business needs","description":"We offer end-to-end software development solutions from concept to deployment","process":{"title":"Our Development Process","subtitle":"We follow a structured approach to ensure successful project delivery","steps":{"one":{"title":"Discovery","description":"Understanding your business requirements and technical needs"},"two":{"title":"Planning","description":"Creating detailed project plans and technical specifications"},"three":{"title":"Development","description":"Building your custom solution with regular progress updates"},"four":{"title":"Launch","description":"Deploying your solution and providing ongoing support"}}},"offerings":{"uiuxDesign":{"title":"UI/UX Design","description":"Beautiful, user-friendly interfaces that engage and convert visitors into customers."},"webDevelopment":{"title":"Web Development","description":"Custom websites and web applications built with modern technologies and best practices."},"fullStackDevelopment":{"title":"Full-Stack Development","description":"Complete end-to-end solutions from frontend to backend with seamless integration."},"lineBot":{"title":"LINE Bot Development","description":"Intelligent chatbots and automation solutions for LINE platform integration."},"businessAutomation":{"title":"Business Automation","description":"Streamline your processes with intelligent automation and workflow optimization."},"apiDevelopment":{"title":"API Development","description":"Robust and scalable APIs that power your applications and integrate services."}},"cta":{"title":"Ready to Transform Your Business?","description":"Let's discuss your project requirements and create a custom solution that drives results","button":"Start Your Project"}},"techDescriptions":{"nextjs":"Full-stack React framework with SSR, routing, and optimization","react":"Component-based UI library for interactive web applications","typescript":"Type-safe JavaScript for scalable and maintainable code","tailwindcss":"Utility-first CSS framework for rapid UI development","astro":"Modern static site generator with island architecture","vercel":"Cloud platform for frontend deployment and edge functions","aws":"Comprehensive cloud computing and infrastructure services","auth0":"Identity and access management platform for secure authentication","claude":"AI assistant for development workflows and code generation","figma":"Collaborative design and prototyping tool for UI/UX","git":"Distributed version control for collaborative development","html5":"Modern web markup standard with semantic elements","java":"Enterprise-grade programming language for backend services","kubernetes":"Container orchestration platform for scalable deployments","kong":"API gateway and service mesh for microservices architecture","nodejs":"JavaScript runtime for server-side development","go":"Fast, efficient programming language for backend services","springboot":"Enterprise Java framework for microservices and web apps","python":"Versatile language for backend, data science, and automation","postgresql":"Advanced open-source relational database system","redis":"In-memory data store for caching and real-time applications","kafka":"Distributed streaming platform for real-time data processing","docker":"Containerization platform for consistent deployments","line":"LINE platform integration for chatbots and automation","n8n":"Workflow automation platform for business process automation","make":"No-code automation platform for connecting apps and services"}},"children":"$L18"}]
+18:["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+9:{"metadata":[["$","title","0",{"children":"TechStudio - Custom Software Development Solutions"}],["$","meta","1",{"name":"description","content":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology."}],["$","meta","2",{"name":"author","content":"TechStudio"}],["$","meta","3",{"name":"keywords","content":"custom software development, web applications, automation, API development, business solutions, TechStudio"}],["$","meta","4",{"name":"robots","content":"index, follow"}],["$","meta","5",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","6",{"property":"og:title","content":"TechStudio - Custom Software Development Solutions"}],["$","meta","7",{"property":"og:description","content":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology."}],["$","meta","8",{"property":"og:url","content":"https://tech-studio.com/"}],["$","meta","9",{"property":"og:site_name","content":"TechStudio"}],["$","meta","10",{"property":"og:locale","content":"en_US"}],["$","meta","11",{"property":"og:image","content":"https://tech-studio.com/og-image.jpg"}],["$","meta","12",{"property":"og:image:width","content":"1200"}],["$","meta","13",{"property":"og:image:height","content":"630"}],["$","meta","14",{"property":"og:image:alt","content":"TechStudio - Custom Software Development"}],["$","meta","15",{"property":"og:type","content":"website"}],["$","meta","16",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","17",{"name":"twitter:title","content":"TechStudio - Custom Software Development Solutions"}],["$","meta","18",{"name":"twitter:description","content":"Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology."}],["$","meta","19",{"name":"twitter:image","content":"https://tech-studio.com/og-image.jpg"}]],"error":null,"digest":"$undefined"}
+e:"$9:metadata"

@@ -1,0 +1,51 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f0fdf4"/>
+  <rect x="50" y="50" width="700" height="500" rx="20" fill="#22c55e" opacity="0.1"/>
+  <rect x="100" y="100" width="600" height="400" rx="15" fill="#ffffff" stroke="#22c55e" stroke-width="2"/>
+  
+  <!-- Mobile Devices -->
+  <rect x="150" y="150" width="120" height="200" rx="20" fill="#1e293b"/>
+  <rect x="160" y="170" width="100" height="160" rx="12" fill="#ffffff"/>
+  
+  <!-- App Interface -->
+  <rect x="170" y="180" width="80" height="20" rx="4" fill="#22c55e"/>
+  <rect x="170" y="210" width="60" height="8" rx="2" fill="#64748b"/>
+  <rect x="170" y="230" width="50" height="8" rx="2" fill="#64748b"/>
+  <rect x="170" y="250" width="40" height="20" rx="4" fill="#22c55e"/>
+  <rect x="170" y="280" width="70" height="8" rx="2" fill="#64748b"/>
+  <rect x="170" y="300" width="30" height="20" rx="4" fill="#22c55e"/>
+  
+  <!-- Second Mobile Device -->
+  <rect x="350" y="120" width="120" height="200" rx="20" fill="#1e293b"/>
+  <rect x="360" y="140" width="100" height="160" rx="12" fill="#ffffff"/>
+  
+  <!-- Second App Interface -->
+  <rect x="370" y="150" width="80" height="20" rx="4" fill="#22c55e"/>
+  <rect x="370" y="180" width="60" height="8" rx="2" fill="#64748b"/>
+  <rect x="370" y="200" width="50" height="8" rx="2" fill="#64748b"/>
+  <rect x="370" y="220" width="40" height="20" rx="4" fill="#22c55e"/>
+  <rect x="370" y="250" width="70" height="8" rx="2" fill="#64748b"/>
+  <rect x="370" y="270" width="30" height="20" rx="4" fill="#22c55e"/>
+  
+  <!-- Tablet -->
+  <rect x="500" y="180" width="180" height="120" rx="15" fill="#1e293b"/>
+  <rect x="510" y="190" width="160" height="100" rx="8" fill="#ffffff"/>
+  
+  <!-- Tablet Interface -->
+  <rect x="520" y="200" width="140" height="20" rx="4" fill="#22c55e"/>
+  <rect x="520" y="230" width="100" height="8" rx="2" fill="#64748b"/>
+  <rect x="520" y="250" width="80" height="8" rx="2" fill="#64748b"/>
+  <rect x="520" y="270" width="60" height="20" rx="4" fill="#22c55e"/>
+  
+  <!-- App Store Icons -->
+  <rect x="200" y="400" width="60" height="60" rx="12" fill="#000000"/>
+  <rect x="210" y="410" width="40" height="40" rx="8" fill="#ffffff"/>
+  <text x="230" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000000">iOS</text>
+  
+  <rect x="300" y="400" width="60" height="60" rx="12" fill="#3ddc84"/>
+  <rect x="310" y="410" width="40" height="40" rx="8" fill="#ffffff"/>
+  <text x="330" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000000">Android</text>
+  
+  <!-- Text -->
+  <text x="400" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#22c55e">Mobile Application Development</text>
+</svg>
