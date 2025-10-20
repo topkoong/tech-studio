@@ -18,6 +18,17 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
 
+/**
+ * Main navigation component with responsive design
+ * Features:
+ * - Mobile hamburger menu with smooth animations
+ * - Theme toggle (light/dark mode)
+ * - Language switcher (English/Thai)
+ * - Smooth scroll animations
+ * - Responsive design for all screen sizes
+ * 
+ * @returns JSX element containing the navigation bar
+ */
 export default function Navigation() {
   const { theme, setTheme } = useTheme();
   const t = useTranslations('navigation');
@@ -26,24 +37,42 @@ export default function Navigation() {
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Get current locale from pathname
+  // Extract current locale from pathname (e.g., '/en/about' -> 'en')
+  // Fallback to 'en' if no locale is found in the path
   const currentLocale = pathname.split('/')[1] || 'en';
 
+  // Ensure component is mounted before rendering theme-dependent content
+  // This prevents hydration mismatches between server and client
   useEffect(() => {
     setMounted(true);
     console.log('Current theme:', theme); // Debug log
   }, [theme]);
 
+  /**
+   * Toggle between light and dark themes
+   * Uses next-themes to persist theme preference
+   */
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     console.log('Theme changed to:', newTheme); // Debug log
   };
 
+  /**
+   * Switch language while preserving current page
+   * Handles locale switching with proper path reconstruction
+   * 
+   * @param locale - Target locale ('en' or 'th')
+   */
   const switchLanguage = (locale: string) => {
-    // Get the current path without the locale prefix
+    // Remove current locale prefix from pathname to get the base path
+    // Example: '/en/about' -> '/about', '/th/services' -> '/services'
     const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/';
+    
+    // Construct new path with target locale
+    // Example: '/about' + 'th' -> '/th/about'
     const newPath = `/${locale}${pathWithoutLocale}`;
+    
     console.log(
       'Switching language to:',
       locale,
@@ -52,6 +81,8 @@ export default function Navigation() {
       'New path:',
       newPath
     ); // Debug log
+    
+    // Navigate to new path and refresh to ensure locale changes are applied
     router.push(newPath);
     router.refresh(); // Force refresh to ensure new locale is loaded
   };

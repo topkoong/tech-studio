@@ -9,10 +9,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
+/**
+ * Props for the BlogCard component
+ */
 interface BlogCardProps {
+  /** Blog post data containing metadata and content */
   post: BlogPost;
 }
 
+/**
+ * Blog post card component with glassmorphism design
+ * Features:
+ * - Responsive image display with fallback
+ * - Glassmorphism styling with backdrop blur
+ * - Hover animations and effects
+ * - Category badges
+ * - Date and reading time display
+ * - Locale-aware routing
+ * 
+ * @param props - Component props
+ * @returns JSX element representing a blog post card
+ */
 export default function BlogCard({ post }: BlogCardProps) {
   const params = useParams();
   const locale = params.locale as string;
