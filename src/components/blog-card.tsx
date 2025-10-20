@@ -24,25 +24,36 @@ export default function BlogCard({ post }: BlogCardProps) {
 
   return (
     <Card className='hover:shadow-xl transition-all duration-300 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm border border-white/20 dark:border-gray-700/30 hover:border-lime-500/50 dark:hover:border-lime-500/50 shadow-xl hover:shadow-lime-500/25 overflow-hidden'>
-      {/* Image placeholder */}
+      {/* Image */}
       <div className='relative h-48 bg-gradient-to-br from-gray-700 to-gray-600'>
-        <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='w-16 h-16 bg-lime-500 rounded-full flex items-center justify-center'>
-            <svg
-              className='w-8 h-8 text-black'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
-              />
-            </svg>
+        {post.metadata.image ? (
+          <Image
+            src={post.metadata.image}
+            alt={post.metadata.title}
+            fill
+            className='object-cover'
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            priority={false}
+          />
+        ) : (
+          <div className='absolute inset-0 flex items-center justify-center'>
+            <div className='w-16 h-16 bg-lime-500 rounded-full flex items-center justify-center'>
+              <svg
+                className='w-8 h-8 text-black'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+                />
+              </svg>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <CardHeader className='pb-4'>

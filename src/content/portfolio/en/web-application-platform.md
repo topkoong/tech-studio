@@ -3,7 +3,7 @@ id: 'web-application-platform'
 title: 'Custom Web Application Platform'
 description: 'A comprehensive web application solution with advanced features'
 longDescription: 'Built a full-featured web application platform from scratch using modern web technologies. The platform includes user authentication, data management, real-time updates, payment processing, and admin dashboard.'
-image: '/images/portfolio/web-application.svg'
+image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop'
 technologies:
   ['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Stripe']
 category: 'Web Development'

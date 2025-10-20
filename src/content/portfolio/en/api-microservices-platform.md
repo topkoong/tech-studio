@@ -3,7 +3,7 @@ id: 'api-microservices-platform'
 title: 'API & Microservices Platform'
 description: 'Scalable microservices architecture with comprehensive API management'
 longDescription: 'Designed and implemented a microservices platform with API gateway, service discovery, and comprehensive monitoring. The platform handles high traffic loads and provides seamless service communication.'
-image: '/images/portfolio/automation-system.svg'
+image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1600&auto=format&fit=crop'
 technologies:
   ['Spring Boot', 'Kafka', 'Redis', 'PostgreSQL', 'Docker', 'Kubernetes']
 category: 'API Development'

@@ -12,6 +12,7 @@ export interface BlogMetadata {
   author: string;
   readTime: string;
   featured?: boolean;
+  image?: string;
 }
 
 export interface BlogPost {
@@ -87,6 +88,7 @@ export function getBlogPost(slug: string): BlogPost | null {
         author: data.author || 'TechStudio',
         readTime: data.readTime || '5 min read',
         featured: data.featured || false,
+        image: data.image,
       },
       content,
     };

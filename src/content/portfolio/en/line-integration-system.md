@@ -3,7 +3,7 @@ id: 'line-integration-system'
 title: 'LINE Integration System'
 description: 'Comprehensive LINE bot integration with automated workflows'
 longDescription: 'Developed a sophisticated LINE bot integration system that handles customer inquiries, automated responses, and seamless integration with existing business systems. The system includes natural language processing and workflow automation.'
-image: '/images/portfolio/web-application.svg'
+image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1600'
 technologies:
   ['Node.js', 'LINE Messaging API', 'MongoDB', 'Redis', 'Webhook', 'Express.js']
 category: 'Integration Development'
