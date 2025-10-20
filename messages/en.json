@@ -59,6 +59,10 @@
     "services": {
       "title": "Custom Software Solutions",
       "subtitle": "We build software that fits your business needs perfectly",
+      "webDesign": {
+        "title": "Web Design",
+        "description": "Clean, modern, and accessible web design that elevates your brand and improves usability across devices."
+      },
       "uiuxDesign": {
         "title": "UI/UX Design",
         "description": "Beautiful, user-friendly interfaces that engage customers and drive conversions."
@@ -147,6 +151,32 @@
   "services": {
     "title": "Custom Software Development Services",
     "subtitle": "We provide comprehensive software development solutions tailored to your business needs",
+    "offerings": {
+      "uiuxDesign": {
+        "title": "UI/UX Design",
+        "description": "Beautiful, user-friendly interfaces that engage and convert visitors into customers."
+      },
+      "webDevelopment": {
+        "title": "Web Development",
+        "description": "Custom websites and web applications built with modern technologies and best practices."
+      },
+      "fullStackDevelopment": {
+        "title": "Full-Stack Development",
+        "description": "Complete end-to-end solutions from frontend to backend with seamless integration."
+      },
+      "lineBot": {
+        "title": "LINE Bot Development",
+        "description": "Intelligent chatbots and automation solutions for LINE platform integration."
+      },
+      "businessAutomation": {
+        "title": "Business Automation",
+        "description": "Streamline your processes with intelligent automation and workflow optimization."
+      },
+      "apiDevelopment": {
+        "title": "API Development",
+        "description": "Robust and scalable APIs that power your applications and integrate services."
+      }
+    },
     "webDevelopment": {
       "title": "Web Application Development",
       "description": "Custom web applications built with modern technologies and best practices for optimal performance and scalability."
