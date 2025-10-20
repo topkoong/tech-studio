@@ -1,94 +1,79 @@
+import { FloatingObstacles } from '@/components/floating-obstacles';
+import { FloatingParticles } from '@/components/floating-particles';
 import Footer from '@/components/footer';
+import { LemonGlow } from '@/components/lemon-glow';
 import Navigation from '@/components/navigation';
-import PortfolioCard from '@/components/portfolio-card';
+import { PortfolioCTA } from '@/components/portfolio-cta';
+import { PortfolioGrid } from '@/components/portfolio-grid';
+import { PortfolioHero } from '@/components/portfolio-hero';
+import { PortfolioMascot } from '@/components/mascots';
 import { getAllPortfolioProjects } from '@/lib/portfolio-content';
+import { getTranslations } from 'next-intl/server';
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
   const projects = getAllPortfolioProjects();
+  const t = await getTranslations('portfolio');
+
+  const featuredProjects = projects
+    .filter((p) => p.metadata.featured)
+    .slice(0, 2);
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800'>
+    <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
 
+      {/* Floating particles */}
+      <FloatingParticles
+        count={50}
+        className='text-emerald-500/20 dark:text-lime-400/30'
+        size='md'
+      />
+
+      <LemonGlow />
+      <FloatingObstacles count={12} seed={202} />
+      <PortfolioMascot />
+
       {/* Hero Section */}
-      <section className='py-20 px-4 sm:px-6 lg:px-8'>
-        <div className='max-w-7xl mx-auto text-center'>
-          <h1 className='text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6'>
-            Our Portfolio
-          </h1>
-          <p className='text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto'>
-            Explore our successful projects and see how we've helped businesses
-            solve their challenges with custom software solutions.
-          </p>
-        </div>
-      </section>
+      <PortfolioHero title={t('title')} subtitle={t('subtitle')} />
 
       {/* Featured Projects */}
-      <section className='py-20 bg-white dark:bg-slate-800'>
+      <section className='py-20 px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-16'>
-            <h2 className='text-3xl font-bold text-slate-900 dark:text-white mb-4'>
-              Featured Projects
+            <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
+              {t('featuredProjects')}
             </h2>
-            <p className='text-lg text-slate-600 dark:text-slate-300'>
-              Highlighting some of our most successful custom software
-              development projects
+            <p className='text-lg text-gray-700 dark:text-gray-300'>
+              {t('featuredDescription')}
             </p>
           </div>
 
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16'>
-            {projects
-              .filter((p) => p.metadata.featured)
-              .slice(0, 2)
-              .map((project) => (
-                <PortfolioCard
-                  key={project.metadata.id}
-                  project={project.metadata}
-                  featured
-                />
-              ))}
-          </div>
+          <PortfolioGrid projects={featuredProjects} featured />
         </div>
       </section>
 
       {/* All Projects */}
-      <section className='py-20'>
+      <section className='py-20 relative z-10'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-16'>
-            <h2 className='text-3xl font-bold text-slate-900 dark:text-white mb-4'>
-              All Projects
+            <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
+              {t('allProjects')}
             </h2>
-            <p className='text-lg text-slate-600 dark:text-slate-300'>
-              Complete portfolio of our custom software development work
+            <p className='text-lg text-gray-700 dark:text-gray-300'>
+              {t('allDescription')}
             </p>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-            {projects.map((project) => (
-              <PortfolioCard
-                key={project.metadata.id}
-                project={project.metadata}
-              />
-            ))}
-          </div>
+          <PortfolioGrid projects={projects} />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className='py-20 bg-white dark:bg-slate-800'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-          <h2 className='text-3xl font-bold text-slate-900 dark:text-white mb-4'>
-            Ready to Start Your Project?
-          </h2>
-          <p className='text-lg text-slate-600 dark:text-slate-300 mb-8'>
-            Let's discuss your requirements and create a custom solution for
-            your business
-          </p>
-          <button className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors'>
-            Get Started Today
-          </button>
-        </div>
-      </section>
+      <PortfolioCTA
+        title={t('cta.title')}
+        description={t('cta.description')}
+        buttonText={t('cta.button')}
+      />
 
       <Footer />
     </div>

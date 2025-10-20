@@ -23,10 +23,29 @@ const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
 export function getAllBlogSlugs(): string[] {
   try {
-    const fileNames = fs.readdirSync(postsDirectory);
-    return fileNames
-      .filter((name) => name.endsWith('.md'))
-      .map((name) => name.replace(/\.md$/, ''));
+    const slugs: string[] = [];
+
+    // Check both en and th directories
+    const enDir = path.join(postsDirectory, 'en');
+    const thDir = path.join(postsDirectory, 'th');
+
+    // Read English posts
+    if (fs.existsSync(enDir)) {
+      const enFiles = fs.readdirSync(enDir);
+      enFiles
+        .filter((name) => name.endsWith('.md'))
+        .forEach((name) => slugs.push(`en/${name.replace(/\.md$/, '')}`));
+    }
+
+    // Read Thai posts
+    if (fs.existsSync(thDir)) {
+      const thFiles = fs.readdirSync(thDir);
+      thFiles
+        .filter((name) => name.endsWith('.md'))
+        .forEach((name) => slugs.push(`th/${name.replace(/\.md$/, '')}`));
+    }
+
+    return slugs;
   } catch (error) {
     console.error('Error reading blog directory:', error);
     return [];
@@ -62,7 +81,7 @@ export function getBlogPost(slug: string): BlogPost | null {
         title: data.title || '',
         date: data.date || '',
         excerpt: data.excerpt || '',
-        slug: slug,
+        slug: slug, // Use the full slug including language prefix to ensure uniqueness
         category: data.category || 'General',
         tags: data.tags || [],
         author: data.author || 'TechStudio',

@@ -1,7 +1,13 @@
 'use client';
 
 import { ArrowRight, Bot, Code2, Database, Zap } from 'lucide-react';
-import { FadeUp, WordsPullUp } from './text-animations';
+import {
+  FadeUp,
+  StaggeredFade,
+  TypingEffect,
+  WordsPullUp,
+} from './text-animations';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
@@ -13,19 +19,21 @@ interface AnimatedBannerProps {
 
 export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
   const t = useTranslations('home.hero');
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = pathname.split('/')[1] || 'en';
 
-  // Debug: Log current translations
-  console.log('AnimatedBanner - Current translations:', {
-    badge: t('badge'),
-    title: t('title'),
-    titleHighlight: t('titleHighlight'),
-    description: t('description'),
-    cta: t('cta'),
-    ctaSecondary: t('ctaSecondary'),
-  });
+  const handleNavigation = (page: string) => {
+    if (onNavigate) {
+      onNavigate(page);
+    } else {
+      // Default navigation using Next.js router
+      router.push(`/${currentLocale}/${page}`);
+    }
+  };
 
   return (
-    <section className='relative bg-gradient-to-br from-lime-50 via-green-50 to-background dark:from-lime-950/20 dark:via-green-950/10 dark:to-background py-20 px-4 overflow-hidden transition-colors duration-300'>
+    <section className='relative bg-gradient-to-br from-gray-50 via-lime-50 to-background dark:from-lime-950/20 dark:via-green-950/10 dark:to-background py-20 px-4 overflow-hidden transition-colors duration-300'>
       {/* Animated Background Elements */}
       <div className='absolute inset-0 -z-10'>
         {/* Floating circles - More particles throughout the hero section */}
@@ -95,7 +103,7 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <div className='inline-flex items-center gap-2 px-4 py-2 bg-lime-500/20 text-lime-400 rounded-full text-sm border border-lime-500/30 backdrop-blur-sm'>
+              <div className='inline-flex items-center gap-2 px-4 py-2 bg-lime-500/20 dark:bg-lime-500/20 text-gray-800 dark:text-lime-400 rounded-full text-sm border border-lime-500/30 dark:border-lime-500/30 backdrop-blur-sm'>
                 <motion.span
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -108,14 +116,14 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
 
             {/* Main Heading */}
             <motion.div
-              className='text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-white'
+              className='text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 dark:text-white'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <WordsPullUp
+              <StaggeredFade
                 text={t('title')}
-                className='text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-white'
+                className='block text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 dark:text-white'
               />
               <motion.div
                 className='block bg-gradient-to-r from-lime-500 via-green-500 to-lime-600 bg-clip-text text-transparent'
@@ -125,23 +133,23 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 transition={{ duration: 5, repeat: Infinity }}
                 style={{ backgroundSize: '200% 200%' }}
               >
-                <WordsPullUp
+                <StaggeredFade
                   text={t('titleHighlight')}
-                  className='text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-lime-500 via-green-500 to-lime-600 bg-clip-text text-transparent'
+                  className='block text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-lime-500 via-green-500 to-lime-600 bg-clip-text text-transparent'
                 />
               </motion.div>
             </motion.div>
 
             {/* Description */}
             <motion.div
-              className='mt-6 text-lg text-gray-300 sm:text-xl max-w-3xl mx-auto'
+              className='mt-6 text-lg text-gray-900 dark:text-gray-300 sm:text-xl max-w-3xl mx-auto'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <FadeUp
                 text={t('description')}
-                className='text-lg text-gray-300 sm:text-xl'
+                className='text-lg text-gray-900 dark:text-gray-300 sm:text-xl'
               />
             </motion.div>
 
@@ -164,7 +172,9 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 <div className='w-16 h-16 bg-gradient-to-br from-green-500 to-lime-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30'>
                   <Code2 className='w-8 h-8 text-white' />
                 </div>
-                <span className='text-sm text-green-100'>Software</span>
+                <span className='text-sm text-gray-700 dark:text-green-100'>
+                  Software
+                </span>
               </motion.div>
               <motion.div
                 className='flex flex-col items-center gap-2'
@@ -179,7 +189,9 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 <div className='w-16 h-16 bg-gradient-to-br from-green-500 to-lime-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30'>
                   <Database className='w-8 h-8 text-white' />
                 </div>
-                <span className='text-sm text-green-100'>Data Analysis</span>
+                <span className='text-sm text-gray-700 dark:text-green-100'>
+                  Data Analysis
+                </span>
               </motion.div>
               <motion.div
                 className='flex flex-col items-center gap-2'
@@ -194,7 +206,9 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 <div className='w-16 h-16 bg-gradient-to-br from-green-500 to-lime-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30'>
                   <Bot className='w-8 h-8 text-white' />
                 </div>
-                <span className='text-sm text-green-100'>LINE Bot</span>
+                <span className='text-sm text-gray-700 dark:text-green-100'>
+                  LINE Bot
+                </span>
               </motion.div>
               <motion.div
                 className='flex flex-col items-center gap-2'
@@ -209,7 +223,9 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 <div className='w-16 h-16 bg-gradient-to-br from-green-500 to-lime-500 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30'>
                   <Zap className='w-8 h-8 text-white' />
                 </div>
-                <span className='text-sm text-green-100'>Automation</span>
+                <span className='text-sm text-gray-700 dark:text-green-100'>
+                  Automation
+                </span>
               </motion.div>
             </motion.div>
 
@@ -225,7 +241,7 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
-                  onClick={() => onNavigate?.('services')}
+                  onClick={() => handleNavigation('services')}
                   size='lg'
                   className='bg-lime-500 hover:bg-lime-600 text-black font-semibold px-10 py-4 rounded-xl shadow-xl shadow-lime-500/40 hover:shadow-2xl hover:shadow-lime-500/50 transition-all duration-300'
                 >
@@ -245,10 +261,10 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
-                  onClick={() => onNavigate?.('portfolio')}
+                  onClick={() => handleNavigation('portfolio')}
                   size='lg'
                   variant='outline'
-                  className='border border-green-400/30 bg-slate-900/95 backdrop-blur-sm text-green-300 hover:bg-slate-800/95 hover:border-green-400/50 hover:text-green-200 font-medium px-8 py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-300'
+                  className='border border-gray-300 dark:border-green-400/30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-gray-700 dark:text-green-300 hover:bg-gray-50/95 dark:hover:bg-slate-800/95 hover:border-gray-400 dark:hover:border-green-400/50 hover:text-gray-900 dark:hover:text-green-200 font-medium px-8 py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-300'
                 >
                   {t('ctaSecondary')}
                 </Button>
@@ -263,26 +279,26 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
               transition={{ delay: 1.2, duration: 0.8 }}
             >
               <div className='flex flex-col text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300'>
-                <div className='text-5xl font-bold text-lime-400 mb-2'>
+                <div className='text-5xl font-bold text-lime-600 dark:text-lime-400 mb-2'>
                   {t('stats.projects')}
                 </div>
-                <div className='text-sm text-green-200 font-medium'>
+                <div className='text-sm text-gray-700 dark:text-green-200 font-medium'>
                   {t('stats.projectsLabel')}
                 </div>
               </div>
               <div className='flex flex-col text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300'>
-                <div className='text-5xl font-bold text-lime-400 mb-2'>
+                <div className='text-5xl font-bold text-lime-600 dark:text-lime-400 mb-2'>
                   {t('stats.clients')}
                 </div>
-                <div className='text-sm text-green-200 font-medium'>
+                <div className='text-sm text-gray-700 dark:text-green-200 font-medium'>
                   {t('stats.clientsLabel')}
                 </div>
               </div>
               <div className='flex flex-col text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300'>
-                <div className='text-5xl font-bold text-lime-400 mb-2'>
+                <div className='text-5xl font-bold text-lime-600 dark:text-lime-400 mb-2'>
                   {t('stats.satisfaction')}
                 </div>
-                <div className='text-sm text-green-200 font-medium'>
+                <div className='text-sm text-gray-700 dark:text-green-200 font-medium'>
                   {t('stats.satisfactionLabel')}
                 </div>
               </div>
@@ -310,10 +326,10 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
               style={{ transformStyle: 'preserve-3d' }}
             >
               {/* Background Glow */}
-              <div className='absolute inset-0 bg-gradient-to-br from-green-400 to-lime-500 rounded-2xl transform rotate-3 blur-2xl opacity-30'></div>
+              <div className='absolute inset-0 bg-gradient-to-br from-green-400 to-lime-500 dark:from-green-400 dark:to-lime-500 rounded-2xl transform rotate-3 blur-2xl opacity-30 dark:opacity-30'></div>
 
               {/* Main Card */}
-              <div className='relative bg-gradient-to-br from-green-500/20 to-lime-500/20 backdrop-blur-xl rounded-2xl p-8 border border-green-500/20 shadow-2xl'>
+              <div className='relative bg-gradient-to-br from-green-50/80 to-lime-50/80 dark:from-green-500/20 dark:to-lime-500/20 backdrop-blur-xl rounded-2xl p-8 border border-green-200/50 dark:border-green-500/20 shadow-2xl'>
                 {/* Mascot */}
                 <div className='flex justify-center mb-8'>
                   <motion.div
@@ -538,7 +554,7 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
                 <div className='relative h-48'>
                   {/* Wireframe */}
                   <motion.div
-                    className='absolute top-0 left-0 w-20 h-20 bg-slate-800 border-2 border-green-500/50 rounded-lg p-2'
+                    className='absolute top-0 left-0 w-20 h-20 bg-white dark:bg-slate-800 border-2 border-green-500/50 dark:border-green-500/50 rounded-lg p-2 shadow-lg'
                     animate={{
                       y: [0, -10, 0],
                       rotate: [0, 5, 0],
@@ -558,7 +574,7 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
 
                   {/* Color Palette */}
                   <motion.div
-                    className='absolute top-8 right-0 w-24 h-16 bg-slate-800 border-2 border-lime-500/50 rounded-lg p-2'
+                    className='absolute top-8 right-0 w-24 h-16 bg-white dark:bg-slate-800 border-2 border-lime-500/50 dark:border-lime-500/50 rounded-lg p-2 shadow-lg'
                     animate={{
                       y: [0, 10, 0],
                       rotate: [0, -5, 0],
@@ -580,7 +596,7 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
 
                   {/* Prototype Screen */}
                   <motion.div
-                    className='absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-24 bg-slate-800 border-2 border-green-500/50 rounded-lg p-2'
+                    className='absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-24 bg-white dark:bg-slate-800 border-2 border-green-500/50 dark:border-green-500/50 rounded-lg p-2 shadow-lg'
                     animate={{
                       y: [0, -8, 0],
                     }}
@@ -628,13 +644,31 @@ export function AnimatedBanner({ onNavigate }: AnimatedBannerProps) {
       </div>
       {/* Scroll Down Indicator */}
       <motion.div
-        className='absolute bottom-8 left-1/2 transform -translate-x-1/2'
+        className='absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer'
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+        onClick={() => {
+          // Small delay to ensure DOM is ready
+          setTimeout(() => {
+            const nextSection = document.getElementById('tech-stack-section');
+            if (nextSection) {
+              nextSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest',
+              });
+            } else {
+              // Fallback: scroll down by viewport height
+              window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+            }
+          }, 100);
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
-        <div className='w-6 h-10 border-2 border-green-400 rounded-full flex justify-center'>
+        <div className='w-6 h-10 border-2 border-lime-400 rounded-full flex justify-center hover:border-lime-300 transition-colors'>
           <motion.div
-            className='w-1 h-3 bg-green-400 rounded-full mt-2'
+            className='w-1 h-3 bg-lime-400 rounded-full mt-2'
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
           />

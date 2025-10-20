@@ -51,19 +51,19 @@ export default function Footer() {
   return (
     <footer className='bg-slate-900 dark:bg-slate-950 text-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className='col-span-1 md:col-span-2'
+            className='col-span-1 sm:col-span-2 lg:col-span-2'
           >
             <h3 className='text-2xl font-bold mb-4'>{t('company')}</h3>
             <p className='text-slate-300 mb-6 max-w-md'>{t('description')}</p>
 
             {/* Social Links */}
-            <div className='flex space-x-4'>
+            <div className='flex flex-wrap gap-3'>
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.name}
@@ -114,16 +114,16 @@ export default function Footer() {
             <p className='text-slate-300 mb-4 text-sm'>
               {t('newsletter.description')}
             </p>
-            <div className='flex'>
+            <div className='flex flex-col sm:flex-row'>
               <input
                 type='email'
                 placeholder={t('newsletter.placeholder')}
-                className='flex-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded-l-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                className='flex-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded-t-lg sm:rounded-l-lg sm:rounded-t-none text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500'
               />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-r-lg transition-colors'
+                className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-b-lg sm:rounded-r-lg sm:rounded-b-none transition-colors'
               >
                 {t('newsletter.button')}
               </motion.button>
@@ -136,12 +136,12 @@ export default function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className='border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center'
+          className='border-t border-slate-800 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4'
         >
           <p className='text-slate-400 text-sm'>
             © 2024 {t('company')}. All rights reserved.
           </p>
-          <div className='flex space-x-6 mt-4 md:mt-0'>
+          <div className='flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6'>
             <Link
               href={`/${currentLocale}/privacy`}
               className='text-slate-400 hover:text-white text-sm transition-colors'

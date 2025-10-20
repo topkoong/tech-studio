@@ -1,23 +1,45 @@
+'use client';
+
+import { Calendar, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+
 import { Badge } from '@/components/ui/badge';
 import { BlogPost } from '@/lib/blog-content';
-import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, Clock } from 'lucide-react';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 interface BlogCardProps {
   post: BlogPost;
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
+  const params = useParams();
+  const locale = params.locale as string;
+
+  // Extract the actual slug from the full slug (remove language prefix)
+  const actualSlug = post.metadata.slug.includes('/')
+    ? post.metadata.slug.split('/')[1]
+    : post.metadata.slug;
+
   return (
-    <Card className='hover:shadow-xl transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500 overflow-hidden'>
+    <Card className='hover:shadow-xl transition-all duration-300 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm border border-white/20 dark:border-gray-700/30 hover:border-lime-500/50 dark:hover:border-lime-500/50 shadow-xl hover:shadow-lime-500/25 overflow-hidden'>
       {/* Image placeholder */}
       <div className='relative h-48 bg-gradient-to-br from-gray-700 to-gray-600'>
         <div className='absolute inset-0 flex items-center justify-center'>
           <div className='w-16 h-16 bg-lime-500 rounded-full flex items-center justify-center'>
-            <svg className='w-8 h-8 text-black' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' />
+            <svg
+              className='w-8 h-8 text-black'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+              />
             </svg>
           </div>
         </div>
@@ -31,7 +53,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
         <h2 className='text-xl font-bold text-white line-clamp-2 mb-3'>
           <Link
-            href={`/blog/${post.metadata.slug}`}
+            href={`/${locale}/blog/${actualSlug}`}
             className='hover:text-lime-400 transition-colors'
           >
             {post.metadata.title}
@@ -46,7 +68,9 @@ export default function BlogCard({ post }: BlogCardProps) {
         <div className='flex items-center gap-4 text-sm text-gray-400 mb-4'>
           <div className='flex items-center gap-1'>
             <Calendar className='w-4 h-4' />
-            <span>{new Date(post.metadata.date).toLocaleDateString('th-TH')}</span>
+            <span>
+              {new Date(post.metadata.date).toLocaleDateString('th-TH')}
+            </span>
           </div>
           <div className='flex items-center gap-1'>
             <Clock className='w-4 h-4' />
@@ -55,7 +79,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         </div>
 
         <Link
-          href={`/blog/${post.metadata.slug}`}
+          href={`/${locale}/blog/${actualSlug}`}
           className='inline-flex items-center text-lime-400 hover:text-lime-300 font-medium transition-colors'
         >
           อ่านเพิ่มเติม →

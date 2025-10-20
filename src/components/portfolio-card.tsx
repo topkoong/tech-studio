@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { PortfolioProject } from '@/lib/data/portfolio';
 import { Separator } from '@/components/ui/separator';
+import { useParams } from 'next/navigation';
 
 interface PortfolioCardProps {
   project: PortfolioProject;
@@ -14,9 +15,12 @@ export default function PortfolioCard({
   project,
   featured = false,
 }: PortfolioCardProps) {
+  const params = useParams();
+  const locale = params.locale as string;
+
   return (
     <Card
-      className={`hover:shadow-xl transition-shadow ${
+      className={`hover:shadow-xl transition-all duration-300 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm border border-white/20 dark:border-gray-700/30 hover:border-lime-500/50 dark:hover:border-lime-500/50 shadow-xl hover:shadow-lime-500/25 ${
         featured ? 'lg:col-span-2' : ''
       }`}
     >
@@ -33,7 +37,7 @@ export default function PortfolioCard({
         </div>
         <h2 className={`font-bold ${featured ? 'text-2xl' : 'text-xl'}`}>
           <Link
-            href={`/portfolio/${project.id}`}
+            href={`/${locale}/portfolio/${project.id}`}
             className='hover:text-primary transition-colors'
           >
             {project.title}

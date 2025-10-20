@@ -31,87 +31,79 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FloatingMascots } from '@/components/floating-mascots';
 import { FloatingParticles } from '@/components/floating-particles';
+import { FloatingParticlesBanner } from '@/components/floating-particles-banner';
 import Footer from '@/components/footer';
 import Navigation from '@/components/navigation';
 import { Separator } from '@/components/ui/separator';
+import { TypingEffect } from '@/components/text-animations';
 import { getTranslations } from 'next-intl/server';
 
 export default async function HomePage() {
   const t = await getTranslations('home');
 
   return (
-    <div className='min-h-screen bg-black dark:bg-black relative overflow-hidden'>
+    <div className='min-h-screen bg-background dark:bg-background relative overflow-hidden'>
       <Navigation />
 
       {/* Animated Banner - Main Hero Section with darker background */}
-      <div className='relative bg-gradient-to-br from-green-950 via-green-900 to-black'>
+      <div className='relative bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background'>
         {/* Floating particles in hero section */}
-        <div className='absolute inset-0 overflow-hidden'>
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className='absolute w-1 h-1 bg-lime-400/30 rounded-full'
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, Math.random() * 70 - 35, 0],
-                scale: [1, 0.8 + Math.random() * 0.4, 1],
-              }}
-              transition={{
-                duration: 5 + Math.random() * 5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
+        <FloatingParticlesBanner />
         <AnimatedBanner />
       </div>
 
       {/* Tech Stack Section */}
-      <AnimatedSection className='relative py-20 md:py-32 bg-gradient-to-br from-green-800 via-green-900 to-lime-900 text-white overflow-hidden'>
+      <AnimatedSection
+        id='tech-stack-section'
+        className='relative py-20 md:py-32 bg-gradient-to-br from-slate-50 via-emerald-50 to-lime-50 dark:from-green-800 dark:via-green-900 dark:to-lime-900 text-gray-900 dark:text-white overflow-hidden'
+      >
         {/* Floating particles - moved outside z-index container */}
-        <FloatingParticles count={50} className='text-lime-400/60' size='md' />
+        <FloatingParticles
+          count={50}
+          className='text-emerald-500/30 dark:text-lime-400/60'
+          size='md'
+        />
 
         {/* Floating Mascots */}
-        <FloatingMascots count={6} className='text-lime-400/20' />
+        <FloatingMascots
+          count={1}
+          className='text-emerald-500/25 dark:text-lime-400/40'
+        />
 
         <div className='absolute inset-0 -z-10'>
           {/* Enhanced background blur elements */}
           <div
-            className='absolute w-96 h-96 bg-gradient-to-r from-lime-500/30 to-green-500/30 rounded-full blur-3xl'
+            className='absolute w-96 h-96 bg-gradient-to-r from-emerald-400/15 to-lime-400/15 dark:from-lime-500/30 dark:to-green-500/30 rounded-full blur-3xl'
             style={{ top: '10%', left: '10%' }}
           />
           <div
-            className='absolute w-80 h-80 bg-gradient-to-r from-green-400/25 to-lime-400/25 rounded-full blur-3xl'
+            className='absolute w-80 h-80 bg-gradient-to-r from-lime-400/10 to-emerald-400/10 dark:from-green-400/25 dark:to-lime-400/25 rounded-full blur-3xl'
             style={{ bottom: '20%', right: '15%' }}
           />
           <div
-            className='absolute w-64 h-64 bg-gradient-to-r from-lime-400/20 to-green-400/20 rounded-full blur-2xl'
+            className='absolute w-64 h-64 bg-gradient-to-r from-emerald-300/8 to-lime-300/8 dark:from-lime-400/20 dark:to-green-400/20 rounded-full blur-2xl'
             style={{ top: '60%', left: '50%' }}
           />
 
           {/* Additional accent elements */}
           <div
-            className='absolute w-32 h-32 bg-gradient-to-r from-lime-500/40 to-green-500/40 rounded-full blur-xl'
+            className='absolute w-32 h-32 bg-gradient-to-r from-lime-400/12 to-emerald-400/12 dark:from-lime-500/40 dark:to-green-500/40 rounded-full blur-xl'
             style={{ top: '30%', right: '30%' }}
           />
           <div
-            className='absolute w-48 h-48 bg-gradient-to-r from-green-400/25 to-lime-400/25 rounded-full blur-2xl'
+            className='absolute w-48 h-48 bg-gradient-to-r from-emerald-300/8 to-lime-300/8 dark:from-green-400/25 dark:to-lime-400/25 rounded-full blur-2xl'
             style={{ bottom: '40%', left: '20%' }}
           />
         </div>
 
         <div className='container relative z-10'>
           <div className='mx-auto max-w-4xl text-center mb-16'>
-            <h2 className='text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent'>
-              Technologies We Use
-            </h2>
-            <p className='text-lg text-green-100 max-w-3xl mx-auto mt-4'>
-              Cutting-edge tools and frameworks for modern development
+            <TypingEffect
+              text={t('techStack.title')}
+              className='text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl bg-gradient-to-r from-green-600 to-lime-600 dark:from-green-400 dark:to-lime-400 bg-clip-text text-transparent'
+            />
+            <p className='text-lg text-gray-700 dark:text-green-100 max-w-3xl mx-auto mt-4'>
+              {t('techStack.subtitle')}
             </p>
           </div>
 
@@ -122,25 +114,25 @@ export default async function HomePage() {
       </AnimatedSection>
 
       {/* Services Section */}
-      <AnimatedSection className='py-20 px-4 sm:px-6 lg:px-8 bg-black dark:bg-black'>
+      <AnimatedSection className='py-20 px-4 sm:px-6 lg:px-8 bg-background dark:bg-background'>
         <div className='max-w-7xl mx-auto'>
           <div className='text-center mb-16'>
-            <AnimatedDiv className='text-4xl md:text-5xl font-bold text-white mb-4'>
-              Our Services
+            <AnimatedDiv className='text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4'>
+              {t('services.title')}
             </AnimatedDiv>
-            <AnimatedDiv className='text-lg text-gray-300 max-w-2xl mx-auto'>
-              Comprehensive solutions for your digital needs
+            <AnimatedDiv className='text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto'>
+              {t('services.subtitle')}
             </AnimatedDiv>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
             {/* UI/UX Design */}
             <AnimatedCard>
-              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500'>
+              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500'>
                 <CardHeader className='pb-4'>
-                  <div className='w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4'>
+                  <div className='w-10 h-10 bg-lime-500 dark:bg-primary rounded-lg flex items-center justify-center mb-4'>
                     <svg
-                      className='w-5 h-5 text-lime-400'
+                      className='w-5 h-5 text-primary-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -153,14 +145,13 @@ export default async function HomePage() {
                       />
                     </svg>
                   </div>
-                  <CardTitle className='text-white text-lg font-semibold'>
-                    UI/UX Design
+                  <CardTitle className='text-gray-900 dark:text-white text-lg font-semibold'>
+                    {t('services.uiuxDesign.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-gray-300 text-sm leading-relaxed'>
-                    Beautiful, user-friendly interfaces that engage and convert
-                    visitors into customers
+                  <CardDescription className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
+                    {t('services.uiuxDesign.description')}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -168,11 +159,11 @@ export default async function HomePage() {
 
             {/* Web Development */}
             <AnimatedCard>
-              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500'>
+              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500'>
                 <CardHeader className='pb-4'>
-                  <div className='w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4'>
+                  <div className='w-10 h-10 bg-lime-500 dark:bg-primary rounded-lg flex items-center justify-center mb-4'>
                     <svg
-                      className='w-5 h-5 text-lime-400'
+                      className='w-5 h-5 text-primary-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -185,14 +176,13 @@ export default async function HomePage() {
                       />
                     </svg>
                   </div>
-                  <CardTitle className='text-white text-lg font-semibold'>
-                    Web Development
+                  <CardTitle className='text-gray-900 dark:text-white text-lg font-semibold'>
+                    {t('services.webDevelopment.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-gray-300 text-sm leading-relaxed'>
-                    Custom websites and web applications built with modern
-                    technologies and best practices
+                  <CardDescription className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
+                    {t('services.webDevelopment.description')}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -200,11 +190,11 @@ export default async function HomePage() {
 
             {/* Full-Stack Development */}
             <AnimatedCard>
-              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500'>
+              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500'>
                 <CardHeader className='pb-4'>
-                  <div className='w-10 h-10 bg-transparent border-2 border-green-500 rounded-lg flex items-center justify-center mb-4'>
+                  <div className='w-10 h-10 bg-lime-500 dark:bg-primary rounded-lg flex items-center justify-center mb-4'>
                     <svg
-                      className='w-5 h-5 text-green-500'
+                      className='w-5 h-5 text-primary-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -217,14 +207,13 @@ export default async function HomePage() {
                       />
                     </svg>
                   </div>
-                  <CardTitle className='text-white text-lg font-semibold'>
-                    Full-Stack Development
+                  <CardTitle className='text-gray-900 dark:text-white text-lg font-semibold'>
+                    {t('services.fullStackDevelopment.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-gray-300 text-sm leading-relaxed'>
-                    Complete end-to-end solutions from frontend to backend with
-                    seamless integration
+                  <CardDescription className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
+                    {t('services.fullStackDevelopment.description')}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -232,11 +221,11 @@ export default async function HomePage() {
 
             {/* Web Design */}
             <AnimatedCard>
-              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500'>
+              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500'>
                 <CardHeader className='pb-4'>
-                  <div className='w-10 h-10 bg-transparent border-2 border-green-500 rounded-lg flex items-center justify-center mb-4'>
+                  <div className='w-10 h-10 bg-lime-500 dark:bg-primary rounded-lg flex items-center justify-center mb-4'>
                     <svg
-                      className='w-5 h-5 text-green-500'
+                      className='w-5 h-5 text-primary-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -249,14 +238,13 @@ export default async function HomePage() {
                       />
                     </svg>
                   </div>
-                  <CardTitle className='text-white text-lg font-semibold'>
-                    Web Design
+                  <CardTitle className='text-gray-900 dark:text-white text-lg font-semibold'>
+                    {t('services.webDesign.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-gray-300 text-sm leading-relaxed'>
-                    Creative and responsive designs that reflect your brand and
-                    captivate your audience
+                  <CardDescription className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
+                    {t('services.webDesign.description')}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -264,11 +252,11 @@ export default async function HomePage() {
 
             {/* LINE Bot Development */}
             <AnimatedCard>
-              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500'>
+              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500'>
                 <CardHeader className='pb-4'>
-                  <div className='w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4'>
+                  <div className='w-10 h-10 bg-lime-500 dark:bg-primary rounded-lg flex items-center justify-center mb-4'>
                     <svg
-                      className='w-5 h-5 text-lime-400'
+                      className='w-5 h-5 text-primary-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -281,12 +269,12 @@ export default async function HomePage() {
                       />
                     </svg>
                   </div>
-                  <CardTitle className='text-white text-lg font-semibold'>
+                  <CardTitle className='text-gray-900 dark:text-white text-lg font-semibold'>
                     LINE Bot Development
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-gray-300 text-sm leading-relaxed'>
+                  <CardDescription className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
                     Intelligent chatbots and automation solutions for LINE
                     platform integration
                   </CardDescription>
@@ -296,11 +284,11 @@ export default async function HomePage() {
 
             {/* Business Automation */}
             <AnimatedCard>
-              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500'>
+              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500'>
                 <CardHeader className='pb-4'>
-                  <div className='w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mb-4'>
+                  <div className='w-10 h-10 bg-lime-500 dark:bg-primary rounded-lg flex items-center justify-center mb-4'>
                     <svg
-                      className='w-5 h-5 text-lime-400'
+                      className='w-5 h-5 text-primary-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -319,12 +307,12 @@ export default async function HomePage() {
                       />
                     </svg>
                   </div>
-                  <CardTitle className='text-white text-lg font-semibold'>
+                  <CardTitle className='text-gray-900 dark:text-white text-lg font-semibold'>
                     Business Automation
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-gray-300 text-sm leading-relaxed'>
+                  <CardDescription className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
                     Streamline your business processes with intelligent
                     automation and workflow optimization
                   </CardDescription>
@@ -334,11 +322,11 @@ export default async function HomePage() {
 
             {/* API Development */}
             <AnimatedCard>
-              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500'>
+              <Card className='h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-lime-500 dark:hover:border-lime-500'>
                 <CardHeader className='pb-4'>
-                  <div className='w-10 h-10 bg-transparent border-2 border-green-500 rounded-lg flex items-center justify-center mb-4'>
+                  <div className='w-10 h-10 bg-lime-500 dark:bg-primary rounded-lg flex items-center justify-center mb-4'>
                     <svg
-                      className='w-5 h-5 text-green-500'
+                      className='w-5 h-5 text-primary-foreground'
                       fill='none'
                       stroke='currentColor'
                       viewBox='0 0 24 24'
@@ -351,12 +339,12 @@ export default async function HomePage() {
                       />
                     </svg>
                   </div>
-                  <CardTitle className='text-white text-lg font-semibold'>
+                  <CardTitle className='text-gray-900 dark:text-white text-lg font-semibold'>
                     API Development
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-gray-300 text-sm leading-relaxed'>
+                  <CardDescription className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed'>
                     Robust and scalable APIs that power your applications and
                     integrate with third-party services
                   </CardDescription>
@@ -368,11 +356,11 @@ export default async function HomePage() {
       </AnimatedSection>
 
       {/* Customer Feedback Section */}
-      <AnimatedSection className='py-20 px-4 sm:px-6 lg:px-8 bg-black dark:bg-black relative'>
+      <AnimatedSection className='py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-emerald-50 to-lime-50 dark:from-slate-900 dark:via-emerald-900 dark:to-lime-900 relative'>
         <div className='absolute inset-0 overflow-hidden'>
           {/* SVG Background Elements */}
           <svg
-            className='absolute top-10 left-10 w-20 h-20 text-lime-500/20'
+            className='absolute top-10 left-10 w-20 h-20 text-emerald-500/15 dark:text-lime-500/20'
             viewBox='0 0 24 24'
             fill='none'
           >
@@ -383,7 +371,7 @@ export default async function HomePage() {
             />
           </svg>
           <svg
-            className='absolute bottom-20 right-20 w-16 h-16 text-lime-500/20'
+            className='absolute bottom-20 right-20 w-16 h-16 text-emerald-500/15 dark:text-lime-500/20'
             viewBox='0 0 24 24'
             fill='none'
           >
@@ -396,23 +384,26 @@ export default async function HomePage() {
           {/* Floating particles */}
           <FloatingParticles
             count={60}
-            className='text-lime-400/40'
+            className='text-emerald-400/30 dark:text-lime-400/40'
             size='lg'
           />
-
-          {/* Floating Mascots */}
-          <FloatingMascots count={5} className='text-lime-400/25' />
         </div>
+
+        {/* Floating Mascots */}
+        <FloatingMascots
+          count={1}
+          className='text-emerald-400/25 dark:text-lime-400/50'
+        />
 
         <div className='max-w-7xl mx-auto relative z-10'>
           <div className='text-center mb-16'>
             <div className='flex items-center justify-center gap-3 mb-4'>
-              <MessageCircle className='w-6 h-6 text-lime-500' />
-              <h2 className='text-3xl md:text-4xl font-bold text-white font-sans'>
+              <MessageCircle className='w-6 h-6 text-lime-500 dark:text-lime-400' />
+              <h2 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-sans'>
                 {t('testimonials.title')}
               </h2>
             </div>
-            <p className='text-gray-300 text-lg font-sans'>
+            <p className='text-gray-700 dark:text-gray-300 text-lg font-sans'>
               {t('testimonials.subtitle')}
             </p>
           </div>
@@ -420,18 +411,18 @@ export default async function HomePage() {
           <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
             {/* Testimonial 1 */}
             <AnimatedCard>
-              <Card className='bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 p-6'>
+              <Card className='bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 p-6'>
                 <AnimatedStars count={5} />
-                <p className='text-white mb-6 leading-relaxed font-sans'>
+                <p className='text-gray-900 dark:text-white mb-6 leading-relaxed font-sans'>
                   "{t('testimonials.testimonial1.quote')}"
                 </p>
                 <div className='flex items-center gap-3'>
                   <AnimatedAvatar initial='S' />
                   <div>
-                    <p className='text-white font-semibold font-sans'>
+                    <p className='text-gray-900 dark:text-white font-semibold font-sans'>
                       {t('testimonials.testimonial1.name')}
                     </p>
-                    <p className='text-gray-400 text-sm font-sans'>
+                    <p className='text-gray-600 dark:text-gray-400 text-sm font-sans'>
                       {t('testimonials.testimonial1.company')}
                     </p>
                   </div>
@@ -441,18 +432,18 @@ export default async function HomePage() {
 
             {/* Testimonial 2 */}
             <AnimatedCard>
-              <Card className='bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 p-6'>
+              <Card className='bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 p-6'>
                 <AnimatedStars count={5} />
-                <p className='text-white mb-6 leading-relaxed font-sans'>
+                <p className='text-gray-900 dark:text-white mb-6 leading-relaxed font-sans'>
                   "{t('testimonials.testimonial2.quote')}"
                 </p>
                 <div className='flex items-center gap-3'>
                   <AnimatedAvatar initial='O' />
                   <div>
-                    <p className='text-white font-semibold font-sans'>
+                    <p className='text-gray-900 dark:text-white font-semibold font-sans'>
                       {t('testimonials.testimonial2.name')}
                     </p>
-                    <p className='text-gray-400 text-sm font-sans'>
+                    <p className='text-gray-600 dark:text-gray-400 text-sm font-sans'>
                       {t('testimonials.testimonial2.company')}
                     </p>
                   </div>
@@ -462,18 +453,18 @@ export default async function HomePage() {
 
             {/* Testimonial 3 */}
             <AnimatedCard>
-              <Card className='bg-gray-800 dark:bg-gray-800 border-gray-700 dark:border-gray-700 p-6'>
+              <Card className='bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 p-6'>
                 <AnimatedStars count={5} />
-                <p className='text-white mb-6 leading-relaxed font-sans'>
+                <p className='text-gray-900 dark:text-white mb-6 leading-relaxed font-sans'>
                   "{t('testimonials.testimonial3.quote')}"
                 </p>
                 <div className='flex items-center gap-3'>
                   <AnimatedAvatar initial='W' />
                   <div>
-                    <p className='text-white font-semibold font-sans'>
+                    <p className='text-gray-900 dark:text-white font-semibold font-sans'>
                       {t('testimonials.testimonial3.name')}
                     </p>
-                    <p className='text-gray-400 text-sm font-sans'>
+                    <p className='text-gray-600 dark:text-gray-400 text-sm font-sans'>
                       {t('testimonials.testimonial3.company')}
                     </p>
                   </div>
@@ -491,17 +482,16 @@ export default async function HomePage() {
             <AnimatedDiv>
               <Badge
                 variant='secondary'
-                className='bg-lime-500 text-black mb-4'
+                className='bg-lime-500 text-black mb-4 text-sm font-semibold px-4 py-2'
               >
-                Why Choose TechStudio
+                {t('whyChoose.badge')}
               </Badge>
             </AnimatedDiv>
             <AnimatedDiv className='text-3xl md:text-4xl font-bold text-white mb-4'>
-              Your Trusted Software Development Partner
+              {t('whyChoose.title')}
             </AnimatedDiv>
             <AnimatedDiv className='text-lg text-gray-300 max-w-2xl mx-auto'>
-              We combine technical expertise with business understanding to
-              deliver solutions that drive real results.
+              {t('whyChoose.subtitle')}
             </AnimatedDiv>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
@@ -511,11 +501,10 @@ export default async function HomePage() {
                   <Users className='w-8 h-8 text-black' />
                 </div>
                 <h3 className='text-xl font-semibold text-white mb-2'>
-                  Expert Team
+                  {t('whyChoose.features.expertTeam.title')}
                 </h3>
                 <p className='text-gray-300'>
-                  Experienced developers and designers with expertise in modern
-                  technologies and best practices.
+                  {t('whyChoose.features.expertTeam.description')}
                 </p>
               </div>
             </AnimatedCard>
@@ -526,11 +515,10 @@ export default async function HomePage() {
                   <TrendingUp className='w-8 h-8 text-black' />
                 </div>
                 <h3 className='text-xl font-semibold text-white mb-2'>
-                  Scalable Solutions
+                  {t('whyChoose.features.scalableSolutions.title')}
                 </h3>
                 <p className='text-gray-300'>
-                  Built to grow with your business, ensuring your software can
-                  handle increased demand and complexity.
+                  {t('whyChoose.features.scalableSolutions.description')}
                 </p>
               </div>
             </AnimatedCard>
@@ -541,11 +529,10 @@ export default async function HomePage() {
                   <Star className='w-8 h-8 text-black' />
                 </div>
                 <h3 className='text-xl font-semibold text-white mb-2'>
-                  Quality Focus
+                  {t('whyChoose.features.qualityFocus.title')}
                 </h3>
                 <p className='text-gray-300'>
-                  Rigorous testing and quality assurance processes ensure
-                  reliable, bug-free software delivery.
+                  {t('whyChoose.features.qualityFocus.description')}
                 </p>
               </div>
             </AnimatedCard>
@@ -556,11 +543,10 @@ export default async function HomePage() {
                   <Globe className='w-8 h-8 text-black' />
                 </div>
                 <h3 className='text-xl font-semibold text-white mb-2'>
-                  Global Reach
+                  {t('whyChoose.features.globalReach.title')}
                 </h3>
                 <p className='text-gray-300'>
-                  Serving clients worldwide with flexible engagement models and
-                  24/7 support capabilities.
+                  {t('whyChoose.features.globalReach.description')}
                 </p>
               </div>
             </AnimatedCard>
@@ -701,15 +687,14 @@ export default async function HomePage() {
         <FloatingParticles count={80} className='text-white/20' size='lg' />
 
         {/* Floating Mascots */}
-        <FloatingMascots count={8} className='text-white/15' />
+        <FloatingMascots count={1} className='text-white/30' />
 
         <div className='max-w-4xl mx-auto text-center relative z-10'>
           <AnimatedDiv className='text-3xl md:text-4xl font-bold text-white mb-4'>
-            Ready to Build Your Custom Software Solution?
+            {t('cta.title')}
           </AnimatedDiv>
           <AnimatedDiv className='text-xl text-lime-100 mb-8'>
-            Let's discuss your project and create a solution that drives your
-            business forward.
+            {t('cta.subtitle')}
           </AnimatedDiv>
           <AnimatedDiv className='flex flex-col sm:flex-row gap-4 justify-center'>
             <AnimatedButton>
@@ -718,7 +703,7 @@ export default async function HomePage() {
                 variant='secondary'
                 className='bg-white text-lime-600 hover:bg-lime-50 font-semibold px-8 py-3'
               >
-                Start Your Project
+                {t('cta.primaryButton')}
                 <ArrowRight className='w-4 h-4 ml-2' />
               </Button>
             </AnimatedButton>
@@ -728,7 +713,7 @@ export default async function HomePage() {
                 variant='outline'
                 className='border-white text-white hover:bg-white/10 font-semibold px-8 py-3'
               >
-                Schedule Consultation
+                {t('cta.secondaryButton')}
               </Button>
             </AnimatedButton>
           </AnimatedDiv>

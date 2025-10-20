@@ -30,12 +30,11 @@ export default async function LocaleLayout({
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = await getMessages();
-  
+
   // Debug: Log messages for the current locale
   console.log(`LocaleLayout - Loading messages for locale: ${locale}`, {
     hasMessages: !!messages,
-    homeHero: messages?.home?.hero,
-    navigation: messages?.navigation
+    navigation: messages?.navigation,
   });
 
   return (

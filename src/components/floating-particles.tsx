@@ -20,29 +20,49 @@ export function FloatingParticles({
     xl: 'w-4 h-4',
   };
 
+  // Deterministic PRNG to avoid hydration mismatches between SSR and CSR
+  function mulberry32(seed: number) {
+    return function () {
+      let t = (seed += 0x6d2b79f5);
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
   return (
     <>
-      {[...Array(count)].map((_, i) => (
-        <motion.div
-          key={i}
-          className={`absolute ${sizeClasses[size]} bg-lime-400/20 rounded-full ${className}`}
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, Math.random() * 30 - 15, 0],
-            opacity: [0, 1, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 2 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
+      {[...Array(count)].map((_, i) => {
+        // Seed per particle index for stable positions/animation
+        const rand = mulberry32(123456 + i);
+        const left = rand() * 100;
+        const top = rand() * 100;
+        const yAmp = rand() * 30 - 15;
+        const duration = 2 + rand() * 2;
+        const delay = rand() * 2;
+
+        return (
+          <motion.div
+            key={i}
+            className={`absolute ${sizeClasses[size]} bg-lime-400/20 rounded-full ${className}`}
+            style={{
+              left: `${left}%`,
+              top: `${top}%`,
+            }}
+            animate={{
+              y: [0, yAmp, 0],
+              opacity: [0, 1, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration,
+              repeat: Infinity,
+              delay,
+              ease: 'easeInOut',
+            }}
+          />
+        );
+      })}
     </>
   );
 }

@@ -28,12 +28,15 @@ function TechIcon({ name }: { name: string }) {
 export function AnimatedSection({
   children,
   className,
+  id,
 }: {
   children: ReactNode;
   className?: string;
+  id?: string;
 }) {
   return (
     <motion.section
+      id={id}
       className={className}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -286,14 +289,14 @@ export function TechStackIcons() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
         >
-          <h3 className='text-2xl font-bold text-white text-center'>
+          <h3 className='text-2xl font-bold text-gray-900 dark:text-white text-center'>
             {category.title}
           </h3>
           <div className='flex flex-wrap justify-center gap-4'>
             {category.technologies.map((tech, techIndex) => (
               <motion.div
                 key={tech.name}
-                className='flex items-center gap-3 px-4 py-3 bg-gray-800 dark:bg-gray-800 border border-gray-700 dark:border-gray-700 rounded-lg hover:border-green-500 dark:hover:border-green-500 transition-all duration-300'
+                className='flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-lime-500 dark:hover:border-green-500 transition-all duration-300'
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -304,7 +307,7 @@ export function TechStackIcons() {
                 whileHover={{ scale: 1.05 }}
               >
                 <TechIcon name={tech.name} />
-                <span className='text-white text-sm font-medium'>
+                <span className='text-gray-900 dark:text-white text-sm font-medium'>
                   {tech.label}
                 </span>
               </motion.div>

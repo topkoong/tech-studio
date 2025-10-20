@@ -83,10 +83,10 @@ export default function Navigation() {
               href={`/${currentLocale}`}
               className='flex-shrink-0 flex items-center gap-2'
             >
-              <div className='w-6 h-6 bg-lime-500 rounded-full flex items-center justify-center'>
+              <div className='w-6 h-6 bg-lime-500 dark:bg-lime-500 rounded-full flex items-center justify-center'>
                 <span className='text-white text-xs font-bold'>T</span>
               </div>
-              <h1 className='text-sm font-bold text-lime-500'>
+              <h1 className='text-sm font-bold text-lime-600 dark:text-lime-500'>
                 <motion.span
                   animate={{
                     backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -159,26 +159,39 @@ export default function Navigation() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant='ghost'
-                  size='icon'
-                  className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
+                  size='sm'
+                  className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700'
                 >
-                  <Globe className='h-4 w-4' />
+                  <Globe className='h-4 w-4 mr-2' />
+                  <span className='text-sm font-medium'>
+                    {currentLocale === 'en' ? 'EN' : 'TH'}
+                  </span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align='end'
-                className='bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700'
+                className='bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 shadow-lg rounded-lg p-2 min-w-[120px]'
               >
                 <DropdownMenuItem
                   onClick={() => switchLanguage('en')}
-                  className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                  className={`text-sm font-medium px-3 py-2 rounded-md cursor-pointer transition-colors ${
+                    currentLocale === 'en'
+                      ? 'bg-lime-100 dark:bg-lime-900 text-lime-700 dark:text-lime-300'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
                 >
+                  <span className='mr-2'>🇺🇸</span>
                   English
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => switchLanguage('th')}
-                  className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                  className={`text-sm font-medium px-3 py-2 rounded-md cursor-pointer transition-colors ${
+                    currentLocale === 'th'
+                      ? 'bg-lime-100 dark:bg-lime-900 text-lime-700 dark:text-lime-300'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
                 >
+                  <span className='mr-2'>🇹🇭</span>
                   ไทย
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -187,7 +200,7 @@ export default function Navigation() {
             {/* Contact Us Button */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link href={`/${currentLocale}/contact`}>
-                <Button className='bg-lime-500 hover:bg-lime-600 text-black font-medium px-6 py-2 rounded-lg'>
+                <Button className='bg-lime-500 hover:bg-lime-600 text-white font-medium px-6 py-2 rounded-lg'>
                   Contact Us
                 </Button>
               </Link>
@@ -206,23 +219,120 @@ export default function Navigation() {
               </SheetTrigger>
               <SheetContent
                 side='right'
-                className='w-[300px] sm:w-[400px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700'
+                className='w-[280px] sm:w-[320px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700'
               >
-                <div className='flex flex-col space-y-4 mt-6'>
-                  {navigationItems.map((item) => (
-                    <Link
-                      key={item.key}
-                      href={item.href}
+                <div className='flex flex-col h-full'>
+                  {/* Mobile Menu Header */}
+                  <div className='flex items-center justify-between mb-6'>
+                    <div className='flex items-center gap-2'>
+                      <div className='w-6 h-6 bg-lime-500 rounded-full flex items-center justify-center'>
+                        <span className='text-white text-xs font-bold'>T</span>
+                      </div>
+                      <span className='text-sm font-bold text-lime-600 dark:text-lime-500'>
+                        TechStudio
+                      </span>
+                    </div>
+                    <Button
+                      variant='ghost'
+                      size='icon'
                       onClick={() => setIsMenuOpen(false)}
-                      className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                        pathname === item.href
-                          ? 'text-lime-500 dark:text-lime-400 bg-lime-100/20 dark:bg-lime-900/20'
-                          : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
-                      }`}
+                      className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     >
-                      {t(item.key)}
+                      <svg
+                        className='h-4 w-4'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth={2}
+                          d='M6 18L18 6M6 6l12 12'
+                        />
+                      </svg>
+                    </Button>
+                  </div>
+
+                  {/* Navigation Links */}
+                  <div className='flex flex-col space-y-2 flex-1'>
+                    {navigationItems.map((item) => (
+                      <Link
+                        key={item.key}
+                        href={item.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                          pathname === item.href
+                            ? 'text-lime-600 dark:text-lime-400 bg-lime-100 dark:bg-lime-900/20'
+                            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }`}
+                      >
+                        {t(item.key)}
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Mobile Menu Footer with Controls */}
+                  <div className='border-t border-gray-200 dark:border-gray-700 pt-4 mt-6'>
+                    <div className='flex items-center justify-between mb-4'>
+                      <span className='text-sm text-gray-600 dark:text-gray-400'>
+                        Theme
+                      </span>
+                      <Button
+                        variant='ghost'
+                        size='icon'
+                        onClick={toggleTheme}
+                        className='text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                      >
+                        {theme === 'dark' ? (
+                          <Sun className='h-4 w-4' />
+                        ) : (
+                          <Moon className='h-4 w-4' />
+                        )}
+                      </Button>
+                    </div>
+
+                    <div className='flex items-center justify-between mb-4'>
+                      <span className='text-sm text-gray-600 dark:text-gray-400'>
+                        Language
+                      </span>
+                      <div className='flex gap-2'>
+                        <Button
+                          variant={currentLocale === 'en' ? 'default' : 'ghost'}
+                          size='sm'
+                          onClick={() => switchLanguage('en')}
+                          className={
+                            currentLocale === 'en'
+                              ? 'bg-lime-500 text-white'
+                              : 'text-gray-700 dark:text-gray-300'
+                          }
+                        >
+                          EN
+                        </Button>
+                        <Button
+                          variant={currentLocale === 'th' ? 'default' : 'ghost'}
+                          size='sm'
+                          onClick={() => switchLanguage('th')}
+                          className={
+                            currentLocale === 'th'
+                              ? 'bg-lime-500 text-white'
+                              : 'text-gray-700 dark:text-gray-300'
+                          }
+                        >
+                          TH
+                        </Button>
+                      </div>
+                    </div>
+
+                    <Link
+                      href={`/${currentLocale}/contact`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Button className='w-full bg-lime-500 hover:bg-lime-600 text-white font-medium py-3 rounded-lg'>
+                        Contact Us
+                      </Button>
                     </Link>
-                  ))}
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
