@@ -11,6 +11,12 @@ import Navigation from '@/components/navigation';
 import { getAllBlogPosts } from '@/lib/blog-content';
 import { getTranslations } from 'next-intl/server';
 
+const locales = ['en', 'th'] as const;
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function BlogPage() {
   const posts = getAllBlogPosts().map((p) => ({
     ...p,

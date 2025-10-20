@@ -17,3 +17,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
     messages: (await import(`../messages/${locale}.json`)).default,
   };
 });
+
+// For static export compatibility
+export const getStaticParams = () => {
+  return locales.map((locale) => ({ locale }));
+};

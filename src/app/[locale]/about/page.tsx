@@ -28,6 +28,12 @@ import Navigation from '@/components/navigation';
 import StackIcon from 'tech-stack-icons';
 import { getTranslations } from 'next-intl/server';
 
+const locales = ['en', 'th'] as const;
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function AboutPage() {
   const t = await getTranslations('about');
   const tTech = await getTranslations('techDescriptions');

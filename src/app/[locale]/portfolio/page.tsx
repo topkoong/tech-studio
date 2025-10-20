@@ -11,6 +11,12 @@ import { PortfolioHero } from '@/components/portfolio-hero';
 import { getAllPortfolioProjects } from '@/lib/portfolio-content';
 import { getTranslations } from 'next-intl/server';
 
+const locales = ['en', 'th'] as const;
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function PortfolioPage() {
   const all = getAllPortfolioProjects();
   // Filter to current locale via pathname segment from route params is not accessible here.

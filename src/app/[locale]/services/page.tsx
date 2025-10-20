@@ -24,6 +24,12 @@ import Navigation from '@/components/navigation';
 // Use the same floating mascots style as the home banner
 import { getTranslations } from 'next-intl/server';
 
+const locales = ['en', 'th'] as const;
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function ServicesPage() {
   const t = await getTranslations('services');
 
