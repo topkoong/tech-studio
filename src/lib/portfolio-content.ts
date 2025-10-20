@@ -82,13 +82,15 @@ export function getAllPortfolioProjects(): PortfolioProject[] {
 
 export function getPortfolioProject(slug: string): PortfolioProject | null {
   try {
-    const fullPath = path.join(portfolioDirectory, `${slug}.md`);
+    // Decode URL-encoded slug (e.g., "en%2Fproject-name" -> "en/project-name")
+    const decodedSlug = decodeURIComponent(slug);
+    const fullPath = path.join(portfolioDirectory, `${decodedSlug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
     return {
       metadata: {
-        id: data.id || slug.split('/').pop() || slug,
+        id: data.id || decodedSlug.split('/').pop() || decodedSlug,
         title: data.title || '',
         description: data.description || '',
         longDescription: data.longDescription || '',
@@ -105,8 +107,8 @@ export function getPortfolioProject(slug: string): PortfolioProject | null {
         githubUrl: data.githubUrl,
         featured: data.featured || false,
         date: data.date || new Date().toISOString(),
-        locale: slug.includes('/') ? slug.split('/')[0] : 'en',
-        slug,
+        locale: decodedSlug.includes('/') ? decodedSlug.split('/')[0] : 'en',
+        slug: decodedSlug,
       },
       content,
     };

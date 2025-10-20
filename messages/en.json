@@ -175,7 +175,16 @@
   },
   "portfolio": {
     "title": "Our Portfolio",
-    "subtitle": "Custom Software Solutions That Drive Results"
+    "subtitle": "Custom Software Solutions That Drive Results",
+    "backToPortfolio": "Back to Portfolio",
+    "technologies": "Technologies Used",
+    "features": "Key Features",
+    "challenges": "Challenges",
+    "solutions": "Solutions",
+    "results": "Results",
+    "relatedProjects": "Related Projects",
+    "liveDemo": "Live Demo",
+    "viewCode": "View Code"
   },
   "contact": {
     "title": "Contact Us",
