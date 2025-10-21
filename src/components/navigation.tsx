@@ -2,6 +2,13 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import {
+  BlurIn,
+  GradualSpacing,
+  LettersPullUp,
+  LogoAnimation,
+  StaggeredFade,
+} from './text-animations';
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -13,7 +20,6 @@ import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-import { LettersPullUp } from './text-animations';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
@@ -26,7 +32,7 @@ import { useTranslations } from 'next-intl';
  * - Language switcher (English/Thai)
  * - Smooth scroll animations
  * - Responsive design for all screen sizes
- * 
+ *
  * @returns JSX element containing the navigation bar
  */
 export default function Navigation() {
@@ -61,18 +67,18 @@ export default function Navigation() {
   /**
    * Switch language while preserving current page
    * Handles locale switching with proper path reconstruction
-   * 
+   *
    * @param locale - Target locale ('en' or 'th')
    */
   const switchLanguage = (locale: string) => {
     // Remove current locale prefix from pathname to get the base path
     // Example: '/en/about' -> '/about', '/th/services' -> '/services'
     const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/';
-    
+
     // Construct new path with target locale
     // Example: '/about' + 'th' -> '/th/about'
     const newPath = `/${locale}${pathWithoutLocale}`;
-    
+
     console.log(
       'Switching language to:',
       locale,
@@ -81,7 +87,7 @@ export default function Navigation() {
       'New path:',
       newPath
     ); // Debug log
-    
+
     // Navigate to new path and refresh to ensure locale changes are applied
     router.push(newPath);
     router.refresh(); // Force refresh to ensure new locale is loaded
@@ -114,50 +120,49 @@ export default function Navigation() {
               href={`/${currentLocale}`}
               className='flex-shrink-0 flex items-center gap-2'
             >
-              <div className='w-6 h-6 bg-lime-500 dark:bg-lime-500 rounded-full flex items-center justify-center'>
-                <span className='text-white text-xs font-bold'>T</span>
-              </div>
-              <h1 className='text-sm font-bold text-lime-600 dark:text-lime-500'>
+              {/* Animated Logo Icon */}
+              <motion.div
+                className='w-8 h-8 bg-lime-500 dark:bg-lime-500 rounded-full flex items-center justify-center'
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
+              >
                 <motion.span
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  style={{
-                    background:
-                      'linear-gradient(45deg, #84cc16, #22c55e, #16a34a, #84cc16)',
-                    backgroundSize: '300% 300%',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                  className='text-sm font-bold'
+                  className='text-white text-sm font-bold'
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.3, ease: 'easeOut' }}
                 >
-                  TechStudio
+                  T
                 </motion.span>
+              </motion.div>
+
+              {/* Animated Logo Text */}
+              <h1 className='text-2xl font-bold text-lime-600 dark:text-lime-500'>
+                <StaggeredFade
+                  text='TechStudio'
+                  className='text-2xl font-bold'
+                />
               </h1>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className='hidden md:flex items-center space-x-8'>
-            {navigationItems.map((item) => (
+            {navigationItems.map((item, index) => (
               <motion.div
                 key={item.key}
-                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     pathname === item.href
-                      ? 'text-lime-500 dark:text-lime-400 bg-lime-100/20 dark:bg-lime-900/20'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/20 dark:hover:bg-gray-800/20'
+                      ? 'text-lime-600 dark:text-lime-400 bg-lime-100/30 dark:bg-lime-900/30 shadow-sm'
+                      : 'text-gray-800 dark:text-gray-200 hover:text-lime-600 dark:hover:text-lime-400 hover:bg-gray-100/30 dark:hover:bg-gray-800/30'
                   }`}
                 >
                   {t(item.key)}
@@ -256,12 +261,31 @@ export default function Navigation() {
                   {/* Mobile Menu Header */}
                   <div className='flex items-center justify-between mb-6'>
                     <div className='flex items-center gap-2'>
-                      <div className='w-6 h-6 bg-lime-500 rounded-full flex items-center justify-center'>
-                        <span className='text-white text-xs font-bold'>T</span>
-                      </div>
-                      <span className='text-sm font-bold text-lime-600 dark:text-lime-500'>
-                        TechStudio
-                      </span>
+                      {/* Animated Mobile Logo Icon */}
+                      <motion.div
+                        className='w-8 h-8 bg-lime-500 rounded-full flex items-center justify-center'
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6, ease: 'easeInOut' }}
+                      >
+                        <motion.span
+                          className='text-white text-sm font-bold'
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{
+                            delay: 0.2,
+                            duration: 0.3,
+                            ease: 'easeOut',
+                          }}
+                        >
+                          T
+                        </motion.span>
+                      </motion.div>
+
+                      {/* Animated Mobile Logo Text */}
+                      <StaggeredFade
+                        text='TechStudio'
+                        className='text-2xl font-bold text-lime-600 dark:text-lime-500'
+                      />
                     </div>
                     <Button
                       variant='ghost'
@@ -287,19 +311,27 @@ export default function Navigation() {
 
                   {/* Navigation Links */}
                   <div className='flex flex-col space-y-2 flex-1'>
-                    {navigationItems.map((item) => (
-                      <Link
+                    {navigationItems.map((item, index) => (
+                      <motion.div
                         key={item.key}
-                        href={item.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                          pathname === item.href
-                            ? 'text-lime-600 dark:text-lime-400 bg-lime-100 dark:bg-lime-900/20'
-                            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-                        }`}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.3 }}
+                        whileHover={{ x: 5 }}
+                        whileTap={{ scale: 0.95 }}
                       >
-                        {t(item.key)}
-                      </Link>
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className={`px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                            pathname === item.href
+                              ? 'text-lime-600 dark:text-lime-400 bg-lime-100 dark:bg-lime-900/30 shadow-sm'
+                              : 'text-gray-800 dark:text-gray-200 hover:text-lime-600 dark:hover:text-lime-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                          }`}
+                        >
+                          {t(item.key)}
+                        </Link>
+                      </motion.div>
                     ))}
                   </div>
 
