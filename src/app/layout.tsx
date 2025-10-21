@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
  */
 export const metadata: Metadata = {
   // Base URL for all metadata links and canonical URLs
-  metadataBase: new URL('https://tech-studio.com'),
+  metadataBase: new URL('https://topkoong.github.io/tech-studio'),
   
   // Primary page title that appears in browser tabs and search results
   title: 'TechStudio - Custom Software Development Solutions',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: 'TechStudio - Custom Software Development Solutions',
     description:
       'Build custom software solutions for your business. We create tailored web applications, automation systems, and APIs that help businesses grow with technology.',
-    url: 'https://tech-studio.com',
+    url: 'https://topkoong.github.io/tech-studio',
     siteName: 'TechStudio',
     images: [
       {
