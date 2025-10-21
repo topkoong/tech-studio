@@ -494,7 +494,7 @@ Any other relevant information
 
 - **GitHub Issues**: For bugs and feature requests
 - **Discussions**: For questions and general discussion
-- **Email**: support@techstudio.com for urgent matters
+- **Email**: theeruttop@gmail.com for urgent matters
 
 ## 🎉 Recognition
 
