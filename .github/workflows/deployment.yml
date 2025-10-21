@@ -49,9 +49,19 @@ jobs:
           mkdir -p out
           touch out/.nojekyll
 
+      - name: Debug build output
+        run: |
+          echo "Build output contents:"
+          ls -la out/
+          echo "Checking if index.html exists:"
+          test -f out/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
+          echo "Checking redirect content:"
+          head -15 out/index.html
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          full_commit_message: ${{ github.event.head_commit.message }}
