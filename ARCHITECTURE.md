@@ -1,475 +1,243 @@
-# TechStudio Architecture Guide
+# TechStudio Project Architecture
 
-This document provides a comprehensive overview of the TechStudio project architecture, design decisions, and technical implementation details.
+## Overview
 
-## 📋 Table of Contents
+TechStudio is a modern, multilingual web application built with Next.js 15, featuring a comprehensive software development portfolio, blog, and service showcase. The application is designed for optimal performance, SEO, and user experience across multiple languages (English and Thai).
 
-- [Architecture Overview](#architecture-overview)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Design Patterns](#design-patterns)
-- [Data Flow](#data-flow)
-- [Performance Optimizations](#performance-optimizations)
-- [Security Considerations](#security-considerations)
-- [Deployment Architecture](#deployment-architecture)
-- [Future Considerations](#future-considerations)
+## Technology Stack
 
-## 🏗 Architecture Overview
-
-TechStudio follows a modern, component-based architecture built on Next.js 15 with the App Router pattern. The application is designed as a static site generator optimized for GitHub Pages deployment.
-
-### Core Principles
-
-1. **Static-First**: Pre-rendered pages for optimal performance
-2. **Component-Based**: Modular, reusable React components
-3. **Type-Safe**: Full TypeScript coverage with strict typing
-4. **Internationalization**: Scalable multilingual support
-5. **Performance**: Optimized for Core Web Vitals
-6. **Accessibility**: WCAG 2.1 AA compliant
-
-### Architecture Diagram
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    TechStudio Architecture                    │
-├─────────────────────────────────────────────────────────────┤
-│  Presentation Layer (React Components)                     │
-│  ├── Pages (App Router)                                     │
-│  ├── Components (UI & Business Logic)                      │
-│  └── Animations (Framer Motion)                            │
-├─────────────────────────────────────────────────────────────┤
-│  State Management & Data Layer                              │
-│  ├── Next.js App Router (File-based routing)               │
-│  ├── next-intl (Internationalization)                      │
-│  ├── Markdown Content (Blog/Portfolio)                      │
-│  └── JSON Translations (Messages)                         │
-├─────────────────────────────────────────────────────────────┤
-│  Styling & Theming                                          │
-│  ├── Tailwind CSS (Utility-first styling)                 │
-│  ├── next-themes (Dark/Light mode)                         │
-│  └── Custom CSS (Animations & effects)                      │
-├─────────────────────────────────────────────────────────────┤
-│  Build & Deployment                                         │
-│  ├── Next.js Static Export                                  │
-│  ├── GitHub Actions (CI/CD)                                │
-│  └── GitHub Pages (Hosting)                                 │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## 🛠 Technology Stack
-
-### Frontend Framework
-- **Next.js 15**: React framework with App Router
-- **React 18**: Component library with concurrent features
-- **TypeScript**: Type-safe JavaScript
+### Core Framework
+- **Next.js 15**: React framework with App Router for modern web development
+- **React 18**: Component-based UI library with concurrent features
+- **TypeScript**: Type-safe JavaScript for better development experience
 
 ### Styling & UI
-- **Tailwind CSS**: Utility-first CSS framework
-- **Radix UI**: Accessible component primitives
-- **shadcn/ui**: Pre-built component library
-- **Framer Motion**: Animation library
-- **Lucide React**: Icon library
+- **Tailwind CSS**: Utility-first CSS framework for rapid styling
+- **Framer Motion**: Animation library for smooth user interactions
+- **Custom Components**: Reusable UI components with consistent design
 
-### Content & Data
-- **Markdown**: Content authoring (blog posts, portfolio)
-- **gray-matter**: Frontmatter parsing
-- **react-markdown**: Markdown rendering
-- **next-intl**: Internationalization
+### Internationalization
+- **next-intl**: Internationalization library for multi-language support
+- **Supported Languages**: English (en) and Thai (th)
+- **Locale-based Routing**: Dynamic routing based on language preference
 
-### Development Tools
-- **ESLint**: Code linting
-- **Prettier**: Code formatting
-- **pnpm**: Package manager
-- **GitHub Actions**: CI/CD
+### Build & Deployment
+- **Static Site Generation (SSG)**: Pre-rendered pages for optimal performance
+- **GitHub Pages**: Static hosting with custom domain support
+- **pnpm**: Fast, efficient package manager
 
-## 📁 Project Structure
-
-### Directory Organization
+## Project Structure
 
 ```
 tech-studio/
-├── .github/workflows/          # CI/CD configuration
-├── i18n/                       # Internationalization setup
-├── messages/                   # Translation files
-├── public/                     # Static assets
 ├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── [locale]/          # Locale-based routing
-│   │   ├── globals.css         # Global styles
-│   │   └── layout.tsx          # Root layout
-│   ├── components/             # React components
-│   │   ├── ui/                 # shadcn/ui components
-│   │   ├── animated-*.tsx      # Animation components
-│   │   ├── *-card.tsx          # Card components
-│   │   └── *-grid.tsx          # Grid components
-│   ├── lib/                    # Utility functions
-│   ├── middleware.ts           # Next.js middleware
-│   └── types/                  # TypeScript definitions
-├── content/                    # Content files
-│   ├── blog/                   # Blog posts (Markdown)
-│   └── portfolio/              # Portfolio projects (Markdown)
-└── Configuration files
+│   ├── app/                          # Next.js App Router directory
+│   │   ├── [locale]/                 # Dynamic locale routing
+│   │   │   ├── about/                # About page
+│   │   │   ├── blog/                 # Blog listing and individual posts
+│   │   │   │   └── [slug]/          # Dynamic blog post routing
+│   │   │   ├── contact/             # Contact page
+│   │   │   ├── portfolio/           # Portfolio listing and individual projects
+│   │   │   │   └── [slug]/          # Dynamic portfolio project routing
+│   │   │   ├── services/            # Services page
+│   │   │   ├── layout.tsx           # Locale-specific layout
+│   │   │   └── page.tsx             # Homepage
+│   │   ├── globals.css              # Global styles
+│   │   ├── layout.tsx               # Root layout with metadata
+│   │   ├── manifest.ts              # PWA manifest generation
+│   │   ├── robots.ts                # SEO robots.txt generation
+│   │   └── sitemap.ts               # Dynamic sitemap generation
+│   ├── components/                   # Reusable React components
+│   │   ├── ui/                      # Base UI components (buttons, cards, etc.)
+│   │   ├── animated-*.tsx           # Animation components
+│   │   ├── blog-*.tsx               # Blog-specific components
+│   │   ├── portfolio-*.tsx          # Portfolio-specific components
+│   │   ├── navigation.tsx           # Main navigation component
+│   │   ├── footer.tsx               # Site footer
+│   │   └── providers/               # Context providers (theme, etc.)
+│   ├── content/                      # Content management
+│   │   ├── blog/                    # Markdown blog posts
+│   │   └── portfolio/               # Markdown portfolio projects
+│   ├── lib/                         # Utility libraries
+│   │   ├── blog-content.ts          # Blog content processing
+│   │   ├── portfolio-content.ts     # Portfolio content processing
+│   │   ├── cn.ts                    # Class name utility
+│   │   └── data/                    # Static data files
+│   └── middleware.ts                # Next.js middleware for routing
+├── messages/                         # Internationalization files
+│   ├── en.json                      # English translations
+│   └── th.json                      # Thai translations
+├── public/                          # Static assets
+│   ├── images/                      # Image assets
+│   └── icons/                       # Favicon and app icons
+├── next.config.ts                   # Next.js configuration
+├── tailwind.config.js               # Tailwind CSS configuration
+├── tsconfig.json                    # TypeScript configuration
+└── package.json                     # Dependencies and scripts
 ```
 
-### File Naming Conventions
+## Architecture Patterns
 
-- **Components**: PascalCase (e.g., `BlogCard.tsx`)
-- **Utilities**: camelCase (e.g., `blogContent.ts`)
-- **Pages**: lowercase with hyphens (e.g., `page.tsx`)
-- **Types**: camelCase with `.d.ts` extension
-- **Content**: kebab-case (e.g., `getting-started-guide.md`)
+### 1. App Router Architecture
+The application uses Next.js 15's App Router with the following patterns:
 
-## 🎨 Design Patterns
+- **Nested Layouts**: Root layout for global metadata, locale layout for language-specific content
+- **Dynamic Routes**: `[locale]` for language routing, `[slug]` for content routing
+- **Server Components**: Default rendering for optimal performance
+- **Client Components**: Used only when interactivity is required (`'use client'`)
 
-### Component Architecture
+### 2. Internationalization Strategy
+- **Locale-based Routing**: URLs include language prefix (`/en/`, `/th/`)
+- **Middleware**: Handles locale detection and redirection
+- **Content Translation**: Separate translation files for UI text
+- **Content Localization**: Separate content files for blog posts and portfolio projects
 
-#### 1. Composition Pattern
-```typescript
-// Base card component
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-}
+### 3. Content Management
+- **Markdown-based**: Blog posts and portfolio projects stored as Markdown files
+- **Frontmatter**: Metadata extraction for SEO and content organization
+- **Static Generation**: Content pre-rendered at build time for optimal performance
 
-// Specialized card components
-interface BlogCardProps extends CardProps {
-  post: BlogPost;
-  featured?: boolean;
-}
+### 4. Component Architecture
+- **Atomic Design**: Components organized by complexity (atoms, molecules, organisms)
+- **Composition**: Complex components built from simpler ones
+- **Reusability**: Shared components across different pages
+- **Animation**: Framer Motion for smooth transitions and interactions
 
-interface PortfolioCardProps extends CardProps {
-  project: PortfolioProject;
-  featured?: boolean;
-}
+## Data Flow
+
+### 1. Page Rendering Flow
+```
+Request → Middleware → Locale Detection → Layout → Page Component → Static Generation
 ```
 
-#### 2. Higher-Order Components (HOCs)
-```typescript
-// Animation wrapper
-function withAnimation<T extends object>(
-  Component: React.ComponentType<T>
-) {
-  return function AnimatedComponent(props: T) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Component {...props} />
-      </motion.div>
-    );
-  };
-}
+### 2. Content Processing Flow
+```
+Markdown Files → Content Processors → Static Data → Page Components → Rendered HTML
 ```
 
-#### 3. Render Props Pattern
-```typescript
-// Translation provider
-interface TranslationProviderProps {
-  children: (t: (key: string) => string) => React.ReactNode;
-}
-
-function TranslationProvider({ children }: TranslationProviderProps) {
-  const t = useTranslations();
-  return <>{children(t)}</>;
-}
+### 3. Internationalization Flow
+```
+Request → Locale Detection → Translation Files → Component Props → Rendered Content
 ```
 
-### State Management Patterns
+## Performance Optimizations
 
-#### 1. Server State (Static Generation)
-```typescript
-// Static data fetching at build time
-export async function generateStaticParams() {
-  const posts = await getAllBlogPosts();
-  return posts.map(post => ({
-    slug: post.metadata.slug
-  }));
-}
-```
-
-#### 2. Client State (React Hooks)
-```typescript
-// Theme management
-function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  
-  const toggleTheme = useCallback(() => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
-  }, []);
-  
-  return { theme, toggleTheme };
-}
-```
-
-#### 3. URL State (Next.js Router)
-```typescript
-// Locale management
-function useLocale() {
-  const pathname = usePathname();
-  const locale = pathname.split('/')[1] as 'en' | 'th';
-  return locale;
-}
-```
-
-## 🔄 Data Flow
-
-### Content Loading Flow
-
-```mermaid
-graph TD
-    A[User Request] --> B[Next.js App Router]
-    B --> C[Locale Detection]
-    C --> D[Page Component]
-    D --> E[Content Loading]
-    E --> F[Markdown Parsing]
-    F --> G[Component Rendering]
-    G --> H[Static HTML Generation]
-    H --> I[Client Hydration]
-    I --> J[Interactive Features]
-```
-
-### Translation Flow
-
-```mermaid
-graph TD
-    A[Component] --> B[useTranslations Hook]
-    B --> C[next-intl Provider]
-    C --> D[Locale Detection]
-    D --> E[Message Loading]
-    E --> F[JSON Translation File]
-    F --> G[Translated Text]
-    G --> H[Component Render]
-```
-
-### Animation Flow
-
-```mermaid
-graph TD
-    A[Component Mount] --> B[Framer Motion]
-    B --> C[Animation Definition]
-    C --> D[Initial State]
-    D --> E[Animate State]
-    E --> F[Transition Config]
-    F --> G[DOM Updates]
-    G --> H[Visual Animation]
-```
-
-## ⚡ Performance Optimizations
-
-### 1. Static Site Generation (SSG)
-- **Pre-rendered pages**: All pages generated at build time
-- **No server required**: Static files served from CDN
-- **Instant loading**: No server-side processing delays
+### 1. Static Site Generation
+- **Pre-rendering**: All pages generated at build time
+- **No Server Required**: Static files served from CDN
+- **Fast Loading**: Immediate content delivery
 
 ### 2. Image Optimization
-```typescript
-// Next.js Image component with optimization
-<Image
-  src={post.metadata.image}
-  alt={post.metadata.title}
-  width={400}
-  height={250}
-  className="rounded-lg"
-  priority={featured} // Prioritize above-the-fold images
-/>
-```
+- **Next.js Image**: Automatic optimization and lazy loading
+- **WebP/AVIF**: Modern image formats for better compression
+- **Responsive Images**: Different sizes for different devices
 
-### 3. Bundle Optimization
-- **Code splitting**: Automatic route-based splitting
-- **Tree shaking**: Unused code elimination
-- **Dynamic imports**: Lazy loading of components
+### 3. Code Splitting
+- **Route-based**: Each page loads only necessary code
+- **Component-based**: Large components loaded on demand
+- **Bundle Optimization**: Minimal JavaScript for initial load
 
 ### 4. Caching Strategy
-- **Static assets**: Long-term caching (1 year)
-- **HTML pages**: Medium-term caching (1 hour)
-- **API responses**: Short-term caching (5 minutes)
+- **Static Assets**: Long-term caching (1 year)
+- **HTML Pages**: Medium-term caching (1 hour)
+- **API Responses**: Short-term caching (5 minutes)
 
-### 5. Core Web Vitals Optimization
-- **LCP**: Optimized images and fonts
-- **FID**: Minimal JavaScript execution
-- **CLS**: Stable layout with proper sizing
+## SEO Architecture
 
-## 🔒 Security Considerations
+### 1. Metadata Management
+- **Root Layout**: Global SEO metadata
+- **Page-specific**: Individual page metadata
+- **Dynamic Generation**: Content-based metadata
 
-### 1. Content Security Policy (CSP)
-```typescript
-// Next.js security headers
-const securityHeaders = [
-  {
-    key: 'Content-Security-Policy',
-    value: "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"
-  }
-];
+### 2. Structured Data
+- **Schema.org**: Rich snippets for search engines
+- **Organization**: Company information
+- **Articles**: Blog post metadata
+- **Services**: Service descriptions
+
+### 3. URL Structure
+- **Clean URLs**: SEO-friendly paths
+- **Canonical URLs**: Prevent duplicate content
+- **Hreflang**: Language-specific URLs
+
+## Security Considerations
+
+### 1. Content Security
+- **Static Generation**: No server-side vulnerabilities
+- **Input Validation**: Content sanitization
+- **XSS Prevention**: React's built-in protection
+
+### 2. Performance Security
+- **Resource Limits**: Bundle size monitoring
+- **Dependency Management**: Regular updates
+- **Build Process**: Secure build pipeline
+
+## Deployment Architecture
+
+### 1. Build Process
+```
+Source Code → TypeScript Compilation → Static Generation → Asset Optimization → Deployment
 ```
 
-### 2. Input Sanitization
-```typescript
-// Markdown content sanitization
-import DOMPurify from 'isomorphic-dompurify';
+### 2. Hosting Strategy
+- **GitHub Pages**: Static hosting
+- **Custom Domain**: Professional branding
+- **CDN**: Global content delivery
 
-function sanitizeMarkdown(content: string): string {
-  return DOMPurify.sanitize(content);
-}
-```
+### 3. CI/CD Pipeline
+- **Automated Builds**: On every commit
+- **Quality Checks**: TypeScript and linting
+- **Performance Monitoring**: Build size tracking
 
-### 3. Environment Variables
-- **No secrets in client code**: All sensitive data server-side only
-- **Build-time configuration**: Environment variables at build time
-- **Public variables**: Only non-sensitive data exposed to client
+## Development Workflow
 
-### 4. Dependency Security
-- **Regular updates**: Automated dependency updates
-- **Vulnerability scanning**: GitHub Dependabot integration
-- **Minimal dependencies**: Only essential packages included
+### 1. Local Development
+- **Hot Reload**: Instant feedback during development
+- **Type Checking**: Real-time TypeScript validation
+- **Linting**: Code quality enforcement
 
-## 🚀 Deployment Architecture
+### 2. Content Management
+- **Markdown Editing**: Simple content creation
+- **Preview Mode**: Content validation before publishing
+- **Version Control**: Content tracked in Git
 
-### GitHub Pages Deployment
+### 3. Testing Strategy
+- **Build Verification**: Every change tested with build
+- **Performance Testing**: Bundle size monitoring
+- **Cross-browser Testing**: Compatibility verification
 
-```mermaid
-graph TD
-    A[Code Push] --> B[GitHub Actions]
-    B --> C[Build Process]
-    C --> D[Static Export]
-    D --> E[gh-pages Branch]
-    E --> F[GitHub Pages]
-    F --> G[CDN Distribution]
-    G --> H[User Access]
-```
+## Future Enhancements
 
-### Build Process
-1. **Environment Setup**: Node.js 22.x, pnpm
-2. **Dependency Installation**: `pnpm install --frozen-lockfile`
-3. **Type Checking**: TypeScript compilation
-4. **Linting**: ESLint code quality checks
-5. **Build**: Next.js static export
-6. **Deploy**: Upload to gh-pages branch
+### 1. Performance Improvements
+- **Service Worker**: Offline functionality
+- **Progressive Web App**: App-like experience
+- **Advanced Caching**: Intelligent content caching
 
-### Configuration Files
+### 2. Feature Additions
+- **Search Functionality**: Content search
+- **Comment System**: User engagement
+- **Analytics Integration**: Usage tracking
 
-#### next.config.ts
-```typescript
-const nextConfig: NextConfig = {
-  output: 'export',           // Static export for GitHub Pages
-  trailingSlash: true,       // URL compatibility
-  assetPrefix: '/tech-studio', // Asset path prefix
-  basePath: '/tech-studio',   // Base URL path
-  images: {
-    unoptimized: true,       // Required for static export
-  },
-};
-```
+### 3. Scalability Considerations
+- **Content Management System**: Dynamic content editing
+- **API Integration**: External data sources
+- **Microservices**: Modular architecture
 
-#### deployment.yml
-```yaml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [main]
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-      - uses: pnpm/action-setup@v3
-      - run: NODE_ENV=production pnpm run build
-      - uses: peaceiris/actions-gh-pages@v4
-```
+## Maintenance Guidelines
 
-## 🔮 Future Considerations
+### 1. Regular Updates
+- **Dependencies**: Keep packages current
+- **Content**: Regular blog posts and portfolio updates
+- **Performance**: Monitor and optimize
 
-### Scalability Improvements
-1. **Content Management**: Headless CMS integration
-2. **Database**: PostgreSQL for dynamic content
-3. **Search**: Full-text search implementation
-4. **Analytics**: User behavior tracking
-5. **A/B Testing**: Feature flag system
+### 2. Monitoring
+- **Build Success**: Automated verification
+- **Performance Metrics**: Core Web Vitals tracking
+- **Error Tracking**: User experience monitoring
 
-### Performance Enhancements
-1. **Edge Computing**: Vercel Edge Functions
-2. **Progressive Web App**: Offline functionality
-3. **Service Workers**: Background sync
-4. **WebAssembly**: Performance-critical operations
-5. **HTTP/3**: Next-generation protocol
+### 3. Documentation
+- **Code Comments**: Comprehensive inline documentation
+- **Architecture Docs**: System design documentation
+- **Deployment Guides**: Setup and maintenance instructions
 
-### Developer Experience
-1. **Storybook**: Component documentation
-2. **Testing**: Jest + React Testing Library
-3. **E2E Testing**: Playwright integration
-4. **Monitoring**: Error tracking and performance
-5. **Documentation**: Automated API docs
-
-### Content Strategy
-1. **Multi-language**: Additional language support
-2. **Rich Media**: Video and interactive content
-3. **User Generated Content**: Comments and reviews
-4. **Personalization**: User-specific content
-5. **SEO**: Advanced optimization techniques
-
-## 📊 Monitoring & Analytics
-
-### Performance Monitoring
-- **Core Web Vitals**: LCP, FID, CLS tracking
-- **Bundle Analysis**: Webpack bundle analyzer
-- **Build Metrics**: Build time and size tracking
-- **Error Tracking**: Client-side error monitoring
-
-### User Analytics
-- **Page Views**: Traffic and engagement metrics
-- **User Behavior**: Click tracking and heatmaps
-- **Conversion**: Goal completion tracking
-- **A/B Testing**: Feature performance comparison
-
-## 🧪 Testing Strategy
-
-### Unit Testing
-```typescript
-// Component testing example
-import { render, screen } from '@testing-library/react';
-import BlogCard from '@/components/blog-card';
-
-test('renders blog card with title', () => {
-  const mockPost = {
-    metadata: {
-      title: 'Test Post',
-      excerpt: 'Test excerpt',
-      date: '2024-01-01',
-      slug: 'test-post'
-    }
-  };
-  
-  render(<BlogCard post={mockPost} />);
-  expect(screen.getByText('Test Post')).toBeInTheDocument();
-});
-```
-
-### Integration Testing
-- **Page rendering**: Full page component tests
-- **Navigation**: Route and link testing
-- **Form submission**: User interaction testing
-- **API integration**: Data fetching tests
-
-### End-to-End Testing
-- **User journeys**: Complete workflow testing
-- **Cross-browser**: Multi-browser compatibility
-- **Mobile testing**: Responsive design validation
-- **Accessibility**: Screen reader compatibility
-
-## 📚 Documentation Standards
-
-### Code Documentation
-- **JSDoc**: Function and component documentation
-- **Type definitions**: Comprehensive TypeScript types
-- **README files**: Component usage examples
-- **Architecture docs**: System design documentation
-
-### API Documentation
-- **OpenAPI**: REST API specification
-- **GraphQL Schema**: Query and mutation documentation
-- **Webhook docs**: Event and payload documentation
-- **SDK docs**: Client library documentation
-
-This architecture guide provides a comprehensive foundation for understanding and extending the TechStudio project. For specific implementation details, refer to the individual component documentation and code comments.
+This architecture provides a solid foundation for a modern, performant, and maintainable web application that can scale with business needs while maintaining excellent user experience and developer productivity.
