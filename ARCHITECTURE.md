@@ -54,6 +54,9 @@ tech-studio/
 │   │   ├── portfolio-*.tsx          # Portfolio-specific components
 │   │   ├── navigation.tsx           # Main navigation component
 │   │   ├── footer.tsx               # Site footer
+│   │   ├── error-boundary.tsx       # Error handling component
+│   │   ├── optimized-image.tsx      # Performance-optimized image component
+│   │   ├── performance-monitor.tsx  # Performance monitoring component
 │   │   └── providers/               # Context providers (theme, etc.)
 │   ├── content/                      # Content management
 │   │   ├── blog/                    # Markdown blog posts
@@ -61,7 +64,9 @@ tech-studio/
 │   ├── lib/                         # Utility libraries
 │   │   ├── blog-content.ts          # Blog content processing
 │   │   ├── portfolio-content.ts     # Portfolio content processing
-│   │   ├── cn.ts                    # Class name utility
+│   │   ├── performance.ts           # Performance optimization utilities
+│   │   ├── seo.ts                   # SEO and metadata utilities
+│   │   └── cn.ts                    # Class name utility
 │   │   └── data/                    # Static data files
 │   └── middleware.ts                # Next.js middleware for routing
 ├── messages/                         # Internationalization files
@@ -131,16 +136,36 @@ Request → Locale Detection → Translation Files → Component Props → Rende
 - **Next.js Image**: Automatic optimization and lazy loading
 - **WebP/AVIF**: Modern image formats for better compression
 - **Responsive Images**: Different sizes for different devices
+- **OptimizedImage Component**: Custom component with loading states and error handling
+- **LazyImage Component**: Intersection Observer-based lazy loading
+- **ResponsiveImage Component**: Screen size-aware image rendering
 
-### 3. Code Splitting
+### 3. Code Splitting & Lazy Loading
 - **Route-based**: Each page loads only necessary code
 - **Component-based**: Large components loaded on demand
 - **Bundle Optimization**: Minimal JavaScript for initial load
+- **createLazyComponent**: Utility for lazy loading React components
+- **createDynamicComponent**: Next.js dynamic imports with loading states
+- **createMemoizedComponent**: React.memo wrapper for performance
 
-### 4. Caching Strategy
+### 4. Performance Monitoring
+- **Core Web Vitals**: LCP, FID, CLS, FCP, TTFB tracking
+- **PerformanceMonitor**: Real-time performance metrics display
+- **usePerformanceOptimization**: Hook for performance data
+- **Client-side Only**: Avoids SSR issues with browser APIs
+
+### 5. Error Handling
+- **ErrorBoundary**: Catches JavaScript errors gracefully
+- **DefaultErrorFallback**: User-friendly error display
+- **useErrorBoundary**: Hook for functional components
+- **Development Mode**: Detailed error information
+
+### 6. Caching Strategy
 - **Static Assets**: Long-term caching (1 year)
 - **HTML Pages**: Medium-term caching (1 hour)
 - **API Responses**: Short-term caching (5 minutes)
+- **Browser Caching**: Optimized cache headers
+- **CDN Caching**: Global content delivery
 
 ## SEO Architecture
 

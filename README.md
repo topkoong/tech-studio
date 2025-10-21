@@ -44,6 +44,16 @@ A modern, multilingual website built with Next.js 15, TypeScript, and Tailwind C
 - **Text Effects**: Typing effects, staggered animations
 - **Glassmorphism**: Modern UI with backdrop blur effects
 
+### Performance Optimizations
+- **Lazy Loading**: Components and images load on demand
+- **Code Splitting**: Route-based and component-based splitting
+- **Image Optimization**: WebP/AVIF formats with responsive sizing
+- **Bundle Optimization**: Tree shaking and compression
+- **Caching Strategy**: Long-term caching for static assets
+- **Core Web Vitals**: Performance monitoring and optimization
+- **Error Boundaries**: Graceful error handling and recovery
+- **PWA Support**: Progressive Web App capabilities
+
 ## 🛠 Tech Stack
 
 ### Frontend
