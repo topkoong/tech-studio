@@ -1,64 +1,45 @@
-name: GitHub Pages
+name: Deploy to GitHub Pages
 
-# Workflow to automatically deploy static site to GitHub Pages
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-      pages: write
-      id-token: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Setup Node.js 22.x
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: '22'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: latest
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build Next.js app
         run: |
           export NODE_ENV=production
           pnpm run build
 
-      - name: Add .nojekyll
+      - name: Add .nojekyll file
         run: |
           mkdir -p out
-          touch out/.nojekyll
-
-      - name: Verify build output
-        run: |
-          echo "Build output contents:"
-          ls -la out/
-          echo "Checking if index.html exists:"
-          test -f out/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
+          touch ./out/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
@@ -66,6 +47,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
-          full_commit_message: ${{ github.event.head_commit.message }}
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
