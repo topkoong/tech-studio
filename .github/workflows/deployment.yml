@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
+      pages: write
+      id-token: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -51,9 +53,19 @@ jobs:
           mkdir -p out
           touch out/.nojekyll
 
+      - name: Verify build output
+        run: |
+          echo "Build output contents:"
+          ls -la out/
+          echo "Checking if index.html exists:"
+          test -f out/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          full_commit_message: ${{ github.event.head_commit.message }}
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
