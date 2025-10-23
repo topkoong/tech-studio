@@ -9,9 +9,6 @@ const nextConfig: NextConfig = {
   
   // Base path for GitHub Pages deployment
   basePath: process.env.NODE_ENV === 'production' ? '/tech-studio' : '',
-  
-  // Asset prefix for GitHub Pages deployment
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/tech-studio' : '',
 
   images: {
     formats: ['image/webp', 'image/avif'] as const,
