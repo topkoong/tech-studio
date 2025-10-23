@@ -46,7 +46,7 @@ const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 /**
  * Retrieves all blog post slugs from both English and Thai directories
  * Returns slugs in format 'locale/filename' (e.g., 'en/post-slug', 'th/post-slug')
- * 
+ *
  * @returns Array of blog post slugs with language prefixes
  * @example
  * // Returns: ['en/getting-started', 'th/getting-started', 'en/advanced-guide']
@@ -86,7 +86,7 @@ export function getAllBlogSlugs(): string[] {
 /**
  * Loads all blog posts from markdown files
  * Posts are sorted by date in descending order (newest first)
- * 
+ *
  * @returns Array of blog posts sorted by publication date
  * @example
  * const posts = getAllBlogPosts();
@@ -113,7 +113,7 @@ export function getAllBlogPosts(): BlogPost[] {
 /**
  * Loads a specific blog post by its slug
  * Parses markdown frontmatter and content using gray-matter
- * 
+ *
  * @param slug - Blog post slug including language prefix (e.g., 'en/post-slug')
  * @returns Blog post object or null if not found
  * @example
@@ -153,7 +153,7 @@ export function getBlogPost(slug: string): BlogPost | null {
 /**
  * Filters blog posts by category
  * Case-insensitive category matching
- * 
+ *
  * @param category - Category name to filter by
  * @returns Array of blog posts in the specified category
  * @example
@@ -169,7 +169,7 @@ export function getBlogPostsByCategory(category: string): BlogPost[] {
 /**
  * Retrieves all featured blog posts
  * Featured posts are typically displayed prominently on the homepage
- * 
+ *
  * @returns Array of blog posts marked as featured
  * @example
  * const featured = getFeaturedBlogPosts();
@@ -182,7 +182,7 @@ export function getFeaturedBlogPosts(): BlogPost[] {
 /**
  * Finds related blog posts based on category and tags
  * Uses category matching and tag intersection for relevance
- * 
+ *
  * @param currentSlug - Slug of the current post to find related posts for
  * @param limit - Maximum number of related posts to return (default: 3)
  * @returns Array of related blog posts
@@ -205,7 +205,9 @@ export function getRelatedPosts(
     .filter((post) => post.metadata.slug !== currentSlug)
     .filter(
       (post) =>
+        // ✓ Match by category
         post.metadata.category === currentPost.metadata.category ||
+        // OR ✓ Match by at least one shared tag
         post.metadata.tags.some((tag) =>
           currentPost.metadata.tags.includes(tag)
         )
