@@ -40,7 +40,7 @@ export default function BlogCard({ post }: BlogCardProps) {
     : post.metadata.slug;
 
   return (
-    <Card className='hover:shadow-xl transition-all duration-300 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm border border-white/20 dark:border-gray-700/30 hover:border-lime-500/50 dark:hover:border-lime-500/50 shadow-xl hover:shadow-lime-500/25 overflow-hidden'>
+    <Card className='hover:shadow-xl transition-all duration-300 bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/30 hover:border-lime-500/50 dark:hover:border-lime-500/50 shadow-xl hover:shadow-lime-500/25 overflow-hidden'>
       {/* Image */}
       <div className='relative h-48 bg-gradient-to-br from-gray-700 to-gray-600'>
         {post.metadata.image ? (
@@ -79,21 +79,21 @@ export default function BlogCard({ post }: BlogCardProps) {
             {post.metadata.category}
           </Badge>
         </div>
-        <h2 className='text-xl font-bold text-white line-clamp-2 mb-3'>
+        <h2 className='text-xl font-bold text-gray-900 dark:text-white line-clamp-2 mb-3'>
           <Link
             href={`/${locale}/blog/${actualSlug}`}
-            className='hover:text-lime-400 transition-colors'
+            className='hover:text-lime-600 dark:hover:text-lime-400 transition-colors'
           >
             {post.metadata.title}
           </Link>
         </h2>
-        <p className='text-gray-300 text-sm leading-relaxed line-clamp-3'>
+        <p className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed line-clamp-3'>
           {post.metadata.excerpt}
         </p>
       </CardHeader>
 
       <CardContent className='pt-0'>
-        <div className='flex items-center gap-4 text-sm text-gray-400 mb-4'>
+        <div className='flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4'>
           <div className='flex items-center gap-1'>
             <Calendar className='w-4 h-4' />
             <span>
@@ -108,7 +108,7 @@ export default function BlogCard({ post }: BlogCardProps) {
 
         <Link
           href={`/${locale}/blog/${actualSlug}`}
-          className='inline-flex items-center text-lime-400 hover:text-lime-300 font-medium transition-colors'
+          className='inline-flex items-center text-lime-600 dark:text-lime-400 hover:text-lime-700 dark:hover:text-lime-300 font-medium transition-colors'
         >
           อ่านเพิ่มเติม →
         </Link>
