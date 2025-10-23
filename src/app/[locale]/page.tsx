@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/card';
 
 import { AnimatedAvatar } from '@/components/animated-avatar';
-import { AnimatedBanner } from '@/components/AnimatedBanner';
+import { AnimatedBanner } from '@/components/animated-banner';
 import { AnimatedStars } from '@/components/animated-stars';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -55,15 +55,15 @@ export default async function HomePage({ params }: HomePageProps) {
   const t = await getTranslations('home');
 
   return (
-    <div className='min-h-screen bg-background dark:bg-background relative overflow-hidden'>
+    <main className='min-h-screen bg-background dark:bg-background relative overflow-hidden'>
       <Navigation />
 
       {/* Animated Banner - Main Hero Section with darker background */}
-      <div className='relative bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background'>
+      <header className='relative bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background'>
         {/* Floating particles in hero section */}
         <FloatingParticlesBanner />
         <AnimatedBanner />
-      </div>
+      </header>
 
       {/* Tech Stack Section */}
       <AnimatedSection
@@ -734,6 +734,6 @@ export default async function HomePage({ params }: HomePageProps) {
       </AnimatedSection>
 
       <Footer />
-    </div>
+    </main>
   );
 }

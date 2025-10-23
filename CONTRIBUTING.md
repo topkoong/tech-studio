@@ -99,6 +99,35 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 ## 📝 Code Standards
 
+### Semantic HTML5 Structure
+We use semantic HTML5 elements for better accessibility, SEO, and maintainability:
+
+- **`<main>`**: Main content area of each page
+- **`<header>`**: Site header containing navigation and hero sections  
+- **`<nav>`**: Navigation menus (main navigation, footer links)
+- **`<section>`**: Thematic groupings of content
+- **`<article>`**: Self-contained content pieces (blog posts, portfolio items)
+- **`<aside>`**: Supplementary content (newsletter signup, related content)
+- **`<footer>`**: Site footer with company information and links
+
+### Naming Conventions
+Follow these production-grade naming conventions:
+
+#### File Naming
+- **Components**: `kebab-case.tsx` (e.g., `animated-banner.tsx`, `blog-card.tsx`)
+- **Pages**: `kebab-case.tsx` (e.g., `page.tsx`, `layout.tsx`)
+- **Utilities**: `kebab-case.ts` (e.g., `blog-content.ts`, `performance.ts`)
+
+#### Component Naming
+- **React Components**: `PascalCase` (e.g., `AnimatedBanner`, `BlogCard`)
+- **Functions**: `camelCase` (e.g., `generateMetadata`, `getBlogPosts`)
+- **Constants**: `UPPER_SNAKE_CASE` (e.g., `API_ENDPOINTS`, `DEFAULT_LOCALE`)
+
+#### Import/Export Patterns
+- **Default Exports**: Used for main components (e.g., `export default function Navigation()`)
+- **Named Exports**: Used for utility functions and sub-components
+- **Barrel Exports**: Grouped exports in index files for cleaner imports
+
 ### TypeScript
 
 - **Use strict typing**: Avoid `any` types

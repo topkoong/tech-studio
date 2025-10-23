@@ -51,9 +51,9 @@ export default function Footer() {
   return (
     <footer className='bg-slate-900 dark:bg-slate-950 text-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
+        <section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
           {/* Company Info */}
-          <motion.div
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -79,10 +79,10 @@ export default function Footer() {
                 </motion.a>
               ))}
             </div>
-          </motion.div>
+          </motion.section>
 
           {/* Quick Links */}
-          <motion.div
+          <motion.nav
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -100,10 +100,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.nav>
 
           {/* Newsletter */}
-          <motion.div
+          <motion.aside
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -128,8 +128,8 @@ export default function Footer() {
                 {t('newsletter.button')}
               </motion.button>
             </div>
-          </motion.div>
-        </div>
+          </motion.aside>
+        </section>
 
         {/* Bottom Bar */}
         <motion.div

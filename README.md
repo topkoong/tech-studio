@@ -54,6 +54,13 @@ A modern, multilingual website built with Next.js 15, TypeScript, and Tailwind C
 - **Error Boundaries**: Graceful error handling and recovery
 - **PWA Support**: Progressive Web App capabilities
 
+### Code Quality & Standards
+- **Semantic HTML5**: Proper use of `<main>`, `<header>`, `<nav>`, `<section>`, `<article>`, `<aside>`, `<footer>`
+- **Production Naming**: kebab-case files, PascalCase components, camelCase functions
+- **TypeScript**: Full type safety with strict configuration
+- **Accessibility**: ARIA labels, semantic markup, keyboard navigation
+- **SEO**: Structured data, meta tags, sitemap generation
+
 ## 🛠 Tech Stack
 
 ### Frontend

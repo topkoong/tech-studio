@@ -103,13 +103,13 @@ export default function Navigation() {
   ];
 
   return (
-    <motion.nav
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className='bg-white/95 dark:bg-black/95 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-800/50 sticky top-0 z-50'
     >
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center h-16'>
           {/* Logo */}
           <motion.div
@@ -147,7 +147,7 @@ export default function Navigation() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className='hidden md:flex items-center space-x-8'>
+          <nav className='hidden md:flex items-center space-x-8'>
             {navigationItems.map((item, index) => (
               <motion.div
                 key={item.key}
@@ -169,7 +169,7 @@ export default function Navigation() {
                 </Link>
               </motion.div>
             ))}
-          </div>
+          </nav>
 
           {/* Controls */}
           <div className='flex items-center space-x-4'>
@@ -401,7 +401,7 @@ export default function Navigation() {
             </Sheet>
           </div>
         </div>
-      </div>
-    </motion.nav>
+      </nav>
+    </motion.header>
   );
 }
