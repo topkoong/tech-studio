@@ -49,7 +49,7 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
   ).slice(0, 2);
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
+    <main className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
       <FloatingParticles
         count={120}
@@ -68,14 +68,14 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
       {/* Featured Projects */}
       <section className='py-20 px-4 sm:px-6 lg:px-8 relative z-10'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='text-center mb-16'>
+          <header className='text-center mb-16'>
             <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
               {t('featuredProjects')}
             </h2>
             <p className='text-lg text-gray-700 dark:text-gray-300'>
               {t('featuredDescription')}
             </p>
-          </div>
+          </header>
 
           <PortfolioGrid projects={featuredProjects} featured locale={locale} />
         </div>
@@ -84,14 +84,14 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
       {/* All Projects */}
       <section className='py-20 relative z-10'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='text-center mb-16'>
+          <header className='text-center mb-16'>
             <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
               {t('allProjects')}
             </h2>
             <p className='text-lg text-gray-700 dark:text-gray-300'>
               {t('allDescription')}
             </p>
-          </div>
+          </header>
 
           <PortfolioGrid projects={projects} locale={locale} />
         </div>
@@ -105,6 +105,6 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
       />
 
       <Footer />
-    </div>
+    </main>
   );
 }

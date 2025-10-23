@@ -32,7 +32,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const t = await getTranslations('blog');
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
+    <main className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
 
       <FloatingParticles
@@ -67,6 +67,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
       />
 
       <Footer />
-    </div>
+    </main>
   );
 }

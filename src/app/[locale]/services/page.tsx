@@ -41,7 +41,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   const t = await getTranslations('services');
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
+    <main className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
       <FloatingParticles
         count={120}
@@ -468,6 +468,6 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
       </AnimatedSection>
 
       <Footer />
-    </div>
+    </main>
   );
 }

@@ -280,7 +280,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
   }
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
+    <main className='min-h-screen bg-gradient-to-br from-green-950 via-green-900 to-background dark:from-green-950 dark:via-green-900 dark:to-background relative overflow-hidden'>
       <Navigation />
       {/* Floating particles - moved outside z-index container */}
       <FloatingParticles
@@ -414,6 +414,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </AnimatedSection>
 
       <Footer />
-    </div>
+    </main>
   );
 }
