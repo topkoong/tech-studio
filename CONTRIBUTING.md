@@ -100,15 +100,190 @@ We are committed to providing a welcoming and inclusive environment for all cont
 ## 📝 Code Standards
 
 ### Semantic HTML5 Structure
-We use semantic HTML5 elements for better accessibility, SEO, and maintainability:
 
-- **`<main>`**: Main content area of each page
-- **`<header>`**: Site header containing navigation and hero sections  
-- **`<nav>`**: Navigation menus (main navigation, footer links)
+This project follows strict semantic HTML5 standards to ensure maximum accessibility, SEO optimization, and code maintainability. Every component must use appropriate semantic elements instead of generic `<div>` containers.
+
+#### **Core Semantic Elements**
+
+**Page Structure Elements**
+- **`<main>`**: Primary content area of each page
+  - Only one `<main>` element per page
+  - Contains primary content, excludes navigation and footer
+  - Must be a direct child of `<body>` or `<html>`
+  - Example: `<main className="min-h-screen bg-background">...</main>`
+
+- **`<header>`**: Site headers and hero sections
+  - Contains site branding, navigation, or introductory content
+  - Can be used multiple times per page for different sections
+  - Should include headings when introducing content
+  - Example: `<header className="hero-section">...</header>`
+
+- **`<footer>`**: Site footers with supplementary information
+  - Contains company info, links, copyright
+  - Should be at the bottom of page structure
+  - Example: `<footer className="site-footer">...</footer>`
+
+**Content Structure Elements**
+- **`<nav>`**: Navigation menus and link collections
+  - Groups related navigation elements
+  - Should contain lists of links when appropriate
+  - Can be used for action buttons in content
+  - Example: `<nav className="main-navigation">...</nav>`
+
 - **`<section>`**: Thematic groupings of content
-- **`<article>`**: Self-contained content pieces (blog posts, portfolio items)
-- **`<aside>`**: Supplementary content (newsletter signup, related content)
-- **`<footer>`**: Site footer with company information and links
+  - Must have a clear thematic purpose
+  - Should contain headings when introducing content
+  - Groups related content blocks
+  - Example: `<section className="portfolio-section">...</section>`
+
+- **`<article>`**: Self-contained content pieces
+  - Must be independently distributable
+  - Should contain complete content with title and body
+  - Used for blog posts, portfolio items, standalone content
+  - Example: `<article className="blog-post">...</article>`
+
+- **`<aside>`**: Supplementary content
+  - Content tangentially related to main content
+  - Should provide additional context
+  - Used for related posts, newsletter signup, sidebars
+  - Example: `<aside className="related-content">...</aside>`
+
+#### **Implementation Examples**
+
+**✅ Correct Semantic Structure:**
+```tsx
+<main className="page-container">
+  <header className="page-header">
+    <h1>Page Title</h1>
+    <nav className="breadcrumb">
+      <Link href="/portfolio">Portfolio</Link> / Project Name
+    </nav>
+  </header>
+  
+  <article className="project-details">
+    <header className="project-intro">
+      <h2>Project Overview</h2>
+      <nav className="project-actions">
+        <a href="live-demo">Live Demo</a>
+        <a href="github">View Code</a>
+      </nav>
+    </header>
+    
+    <section className="technologies">
+      <h3>Technologies Used</h3>
+      {/* Technology list */}
+    </section>
+    
+    <section className="features">
+      <h3>Key Features</h3>
+      {/* Feature list */}
+    </section>
+  </article>
+  
+  <aside className="related-projects">
+    <h2>Related Projects</h2>
+    {/* Related project cards */}
+  </aside>
+</main>
+```
+
+**❌ Incorrect Usage (Avoid):**
+```tsx
+<div className="page-container">
+  <div className="page-header">
+    <h1>Page Title</h1>
+    <div className="breadcrumb">
+      <Link href="/portfolio">Portfolio</Link> / Project Name
+    </div>
+  </div>
+  
+  <div className="project-details">
+    <div className="project-intro">
+      <h2>Project Overview</h2>
+      <div className="project-actions">
+        <a href="live-demo">Live Demo</a>
+        <a href="github">View Code</a>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### **Accessibility Integration**
+
+**ARIA Landmarks with Semantic Elements:**
+```tsx
+<main role="main" aria-label="Main content">
+  <nav role="navigation" aria-label="Main navigation">
+    {/* Navigation content */}
+  </nav>
+  
+  <article role="article" aria-labelledby="article-title">
+    <h1 id="article-title">Article Title</h1>
+    {/* Article content */}
+  </article>
+  
+  <aside role="complementary" aria-label="Related content">
+    {/* Supplementary content */}
+  </aside>
+</main>
+```
+
+**Screen Reader Benefits:**
+- **Landmark Navigation**: Screen readers can jump between semantic landmarks
+- **Content Hierarchy**: Clear heading structure with proper `<h1>` to `<h6>` nesting
+- **Content Identification**: Screen readers understand content purpose through semantics
+
+#### **SEO Optimization**
+
+**Structured Data Integration:**
+```tsx
+<article itemScope itemType="https://schema.org/Article">
+  <header>
+    <h1 itemProp="headline">Article Title</h1>
+    <p itemProp="description">Article description</p>
+  </header>
+  <section itemProp="articleBody">
+    {/* Article content */}
+  </section>
+</article>
+```
+
+**Search Engine Benefits:**
+- **Content Hierarchy**: Search engines understand page structure
+- **Rich Snippets**: Semantic markup enables enhanced search results
+- **Content Classification**: Search engines categorize content by semantic meaning
+
+#### **Implementation Checklist**
+
+**Before Creating Components:**
+- [ ] Identify the primary purpose of the content
+- [ ] Determine if content is self-contained (use `<article>`)
+- [ ] Check if content is supplementary (use `<aside>`)
+- [ ] Verify if content is thematic grouping (use `<section>`)
+- [ ] Ensure proper heading hierarchy (`<h1>` to `<h6>`)
+
+**During Development:**
+- [ ] Use semantic elements instead of generic `<div>` containers
+- [ ] Include appropriate headings for each semantic section
+- [ ] Maintain proper nesting of semantic elements
+- [ ] Add ARIA attributes when needed for enhanced accessibility
+- [ ] Test with screen readers and accessibility tools
+
+**Code Review Checklist:**
+- [ ] All content wrapped in appropriate semantic elements
+- [ ] Proper heading hierarchy maintained
+- [ ] No unnecessary `<div>` containers where semantic elements would be better
+- [ ] ARIA attributes added where appropriate
+- [ ] Semantic structure follows HTML5 specification
+
+#### **Benefits of Semantic HTML5**
+- **Accessibility**: Screen readers can better understand page structure
+- **SEO**: Search engines can better index content hierarchy
+- **Maintainability**: Clear semantic meaning improves code readability
+- **Future-proof**: Follows web standards for long-term compatibility
+- **Performance**: Better CSS targeting and reduced specificity conflicts
+- **Testing**: Semantic elements provide better testing hooks and selectors
 
 ### Naming Conventions
 Follow these production-grade naming conventions:

@@ -83,22 +83,153 @@ tech-studio/
 
 ## Semantic HTML5 Structure
 
-The application follows modern web standards with semantic HTML5 elements for better accessibility, SEO, and maintainability:
+The application follows modern web standards with comprehensive semantic HTML5 elements for better accessibility, SEO, and maintainability. Every component has been carefully structured to use appropriate semantic elements instead of generic `<div>` containers.
 
-### Semantic Elements Used
-- **`<main>`**: Main content area of each page
-- **`<header>`**: Site header containing navigation and hero sections
-- **`<nav>`**: Navigation menus (main navigation, footer links)
+### Semantic Elements Implementation
+
+#### **Page-Level Structure**
+- **`<main>`**: Primary content area of each page
+  - Used in: All page components (`page.tsx` files)
+  - Contains: Main page content, excludes navigation and footer
+  - Purpose: Identifies the main content for screen readers and search engines
+
+- **`<header>`**: Site header and hero sections
+  - Used in: Home page hero section, navigation component
+  - Contains: Site branding, navigation, hero content
+  - Purpose: Defines introductory content and site navigation
+
+- **`<footer>`**: Site footer with company information
+  - Used in: Footer component across all pages
+  - Contains: Company info, links, social media, copyright
+  - Purpose: Provides supplementary information about the site
+
+#### **Content Structure**
+- **`<nav>`**: Navigation menus and link collections
+  - Used in: Main navigation, footer links, portfolio action buttons
+  - Contains: Navigation links, menu items, action buttons
+  - Purpose: Groups related navigation elements
+
 - **`<section>`**: Thematic groupings of content
-- **`<article>`**: Self-contained content pieces (blog posts, portfolio items)
-- **`<aside>`**: Supplementary content (newsletter signup, related content)
-- **`<footer>`**: Site footer with company information and links
+  - Used in: Portfolio sections, blog sections, service sections
+  - Contains: Related content blocks with headings
+  - Purpose: Groups content by theme or functionality
 
-### Benefits
-- **Accessibility**: Screen readers can better understand page structure
-- **SEO**: Search engines can better index content hierarchy
-- **Maintainability**: Clear semantic meaning improves code readability
-- **Future-proof**: Follows web standards for long-term compatibility
+- **`<article>`**: Self-contained content pieces
+  - Used in: Blog posts, portfolio project details, individual content items
+  - Contains: Complete, standalone content with title and body
+  - Purpose: Represents independent, distributable content
+
+- **`<aside>`**: Supplementary content
+  - Used in: Newsletter signup, related posts, sidebar content
+  - Contains: Content tangentially related to main content
+  - Purpose: Provides additional context or related information
+
+- **`<header>` (within content)**: Section headers and introductions
+  - Used in: Section titles, content introductions
+  - Contains: Headings, descriptions, introductory content
+  - Purpose: Introduces and describes content sections
+
+### Implementation Examples
+
+#### **Portfolio Project Page Structure**
+```tsx
+<main> {/* Main content area */}
+  <article> {/* Individual project content */}
+    <header> {/* Project introduction */}
+      <h1>Project Title</h1>
+      <p>Project Description</p>
+      <nav> {/* Action buttons */}
+        <a href="live-demo">Live Demo</a>
+        <a href="github">View Code</a>
+      </nav>
+    </header>
+    
+    <section> {/* Technologies section */}
+      <h2>Technologies</h2>
+      {/* Technology tags */}
+    </section>
+    
+    <section> {/* Features section */}
+      <h2>Features</h2>
+      {/* Feature list */}
+    </section>
+  </article>
+  
+  <aside> {/* Related projects */}
+    <h2>Related Projects</h2>
+    {/* Related project cards */}
+  </aside>
+</main>
+```
+
+#### **Blog Post Page Structure**
+```tsx
+<main> {/* Main content area */}
+  <article> {/* Blog post content */}
+    <header> {/* Post introduction */}
+      <h1>Post Title</h1>
+      <p>Post excerpt</p>
+    </header>
+    
+    <section> {/* Post content */}
+      {/* Blog post body */}
+    </section>
+  </article>
+  
+  <aside> {/* Related posts */}
+    <h2>Related Articles</h2>
+    {/* Related post cards */}
+  </aside>
+</main>
+```
+
+### Accessibility Benefits
+
+#### **Screen Reader Support**
+- **Landmark Navigation**: Screen readers can jump between `<main>`, `<nav>`, `<header>`, `<footer>`
+- **Content Hierarchy**: Clear heading structure with proper `<h1>`, `<h2>`, `<h3>` nesting
+- **Content Identification**: Screen readers understand content purpose through semantic elements
+
+#### **Keyboard Navigation**
+- **Focus Management**: Semantic elements provide natural tab order
+- **Skip Links**: Users can skip to main content using landmark navigation
+- **ARIA Integration**: Semantic elements work seamlessly with ARIA attributes
+
+### SEO Benefits
+
+#### **Search Engine Understanding**
+- **Content Hierarchy**: Search engines understand page structure and content importance
+- **Rich Snippets**: Semantic markup enables enhanced search result displays
+- **Content Classification**: Search engines can categorize content by semantic meaning
+
+#### **Structured Data Integration**
+- **Schema.org Compatibility**: Semantic elements align with structured data standards
+- **Article Markup**: Blog posts use proper article markup for search engines
+- **Organization Markup**: Company information properly structured for local SEO
+
+### Code Quality Benefits
+
+#### **Maintainability**
+- **Self-Documenting**: Semantic elements make code purpose clear
+- **Consistent Structure**: Standardized semantic patterns across components
+- **Future-Proof**: Follows web standards for long-term compatibility
+
+#### **Development Efficiency**
+- **CSS Targeting**: Semantic elements provide better CSS selector options
+- **Component Reusability**: Semantic structure makes components more reusable
+- **Testing**: Semantic elements provide better testing hooks and selectors
+
+### Standards Compliance
+
+#### **WCAG 2.1 Guidelines**
+- **Level A**: Basic accessibility requirements met through semantic structure
+- **Level AA**: Enhanced accessibility through proper landmark usage
+- **Level AAA**: Advanced accessibility through comprehensive semantic markup
+
+#### **HTML5 Specification**
+- **Valid Markup**: All semantic elements used according to HTML5 specification
+- **Progressive Enhancement**: Semantic structure works without JavaScript
+- **Cross-Browser Compatibility**: Semantic elements supported across all modern browsers
 
 ## Naming Conventions
 
