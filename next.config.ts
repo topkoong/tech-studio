@@ -6,7 +6,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
-  
+
   // Base path for GitHub Pages deployment
   basePath: process.env.NODE_ENV === 'production' ? '/tech-studio' : '',
 
